@@ -177,6 +177,7 @@
   function positionSections() {
     var totalH = scrollCont.offsetHeight;
     document.querySelectorAll('.scroll-section').forEach(function (sec) {
+      if (sec.dataset.persist === 'true') return; // position:fixed via CSS, skip
       var enter = parseFloat(sec.dataset.enter) / 100;
       var leave = parseFloat(sec.dataset.leave) / 100;
       var mid   = (enter + leave) / 2;
