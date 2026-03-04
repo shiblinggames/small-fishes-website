@@ -687,7 +687,7 @@ body {
   .marquee-text { font-size: 4rem; }
 
   /* Nav CTA */
-  .nav-cta { display: none; }
+  .nav-cta { display: inline-flex; font-size: 0.75rem; padding: 0.5rem 1rem; }
 
   /* End section */
   .end-inner { gap: 4rem; }
