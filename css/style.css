@@ -332,6 +332,16 @@ body {
   align-items: center;
 }
 
+/* Persist section: always fixed, visibility controlled by JS opacity */
+.scroll-section[data-persist="true"] {
+  position: fixed;
+  top: 33%;
+  transform: translateY(-50%);
+  z-index: 7;
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Side-aligned text zones */
 .align-left {
   padding-left: 5vw;

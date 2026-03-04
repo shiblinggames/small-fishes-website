@@ -357,20 +357,7 @@
         }
       }
 
-      var pinned = false;
-      var mid    = (enter + leave) / 2;
-
-      // For persist sections: compute the scroll progress at which the section
-      // reaches the top-third of the viewport, then lock it there.
-      var PIN_VH_FRAC = 0.33; // pin section center at 33% from top
-      var pinProgress = null;
-      if (persist) {
-        var contH = scrollCont.offsetHeight;
-        var vh    = window.innerHeight;
-        pinProgress = Math.min(0.99, (mid * contH - vh * PIN_VH_FRAC) / (contH - vh));
-      }
-
-      // Scrub window for persist sections (fraction of total scroll progress)
+      // Scrub window (fraction of total scroll progress) for fade in/out
       var SCRUB = 0.05;
 
       ScrollTrigger.create({
@@ -381,26 +368,13 @@
           var p = self.progress;
 
           if (persist) {
-            // Scrub the animation tied to scroll so entrance feels scroll-driven
-            var animP = Math.max(0, Math.min(1, (p - enter) / SCRUB));
-            tl.progress(animP);
-
-            // Pin section to viewport center once it naturally scrolls there
-            if (p >= pinProgress && !pinned) {
-              pinned = true;
-              section.style.position = 'fixed';
-              section.style.top = '33%';
-              section.style.left = '0';
-              section.style.right = '0';
-              section.style.transform = 'translateY(-50%)';
-              section.style.zIndex = '7';
-            } else if (p < pinProgress && pinned) {
-              pinned = false;
-              section.style.position = 'absolute';
-              section.style.top = (mid * scrollCont.offsetHeight) + 'px';
-              section.style.transform = 'translateY(-50%)';
-              section.style.zIndex = '';
-            }
+            // Fade in over SCRUB window after enter, fade out over SCRUB before leave
+            var fadeIn  = Math.max(0, Math.min(1, (p - enter) / SCRUB));
+            var fadeOut = Math.max(0, Math.min(1, (leave - p) / SCRUB));
+            var op = Math.min(fadeIn, fadeOut);
+            section.style.opacity = String(op);
+            section.style.pointerEvents = op > 0.1 ? 'auto' : 'none';
+            tl.progress(fadeIn);
           } else {
             if (p >= enter) {
               tl.play();
