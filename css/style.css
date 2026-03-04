@@ -1,0 +1,693 @@
+/* ============================================================
+   SMALL FISHES: SEAS THE BOOTY — Landing Page Styles
+   ============================================================ */
+
+/* --- RESET & BASE --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:           #000000;
+  --text:         #f0ede8;
+  --text-muted:   #8a8880;
+  --gold:         #f0c040;
+  --gold-hover:   #ffd966;
+  --teal:         #00c8b4;
+  --coral:        #ff5a3c;
+  --font-display: 'Cinzel', serif;
+  --font-body:    'Karla', sans-serif;
+}
+
+html { scroll-behavior: auto; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   LOADER
+   ============================================================ */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-brand {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  color: var(--text);
+  opacity: 0.9;
+}
+
+.loader-track {
+  width: min(320px, 70vw);
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+#loader-bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0%;
+  background: var(--gold);
+  transition: width 0.15s ease;
+}
+
+#loader-percent {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   FIXED HEADER
+   ============================================================ */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.25rem 3rem;
+  mix-blend-mode: normal;
+}
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.9;
+}
+
+.nav-cta {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid rgba(240, 192, 64, 0.4);
+  padding: 0.5rem 1.25rem;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.nav-cta:hover {
+  border-color: var(--gold);
+  background: rgba(240, 192, 64, 0.08);
+  color: var(--gold-hover);
+}
+
+/* ============================================================
+   HERO — standalone 100vh
+   ============================================================ */
+.hero-standalone {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  background: #000;
+  overflow: hidden;
+}
+
+/* subtle radial glow behind hero text */
+.hero-standalone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 55% at 50% 55%,
+    rgba(0, 200, 180, 0.06) 0%,
+    transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  text-align: center;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1.5rem;
+}
+
+.hero-heading {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 14vw, 13rem);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.04em;
+  margin-bottom: 1.2rem;
+  overflow: hidden;
+}
+
+.hero-heading .word {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-sub {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  margin-bottom: 1.4rem;
+}
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(240, 237, 232, 0.65);
+  max-width: 42ch;
+  margin: 0 auto;
+}
+
+/* scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  opacity: 0.45;
+}
+
+.scroll-text {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.scroll-arrow {
+  width: 1px;
+  height: 2.5rem;
+  background: linear-gradient(to bottom, transparent, var(--text-muted));
+  animation: scrollPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* ============================================================
+   CANVAS
+   ============================================================ */
+.canvas-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  /* starts hidden, revealed via clip-path circle-wipe in JS */
+  clip-path: circle(0% at 50% 50%);
+}
+
+#canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Vignette — blends canvas edges into pure black */
+#canvas-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    radial-gradient(ellipse 75% 75% at 50% 50%,
+      transparent 38%,
+      rgba(0,0,0,0.55) 62%,
+      rgba(0,0,0,0.88) 80%,
+      #000 100%);
+}
+
+/* ============================================================
+   DARK OVERLAY (stats section)
+   ============================================================ */
+#dark-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+}
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+.marquee-wrap {
+  position: fixed;
+  bottom: 3.5rem;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.marquee-text {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(7rem, 12vw, 11rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: rgba(240, 237, 232, 0.04);
+  white-space: nowrap;
+  will-change: transform;
+  -webkit-text-stroke: 1px rgba(240, 192, 64, 0.15);
+}
+
+/* ============================================================
+   SCROLL CONTAINER & SECTIONS
+   ============================================================ */
+#scroll-container {
+  position: relative;
+  height: 900vh;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.scroll-section {
+  position: absolute;
+  left: 0; right: 0;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Side-aligned text zones */
+.align-left {
+  padding-left: 5vw;
+  padding-right: 55vw;
+  justify-content: flex-start;
+}
+
+.align-right {
+  padding-left: 55vw;
+  padding-right: 5vw;
+  justify-content: flex-end;
+}
+
+.section-inner {
+  max-width: 38vw;
+  background: rgba(0, 0, 0, 0.38);
+  padding: 2.5rem 2.5rem 2.5rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Section labels */
+.section-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Section headings */
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+/* Section body */
+.section-body {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(240, 237, 232, 0.72);
+  max-width: 36ch;
+}
+
+.section-price {
+  font-size: clamp(0.82rem, 1.2vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(240, 237, 232, 0.85);
+  margin-bottom: 1.8rem;
+}
+
+.section-note {
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-top: 1rem;
+}
+
+/* CTA Button */
+.cta-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1rem 2.2rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+  background: var(--gold);
+  border: 2px solid var(--gold);
+  transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.2s;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.cta-button:hover {
+  background: transparent;
+  color: var(--gold-hover);
+  border-color: var(--gold-hover);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   STATS SECTION
+   ============================================================ */
+.section-stats {
+  left: 0; right: 0;
+  padding: 0 5vw;
+  justify-content: center;
+  z-index: 4;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4vw;
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat-value-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.15em;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1;
+}
+
+.stat-suffix {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   END SECTION — CTA + Email (after scroll container)
+   ============================================================ */
+#end-section {
+  position: relative;
+  z-index: 10;
+  background: #000;
+  padding: 10vh 8vw 6vh;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.end-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6vw;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 8vh;
+}
+
+/* Single-column variant for email-only end section */
+.end-inner--single {
+  grid-template-columns: 1fr;
+  max-width: 560px;
+}
+
+/* Email column */
+.end-email { display: flex; flex-direction: column; justify-content: center; }
+
+.email-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 1rem 0 1.2rem;
+}
+
+.email-body {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1.2vw, 0.98rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(240, 237, 232, 0.6);
+  max-width: 38ch;
+  margin-bottom: 2rem;
+}
+
+/* Form */
+.email-form { width: 100%; }
+
+.email-form-row {
+  display: flex;
+  gap: 0;
+  width: 100%;
+  border: 1px solid rgba(240, 192, 64, 0.35);
+  transition: border-color 0.2s;
+}
+
+.email-form-row:focus-within {
+  border-color: var(--gold);
+}
+
+#email-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.9rem 1.2rem;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text);
+  caret-color: var(--gold);
+}
+
+#email-input::placeholder {
+  color: rgba(240, 237, 232, 0.3);
+}
+
+.email-submit {
+  flex-shrink: 0;
+  padding: 0.9rem 1.6rem;
+  background: var(--gold);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #000;
+  transition: background 0.2s;
+}
+
+.email-submit:hover { background: var(--gold-hover); }
+
+.email-legal {
+  margin-top: 0.75rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+/* Success state */
+.email-success {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.2rem 0;
+}
+
+.email-success[hidden] { display: none; }
+
+.email-success-icon {
+  font-size: 1.4rem;
+  color: var(--teal);
+  line-height: 1;
+}
+
+.email-success p {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+/* Footer */
+.end-footer {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 768px) {
+  .site-header { padding: 1rem 1.5rem; }
+
+  /* Hero */
+  .hero-heading { font-size: clamp(4rem, 18vw, 7rem); }
+  .hero-sub { font-size: 1.1rem; }
+
+  /* Canvas vignette stronger on mobile */
+  #canvas-vignette {
+    background:
+      radial-gradient(ellipse 90% 70% at 50% 50%,
+        transparent 25%,
+        rgba(0,0,0,0.7) 55%,
+        #000 80%);
+  }
+
+  /* Scroll container height */
+  #scroll-container { height: 550vh; }
+
+  /* Override side-alignment — full width centered with dark backdrop */
+  .align-left,
+  .align-right {
+    padding: 2rem 1.5rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .section-inner {
+    max-width: 100%;
+    background: rgba(0,0,0,0.75);
+    padding: 2rem;
+    backdrop-filter: blur(4px);
+  }
+
+  .section-body { max-width: 100%; }
+
+  /* Stats */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  /* Marquee smaller */
+  .marquee-text { font-size: 4rem; }
+
+  /* Nav CTA */
+  .nav-cta { display: none; }
+
+  /* End section */
+  .end-inner { gap: 4rem; }
+
+  .email-form-row { flex-direction: column; border: none; gap: 0.75rem; }
+
+  #email-input {
+    border: 1px solid rgba(240, 192, 64, 0.35);
+    padding: 1rem 1.2rem;
+  }
+
+  .email-submit { padding: 1rem; text-align: center; }
+}
