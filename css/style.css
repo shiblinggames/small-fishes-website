@@ -335,7 +335,7 @@ body {
 /* Persist section: always fixed, visibility controlled by JS opacity */
 .scroll-section[data-persist="true"] {
   position: fixed;
-  top: 33%;
+  top: 50%;
   transform: translateY(-50%);
   z-index: 7;
   opacity: 0;
