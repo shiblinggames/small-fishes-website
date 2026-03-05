@@ -90,7 +90,7 @@
     const dh = ih * scale;
     const dx = (cw - dw) / 2;
     const dy = (ch - dh) / 2;
-    ctx.fillStyle = sampledBg;
+    ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, cw, ch);
     ctx.drawImage(img, dx, dy, dw, dh);
   }
