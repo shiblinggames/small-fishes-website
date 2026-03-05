@@ -8,7 +8,7 @@
   /* ----------------------------------------------------------
      CONFIG
   ---------------------------------------------------------- */
-  const FRAME_COUNT  = 121;
+  const FRAME_COUNT  = 145;
   const FRAME_SPEED  = 2.0;
   const IMAGE_SCALE  = 0.85;
   const PRELOAD_FAST = 12;

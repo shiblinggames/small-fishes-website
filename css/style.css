@@ -268,11 +268,11 @@ body {
   pointer-events: none;
   z-index: 2;
   background:
-    radial-gradient(ellipse 75% 75% at 50% 50%,
-      transparent 38%,
-      rgba(0,0,0,0.55) 62%,
-      rgba(0,0,0,0.88) 80%,
-      #000 100%);
+    radial-gradient(ellipse 64% 62% at 50% 50%,
+      transparent 25%,
+      rgba(0,0,0,0.5)  50%,
+      rgba(0,0,0,0.85) 68%,
+      #000             88%);
 }
 
 /* ============================================================
@@ -308,7 +308,7 @@ body {
   font-size: clamp(7rem, 12vw, 11rem);
   font-weight: 900;
   letter-spacing: 0.04em;
-  color: rgba(240, 237, 232, 0.04);
+  color: rgba(240, 237, 232, 0.035);
   white-space: nowrap;
   will-change: transform;
   -webkit-text-stroke: 1px rgba(240, 192, 64, 0.15);

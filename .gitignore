@@ -1,5 +1,6 @@
 # Claude session files
 .claude/
 
-# Source video (not served — frames/ is used instead)
+# Source videos (not served — frames/ is used instead)
 smallfishesboardgame.mp4
+smallfishesfinalvideo.mp4
