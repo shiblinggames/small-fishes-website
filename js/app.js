@@ -80,7 +80,12 @@
     const ch = window.innerHeight;
     const iw = img.naturalWidth;
     const ih = img.naturalHeight;
-    const scale = Math.max(cw / iw, ch / ih) * IMAGE_SCALE;
+    // On mobile portrait, fit to width so the full frame is visible.
+    // On desktop, cover mode fills the screen (letterbox handled by vignette + black bg).
+    const isMobile = cw < ch; // portrait orientation
+    const scale = isMobile
+      ? (cw / iw)
+      : Math.max(cw / iw, ch / ih) * IMAGE_SCALE;
     const dw = iw * scale;
     const dh = ih * scale;
     const dx = (cw - dw) / 2;
