@@ -688,8 +688,8 @@ body {
         #000 80%);
   }
 
-  /* Scroll container height */
-  #scroll-container { height: 800vh; }
+  /* Scroll container height — increased to prevent tall sections from overlapping */
+  #scroll-container { height: 1400vh; }
 
   /* Override side-alignment — full width centered with dark backdrop */
   .align-left,
