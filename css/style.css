@@ -669,7 +669,18 @@ body {
 }
 
 /* ============================================================
-   MOBILE
+   SECTION SPACING — tablets + landscape phones (up to 1024px wide)
+   The 14% min-gap between section centers (stats→InTheBox) must exceed
+   one viewport height. Formula: container > 1429vh. Using 1600vh gives
+   a 124vh edge-gap, which beats every iOS viewport (max ~93vh on Pro Max).
+   ============================================================ */
+@media (max-width: 1024px) {
+  #scroll-container { height: 1200vh; }
+  .scroll-section { min-height: 100vh; }
+}
+
+/* ============================================================
+   MOBILE LAYOUT — phones in portrait (up to 768px wide)
    ============================================================ */
 @media (max-width: 768px) {
   .site-header { padding: 1rem 1.5rem; }
@@ -686,15 +697,6 @@ body {
         rgba(0,0,0,0.7) 55%,
         #000 80%);
   }
-
-  /* Scroll container height — must be > 1429vh so the 14% min-gap between
-     section centers (stats→InTheBox) exceeds one viewport height when combined
-     with min-height:100vh on each section */
-  #scroll-container { height: 1600vh; }
-
-  /* Guarantee each section occupies at least one full viewport height so
-     adjacent sections (whose centers are 196–294vh apart) can never overlap */
-  .scroll-section { min-height: 100vh; }
 
   /* Override side-alignment — full width centered with dark backdrop */
   .align-left,
