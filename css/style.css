@@ -691,6 +691,10 @@ body {
   /* Scroll container height — increased to prevent tall sections from overlapping */
   #scroll-container { height: 1400vh; }
 
+  /* Guarantee each section occupies at least one full viewport height so
+     adjacent sections (whose centers are 196–294vh apart) can never overlap */
+  .scroll-section { min-height: 100vh; }
+
   /* Override side-alignment — full width centered with dark backdrop */
   .align-left,
   .align-right {
