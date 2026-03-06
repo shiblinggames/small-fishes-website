@@ -84,7 +84,7 @@
     // On desktop, cover mode fills the screen (letterbox handled by vignette + black bg).
     const isMobile = cw < ch; // portrait orientation
     const scale = isMobile
-      ? Math.max(cw / iw, ch * 0.55 / ih)
+      ? Math.max(cw / iw, ch * 0.70 / ih)
       : Math.max(cw / iw, ch / ih) * IMAGE_SCALE;
     const dw = iw * scale;
     const dh = ih * scale;
