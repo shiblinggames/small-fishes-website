@@ -721,13 +721,19 @@ body {
     gap: 2rem;
   }
 
-  /* Cap section images so tall images (e.g. 4:1 infographics) don't make sections overlap */
+  /* Cap how-to images so the stacked infographics don't make section 002 too tall */
   .section-image {
     max-height: 50vh;
     width: auto;
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  /* In the Box image should display at full width, not capped */
+  .in-box-image {
+    max-height: none;
+    width: 100%;
   }
 
   /* Marquee smaller */
