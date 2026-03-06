@@ -458,7 +458,6 @@ body {
   left: 0; right: 0;
   padding: 0 5vw;
   justify-content: center;
-  z-index: 4;
 }
 
 .stats-grid {
@@ -688,8 +687,10 @@ body {
         #000 80%);
   }
 
-  /* Scroll container height — increased to prevent tall sections from overlapping */
-  #scroll-container { height: 1400vh; }
+  /* Scroll container height — must be > 1429vh so the 14% min-gap between
+     section centers (stats→InTheBox) exceeds one viewport height when combined
+     with min-height:100vh on each section */
+  #scroll-container { height: 1600vh; }
 
   /* Guarantee each section occupies at least one full viewport height so
      adjacent sections (whose centers are 196–294vh apart) can never overlap */
