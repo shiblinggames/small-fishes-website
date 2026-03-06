@@ -257,11 +257,11 @@
   }
 
   /* ----------------------------------------------------------
-     DARK OVERLAY — stats section (50–64%)
+     DARK OVERLAY — stats section (62–74%)
   ---------------------------------------------------------- */
   function initDarkOverlay() {
-    var enter     = 0.50;
-    var leave     = 0.64;
+    var enter     = 0.62;
+    var leave     = 0.74;
     var fadeRange = 0.035;
 
     ScrollTrigger.create({
@@ -285,11 +285,11 @@
   }
 
   /* ----------------------------------------------------------
-     MARQUEE (visible 34–72%)
+     MARQUEE (visible 34–80%)
   ---------------------------------------------------------- */
   function initMarquee() {
     var showEnter = 0.34;
-    var showLeave = 0.72;
+    var showLeave = 0.86;
     var fadeRange = 0.03;
 
     gsap.to(marqueeText, {
@@ -349,7 +349,7 @@
             tl.from(children, { x: -70, opacity: 0, stagger: 0.13, duration: 0.9, ease: 'power3.out' });
             break;
           case 'slide-right':
-            tl.from(children, { x: 70, opacity: 0, stagger: 0.13, duration: 0.9, ease: 'power3.out' });
+            tl.from(children, { x: 70, opacity: 0, stagger: 0.07, duration: 0.7, ease: 'power3.out' });
             break;
           case 'stagger-up':
             tl.from(children, { y: 55, opacity: 0, stagger: 0.14, duration: 0.85, ease: 'power3.out' });
