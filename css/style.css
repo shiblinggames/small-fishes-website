@@ -714,6 +714,15 @@ body {
     gap: 2rem;
   }
 
+  /* Cap section images so tall images (e.g. 4:1 infographics) don't make sections overlap */
+  .section-image {
+    max-height: 50vh;
+    width: auto;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   /* Marquee smaller */
   .marquee-text { font-size: 4rem; }
 
