@@ -689,7 +689,7 @@ body {
   }
 
   /* Scroll container height */
-  #scroll-container { height: 550vh; }
+  #scroll-container { height: 800vh; }
 
   /* Override side-alignment — full width centered with dark backdrop */
   .align-left,
