@@ -397,6 +397,18 @@ body {
   max-width: 36ch;
 }
 
+/* How-to graphics — blend into dark background */
+.howto-image {
+  display: block;
+  width: 100%;
+  margin-top: 1.2rem;
+  border-radius: 6px;
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(ellipse 90% 82% at 50% 50%, black 38%, transparent 100%);
+  mask-image: radial-gradient(ellipse 90% 82% at 50% 50%, black 38%, transparent 100%);
+  opacity: 0.88;
+}
+
 .section-price {
   font-size: clamp(0.82rem, 1.2vw, 0.95rem);
   font-weight: 600;

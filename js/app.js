@@ -334,7 +334,7 @@
       var leave   = parseFloat(section.dataset.leave) / 100;
 
       var children = section.querySelectorAll(
-        '.section-label, .section-heading, .section-body, .section-price, .section-note, .cta-button, .stat'
+        '.section-label, .section-heading, .section-body, .section-price, .section-note, .cta-button, .stat, .section-image'
       );
 
       var tl = gsap.timeline({ paused: true });
