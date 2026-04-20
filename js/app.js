@@ -278,10 +278,9 @@
   ---------------------------------------------------------- */
   function initDarkOverlay() {
     var ranges = [
-      { enter: 0.62, leave: 0.74 },
-      { enter: 0.95, leave: 0.99 },
+      { enter: 0.62, leave: 0.74,  maxOp: 0.92, fadeRange: 0.035 },
+      { enter: 0.93, leave: 1.00,  maxOp: 0.96, fadeRange: 0.025 },
     ];
-    var fadeRange = 0.035;
 
     ScrollTrigger.create({
       trigger: scrollCont,
@@ -292,12 +291,14 @@
         var p = self.progress;
         var opacity = 0;
         ranges.forEach(function (r) {
-          if (p >= r.enter - fadeRange && p < r.enter) {
-            opacity = Math.max(opacity, (p - (r.enter - fadeRange)) / fadeRange);
+          var fr = r.fadeRange;
+          var mo = r.maxOp;
+          if (p >= r.enter - fr && p < r.enter) {
+            opacity = Math.max(opacity, mo * (p - (r.enter - fr)) / fr);
           } else if (p >= r.enter && p <= r.leave) {
-            opacity = 0.92;
-          } else if (p > r.leave && p <= r.leave + fadeRange) {
-            opacity = Math.max(opacity, 0.92 * (1 - (p - r.leave) / fadeRange));
+            opacity = Math.max(opacity, mo);
+          } else if (p > r.leave && p <= r.leave + fr) {
+            opacity = Math.max(opacity, mo * (1 - (p - r.leave) / fr));
           }
         });
         darkOverlay.style.opacity = String(opacity);
