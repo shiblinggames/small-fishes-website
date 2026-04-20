@@ -9,7 +9,7 @@
      CONFIG
   ---------------------------------------------------------- */
   const FRAME_COUNT  = 145;
-  const FRAME_SPEED  = 1.5;
+  const FRAME_SPEED  = 1.2;
   const IMAGE_SCALE  = 0.85;
   const PRELOAD_FAST = 12;
 
@@ -240,6 +240,23 @@
      CANVAS FRAME SCROLL BINDING
   ---------------------------------------------------------- */
   function initCanvasScroll() {
+    var targetFrame = 0;
+    var rafPending  = false;
+
+    function tick() {
+      rafPending = false;
+      var diff = targetFrame - currentFrame;
+      if (Math.abs(diff) < 1) {
+        currentFrame = targetFrame;
+        drawFrame(currentFrame);
+        return;
+      }
+      currentFrame = Math.round(currentFrame + diff * 0.25);
+      drawFrame(currentFrame);
+      rafPending = true;
+      requestAnimationFrame(tick);
+    }
+
     ScrollTrigger.create({
       trigger: scrollCont,
       start: 'top top',
@@ -247,10 +264,10 @@
       scrub: true,
       onUpdate: function (self) {
         var accelerated = Math.min(self.progress * FRAME_SPEED, 1);
-        var index = Math.min(Math.floor(accelerated * FRAME_COUNT), FRAME_COUNT - 1);
-        if (index !== currentFrame) {
-          currentFrame = index;
-          requestAnimationFrame(function () { drawFrame(currentFrame); });
+        targetFrame = Math.min(Math.floor(accelerated * FRAME_COUNT), FRAME_COUNT - 1);
+        if (!rafPending) {
+          rafPending = true;
+          requestAnimationFrame(tick);
         }
       },
     });
@@ -262,7 +279,7 @@
   function initDarkOverlay() {
     var ranges = [
       { enter: 0.62, leave: 0.74 },
-      { enter: 0.95, leave: 1.00 },
+      { enter: 0.95, leave: 0.99 },
     ];
     var fadeRange = 0.035;
 
