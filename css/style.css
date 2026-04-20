@@ -528,6 +528,63 @@ body {
 }
 
 /* ============================================================
+   REVIEWS SECTION
+   ============================================================ */
+#reviews-section {
+  position: relative;
+  z-index: 10;
+  background: #000;
+  padding: 8vh 8vw;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.reviews-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.reviews-inner > .section-label {
+  margin-bottom: 3.5rem;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.review-card {
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 2rem 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.review-card:hover {
+  border-color: rgba(240,192,64,0.2);
+}
+
+.review-quote {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.75;
+  color: rgba(240, 237, 232, 0.85);
+}
+
+.review-author {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ============================================================
    END SECTION — CTA + Email (after scroll container)
    ============================================================ */
 #end-section {
