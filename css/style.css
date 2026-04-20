@@ -338,7 +338,7 @@ body {
    ============================================================ */
 #scroll-container {
   position: relative;
-  height: 900vh;
+  height: 1100vh;
   z-index: 6;
   pointer-events: none;
 }
@@ -528,37 +528,41 @@ body {
 }
 
 /* ============================================================
-   REVIEWS SECTION
+   REVIEWS SCROLL SECTION
    ============================================================ */
-#reviews-section {
-  position: relative;
-  z-index: 10;
-  background: #000;
-  padding: 8vh 8vw;
-  border-top: 1px solid rgba(255,255,255,0.06);
+.section-reviews {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5vw;
+  pointer-events: auto;
 }
 
 .reviews-inner {
-  max-width: 1100px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
+  background: rgba(0,0,0,0.6);
+  padding: 2.5rem 2.5rem 2rem;
+  backdrop-filter: blur(4px);
 }
 
-.reviews-inner > .section-label {
-  margin-bottom: 3.5rem;
+.reviews-heading {
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  margin-bottom: 1.5rem;
 }
 
 .reviews-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
 }
 
 .review-card {
   border: 1px solid rgba(255,255,255,0.07);
-  padding: 2rem 2rem 1.75rem;
+  padding: 1.5rem 1.5rem 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
   transition: border-color 0.2s;
 }
 
@@ -568,7 +572,7 @@ body {
 
 .review-quote {
   font-family: var(--font-body);
-  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  font-size: clamp(0.85rem, 1.1vw, 0.95rem);
   font-weight: 300;
   font-style: italic;
   line-height: 1.75;
@@ -577,7 +581,7 @@ body {
 
 .review-author {
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -802,7 +806,7 @@ body {
    a 124vh edge-gap, which beats every iOS viewport (max ~93vh on Pro Max).
    ============================================================ */
 @media (max-width: 1024px) {
-  #scroll-container { height: 1200vh; }
+  #scroll-container { height: 1400vh; }
   .scroll-section { min-height: 100vh; }
 }
 
