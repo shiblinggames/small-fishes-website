@@ -1,0 +1,195 @@
+/* ============================================================
+   HOW TO PLAY PAGE
+   ============================================================ */
+
+.htp-page {
+  background: #000;
+}
+
+/* --- MAIN LAYOUT --- */
+.htp-main {
+  padding-top: 80px;
+  max-width: 780px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 6rem;
+}
+
+/* --- HERO --- */
+.htp-hero {
+  padding: 5rem 0 3rem;
+}
+
+.htp-hero .section-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.htp-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--text);
+}
+
+/* --- VIDEO PLACEHOLDER --- */
+.htp-video-section {
+  margin-bottom: 5rem;
+}
+
+.htp-video-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(240, 192, 64, 0.2);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.03);
+}
+
+.htp-construction {
+  text-align: center;
+  padding: 2rem;
+}
+
+.htp-construction-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.htp-construction-sub {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* --- FAQ --- */
+.htp-faq {
+  margin-bottom: 5rem;
+}
+
+.htp-faq .section-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.htp-faq-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3rem;
+}
+
+/* Category groupings */
+.faq-category {
+  margin-bottom: 3rem;
+}
+
+.faq-category-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* FAQ accordion items */
+.faq-item {
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.faq-item[open] .faq-question {
+  color: var(--gold);
+}
+
+.faq-question {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  padding: 1.1rem 2rem 1.1rem 0;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.faq-question::-webkit-details-marker { display: none; }
+
+.faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  color: var(--gold);
+  transition: transform 0.2s;
+  font-weight: 300;
+}
+
+.faq-item[open] .faq-question::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.faq-answer {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: rgba(240, 237, 232, 0.72);
+  line-height: 1.65;
+  padding: 0 1rem 1.25rem 0;
+}
+
+/* --- FOOTER BUY BLOCK --- */
+.htp-footer-buy {
+  text-align: center;
+  padding: 3rem 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* --- ACTIVE NAV LINK --- */
+.nav-link--active {
+  color: var(--text) !important;
+}
+
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+  .htp-main {
+    padding-top: 70px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .htp-hero {
+    padding: 3rem 0 2rem;
+  }
+
+  .faq-question {
+    font-size: 0.95rem;
+  }
+}
