@@ -416,6 +416,20 @@ body {
   max-width: 36ch;
 }
 
+.section-learn-link {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.section-learn-link:hover { color: var(--gold-hover); }
+
 /* How-to graphics — blend into dark background */
 .howto-image {
   display: block;
