@@ -531,61 +531,60 @@ body {
    REVIEWS SCROLL SECTION
    ============================================================ */
 .section-reviews {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  left: 0; right: 0;
   padding: 0 5vw;
-  pointer-events: auto;
-}
-
-.reviews-inner {
-  width: 100%;
-  max-width: 1000px;
-  background: rgba(0,0,0,0.6);
-  padding: 2.5rem 2.5rem 2rem;
-  backdrop-filter: blur(4px);
-}
-
-.reviews-heading {
-  font-size: clamp(2rem, 3.5vw, 3.5rem);
-  margin-bottom: 1.5rem;
+  justify-content: center;
 }
 
 .reviews-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
 }
 
 .review-card {
-  border: 1px solid rgba(255,255,255,0.07);
-  padding: 1.5rem 1.5rem 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  transition: border-color 0.2s;
+  align-items: center;
+  padding: 0 2.5vw;
+  border-right: 1px solid rgba(255,255,255,0.1);
 }
 
-.review-card:hover {
-  border-color: rgba(240,192,64,0.2);
+.review-card:last-child {
+  border-right: none;
+}
+
+.review-mark {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
 .review-quote {
   font-family: var(--font-body);
-  font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
   font-weight: 300;
   font-style: italic;
   line-height: 1.75;
-  color: rgba(240, 237, 232, 0.85);
+  color: var(--text);
+  flex: 1;
+  margin-bottom: 1.25rem;
 }
 
 .review-author {
   font-family: var(--font-body);
   font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 
 /* ============================================================

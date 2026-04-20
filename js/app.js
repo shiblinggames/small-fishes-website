@@ -257,11 +257,13 @@
   }
 
   /* ----------------------------------------------------------
-     DARK OVERLAY — stats section (62–74%)
+     DARK OVERLAY — stats section (62–74%) + reviews section (90–100%)
   ---------------------------------------------------------- */
   function initDarkOverlay() {
-    var enter     = 0.62;
-    var leave     = 0.74;
+    var ranges = [
+      { enter: 0.62, leave: 0.74 },
+      { enter: 0.90, leave: 1.00 },
+    ];
     var fadeRange = 0.035;
 
     ScrollTrigger.create({
@@ -272,13 +274,15 @@
       onUpdate: function (self) {
         var p = self.progress;
         var opacity = 0;
-        if (p >= enter - fadeRange && p < enter) {
-          opacity = (p - (enter - fadeRange)) / fadeRange;
-        } else if (p >= enter && p <= leave) {
-          opacity = 0.92;
-        } else if (p > leave && p <= leave + fadeRange) {
-          opacity = 0.92 * (1 - (p - leave) / fadeRange);
-        }
+        ranges.forEach(function (r) {
+          if (p >= r.enter - fadeRange && p < r.enter) {
+            opacity = Math.max(opacity, (p - (r.enter - fadeRange)) / fadeRange);
+          } else if (p >= r.enter && p <= r.leave) {
+            opacity = 0.92;
+          } else if (p > r.leave && p <= r.leave + fadeRange) {
+            opacity = Math.max(opacity, 0.92 * (1 - (p - r.leave) / fadeRange));
+          }
+        });
         darkOverlay.style.opacity = String(opacity);
       },
     });
