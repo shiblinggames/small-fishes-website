@@ -814,7 +814,8 @@ body {
    MOBILE LAYOUT — phones in portrait (up to 768px wide)
    ============================================================ */
 @media (max-width: 768px) {
-  .site-header { padding: 1rem 1.5rem; }
+  .site-header { padding: 1rem 1.5rem; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); }
+  .nav-link { display: none; }
 
   /* Hero */
   .hero-heading { font-size: clamp(4rem, 18vw, 7rem); }
