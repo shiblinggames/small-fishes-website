@@ -6,6 +6,7 @@
   background: #000;
 }
 
+
 /* --- MAIN LAYOUT --- */
 .htp-main {
   padding-top: 80px;
@@ -18,7 +19,7 @@
 
 /* --- HERO --- */
 .htp-hero {
-  padding: 5rem 0 3rem;
+  padding: 3rem 0 4rem;
 }
 
 .htp-hero .section-label {
@@ -41,7 +42,7 @@
 
 /* --- VIDEO PLACEHOLDER --- */
 .htp-video-section {
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
 }
 
 .htp-video-placeholder {
@@ -75,7 +76,7 @@
 
 /* --- FAQ --- */
 .htp-faq {
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
 }
 
 .htp-faq .section-label {

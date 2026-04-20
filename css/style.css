@@ -91,6 +91,8 @@ body {
   z-index: 100;
   padding: 1.25rem 3rem;
   mix-blend-mode: normal;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
 }
 
 .site-header nav {
@@ -827,7 +829,7 @@ body {
    MOBILE LAYOUT — phones in portrait (up to 768px wide)
    ============================================================ */
 @media (max-width: 768px) {
-  .site-header { padding: 1rem 1.5rem; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); }
+  .site-header { padding: 1rem 1.5rem; }
   .nav-link { display: none; }
 
   /* Hero */

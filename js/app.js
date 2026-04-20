@@ -262,7 +262,7 @@
   function initDarkOverlay() {
     var ranges = [
       { enter: 0.62, leave: 0.74 },
-      { enter: 0.90, leave: 1.00 },
+      { enter: 0.95, leave: 1.00 },
     ];
     var fadeRange = 0.035;
 
@@ -344,10 +344,10 @@
       var tl = gsap.timeline({ paused: true });
 
       if (persist) {
-        // Persist section scrolls up naturally — use opacity-only so children
-        // never offset below the glass card boundary during the scrub.
         tl.from(children, { opacity: 0, stagger: 0.12, duration: 0.9, ease: 'power2.out' });
       } else {
+        // Hide section until enter so the background box doesn't bleed in early
+        gsap.set(section, { opacity: 0 });
         switch (type) {
           case 'slide-left':
             tl.from(children, { x: -70, opacity: 0, stagger: 0.13, duration: 0.9, ease: 'power3.out' });
@@ -386,6 +386,11 @@
             section.style.pointerEvents = op > 0.1 ? 'auto' : 'none';
             tl.progress(fadeIn);
           } else {
+            var fadeIn  = Math.max(0, Math.min(1, (p - enter) / SCRUB));
+            var fadeOut = p > leave ? Math.max(0, Math.min(1, 1 - (p - leave) / SCRUB)) : 1;
+            var op = Math.min(fadeIn, fadeOut);
+            section.style.opacity = String(op);
+            section.style.pointerEvents = op > 0.1 ? 'auto' : 'none';
             if (p >= enter) {
               tl.play();
             } else {
