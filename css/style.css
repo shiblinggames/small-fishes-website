@@ -904,7 +904,7 @@ body {
    a 124vh edge-gap, which beats every iOS viewport (max ~93vh on Pro Max).
    ============================================================ */
 @media (max-width: 1024px) {
-  #scroll-container { height: 1400vh; }
+  #scroll-container { height: 900vh; }
   .scroll-section { min-height: 100vh; }
 }
 
