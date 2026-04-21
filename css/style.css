@@ -430,18 +430,27 @@ body {
 }
 
 .section-learn-link {
-  display: inline-block;
-  margin-top: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.1rem;
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--gold);
+  border: 1px solid rgba(240,192,64,0.4);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
-.section-learn-link:hover { color: var(--gold-hover); }
+.section-learn-link:hover {
+  color: var(--gold-hover);
+  border-color: var(--gold);
+  background: rgba(240,192,64,0.06);
+}
 
 /* How-to graphics — blend into dark background */
 .howto-image {
