@@ -5,6 +5,16 @@
 /* --- RESET & BASE --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes placeholderPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 0.7; transform: scale(1.03); }
+}
+
 :root {
   --bg:           #000000;
   --text:         #f0ede8;
@@ -20,6 +30,7 @@
 html { scroll-behavior: auto; }
 
 body {
+  animation: pageFadeIn 0.5s ease both;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
@@ -573,6 +584,14 @@ body {
 .review-card:nth-child(even) { border-right: none; }
 .review-card:nth-last-child(-n+2) { border-bottom: none; }
 
+.review-stars {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
 .review-mark {
   font-family: var(--font-display);
   font-size: clamp(3rem, 5vw, 5rem);
@@ -617,6 +636,27 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+  overflow: hidden;
+}
+
+.inflow-buy::before {
+  content: '';
+  position: absolute;
+  inset: 2.5rem;
+  border: 1px solid rgba(240, 192, 64, 0.15);
+  pointer-events: none;
+}
+
+.inflow-buy::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(240,192,64,0.04) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .inflow-buy-details {
