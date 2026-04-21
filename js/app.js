@@ -32,8 +32,6 @@
   const canvasWrap  = document.getElementById('canvas-wrap');
   const scrollCont  = document.getElementById('scroll-container');
   const darkOverlay = document.getElementById('dark-overlay');
-  const marqueeWrap = document.getElementById('marquee');
-  const marqueeText = marqueeWrap.querySelector('.marquee-text');
   const heroSection = document.querySelector('.hero-standalone');
   const ctx         = canvas.getContext('2d');
 
@@ -306,44 +304,6 @@
     });
   }
 
-  /* ----------------------------------------------------------
-     MARQUEE (visible 34–80%)
-  ---------------------------------------------------------- */
-  function initMarquee() {
-    var showEnter = 0.34;
-    var showLeave = 0.86;
-    var fadeRange = 0.03;
-
-    gsap.to(marqueeText, {
-      xPercent: -28,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: scrollCont,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: true,
-      },
-    });
-
-    ScrollTrigger.create({
-      trigger: scrollCont,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: true,
-      onUpdate: function (self) {
-        var p = self.progress;
-        var op = 0;
-        if (p >= showEnter && p < showEnter + fadeRange) {
-          op = (p - showEnter) / fadeRange;
-        } else if (p >= showEnter + fadeRange && p <= showLeave) {
-          op = 1;
-        } else if (p > showLeave && p <= showLeave + fadeRange) {
-          op = 1 - (p - showLeave) / fadeRange;
-        }
-        marqueeWrap.style.opacity = String(op);
-      },
-    });
-  }
 
   /* ----------------------------------------------------------
      SECTION ANIMATIONS
@@ -471,7 +431,6 @@
     initHeroTransition();
     initCanvasScroll();
     initDarkOverlay();
-    initMarquee();
     setupSectionAnimations();
     initCounters();
     ScrollTrigger.refresh();
