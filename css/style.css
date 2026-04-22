@@ -685,6 +685,66 @@ body {
   color: var(--text);
 }
 
+.inflow-buy-split {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.inflow-buy-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 280px;
+  text-align: center;
+}
+
+.inflow-buy-col-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.inflow-buy-col-desc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.inflow-buy-divider {
+  width: 1px;
+  height: 80px;
+  background: rgba(240, 192, 64, 0.2);
+  flex-shrink: 0;
+}
+
+.cta-button--ghost {
+  background: transparent;
+  color: var(--gold);
+}
+
+.cta-button--ghost:hover {
+  background: var(--gold);
+  color: #000;
+}
+
+@media (max-width: 640px) {
+  .inflow-buy-split {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .inflow-buy-divider {
+    width: 60px;
+    height: 1px;
+  }
+}
+
 /* ============================================================
    END SECTION — CTA + Email (after scroll container)
    ============================================================ */
