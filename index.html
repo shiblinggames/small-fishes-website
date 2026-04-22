@@ -28,7 +28,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Karla:ital,wght@0,300;0,400;0,600;1,300&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20">
+  <link rel="stylesheet" href="css/style.css?v=21">
 </head>
 
 <body>
@@ -164,7 +164,7 @@
     </section>
 
     <!-- SECTION 5: Reviews -->
-    <section class="scroll-section section-reviews" data-enter="93" data-leave="100" data-animation="stagger-up">
+    <section class="scroll-section section-reviews" data-enter="90" data-leave="100" data-animation="stagger-up">
       <div class="reviews-grid">
 
         <figure class="review-card">
@@ -191,6 +191,18 @@
           <figcaption class="review-author">— Samuel Z.</figcaption>
         </figure>
 
+        <figure class="review-card">
+          <span class="review-mark">"</span>
+          <blockquote class="review-quote">It's great for groups and can be addicting because of the game mechanics. Good replay-ability too!</blockquote>
+          <figcaption class="review-author">— Albert K.</figcaption>
+        </figure>
+
+        <figure class="review-card">
+          <span class="review-mark">"</span>
+          <blockquote class="review-quote">A battle of wits with a deep sea of strategy in every move. The TFT of card games.</blockquote>
+          <figcaption class="review-author">— Johan L.</figcaption>
+        </figure>
+
       </div>
     </section>
 
@@ -206,29 +218,14 @@
 
   <!-- END SECTION: Email + Buy -->
   <section id="end-section">
-    <div class="end-inner end-inner--single">
+    <div class="end-inner">
 
-      <!-- Email signup -->
-      <div class="end-email">
+      <!-- Left: branding + description -->
+      <div class="end-brand">
         <span class="section-label">004 / Stay in the Loop</span>
         <h3 class="email-heading">Get On<br>Board.</h3>
         <p class="email-body">Get updates on new games, upcoming releases, and exclusive drops from Shibling Games —
           straight to your inbox.</p>
-
-        <form id="email-form" class="email-form">
-          <div class="email-form-row">
-            <input type="email" id="email-input" name="email" placeholder="your@email.com" required
-              autocomplete="email" />
-            <button type="submit" class="email-submit">Notify Me</button>
-          </div>
-          <p class="email-legal">No spam. Unsubscribe anytime.</p>
-        </form>
-
-        <!-- Success state (hidden by default) -->
-        <div id="email-success" class="email-success" hidden>
-          <span class="email-success-icon">✦</span>
-          <p>You're on the list! We'll be in touch.</p>
-        </div>
 
         <!-- Socials -->
         <div class="socials">
@@ -252,6 +249,23 @@
         </div>
       </div>
 
+      <!-- Right: email form -->
+      <div class="end-email">
+        <form id="email-form" class="email-form">
+          <div class="email-form-row">
+            <input type="email" id="email-input" name="email" placeholder="your@email.com" required
+              autocomplete="email" />
+            <button type="submit" class="email-submit">Notify Me</button>
+          </div>
+          <p class="email-legal">No spam. Unsubscribe anytime.</p>
+        </form>
+
+        <!-- Success state (hidden by default) -->
+        <div id="email-success" class="email-success" hidden>
+          <span class="email-success-icon">✦</span>
+          <p>You're on the list! We'll be in touch.</p>
+        </div>
+      </div>
 
     </div>
 

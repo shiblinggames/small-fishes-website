@@ -277,7 +277,7 @@
   function initDarkOverlay() {
     var ranges = [
       { enter: 0.62, leave: 0.74,  maxOp: 0.92, fadeRange: 0.035 },
-      { enter: 0.93, leave: 1.00,  maxOp: 0.96, fadeRange: 0.025 },
+      { enter: 0.90, leave: 1.00,  maxOp: 0.96, fadeRange: 0.025 },
     ];
 
     ScrollTrigger.create({
