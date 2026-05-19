@@ -1282,7 +1282,7 @@ footer {
   left: 0;
   height: 2px;
   width: 0%;
-  background: var(--gold);
+  background: #0D4F72;
   z-index: 200;
   pointer-events: none;
   transition: width 0.05s linear;
