@@ -18,7 +18,16 @@ function updateOceanDepth() {
   treasureGlow.style.opacity = glowProgress;
 }
 
-window.addEventListener('scroll', updateOceanDepth, { passive: true });
+var scrollTicking = false;
+window.addEventListener('scroll', function () {
+  if (!scrollTicking) {
+    requestAnimationFrame(function () {
+      updateOceanDepth();
+      scrollTicking = false;
+    });
+    scrollTicking = true;
+  }
+}, { passive: true });
 updateOceanDepth();
 
 /* ============================================================

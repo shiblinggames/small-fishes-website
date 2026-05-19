@@ -76,8 +76,8 @@ ul { list-style: none; }
 }
 
 @keyframes treasurePulse {
-  0%, 100% { transform: translateX(-50%) scaleX(1);    filter: blur(0px); }
-  50%       { transform: translateX(-50%) scaleX(1.07); filter: blur(2px); }
+  0%, 100% { transform: translateX(-50%) scaleX(1); }
+  50%       { transform: translateX(-50%) scaleX(1.07); }
 }
 
 /* All content layers above the bg */
