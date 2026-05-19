@@ -292,12 +292,13 @@ footer {
 
 .nav-logo {
   font-family: var(--font-display);
-  font-size: 0.82rem;
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text);
   text-decoration: none;
+  line-height: 1.25;
 }
 
 .nav-links {
@@ -1292,21 +1293,7 @@ footer {
 }
 
 .hero-heading {
-  animation:
-    heroUp 0.9s cubic-bezier(0.2, 0, 0.2, 1) 0.15s both,
-    titleShimmer 10s ease-in-out 2s infinite;
-  background: linear-gradient(
-    90deg,
-    #ffffff 0%,
-    #ffffff 42%,
-    rgba(240, 192, 64, 0.28) 50%,
-    #ffffff 58%,
-    #ffffff 100%
-  );
-  background-size: 250% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  animation: heroUp 0.9s cubic-bezier(0.2, 0, 0.2, 1) 0.15s both;
 }
 
 .hero-sub {
@@ -1423,15 +1410,6 @@ footer {
 
 .review-card:hover {
   border-left-color: rgba(240, 192, 64, 0.4);
-}
-
-/* ============================================================
-   HERO TITLE GOLD SHIMMER
-   ============================================================ */
-@keyframes titleShimmer {
-  0%   { background-position: -100% center; }
-  30%  { background-position: 200% center; }
-  100% { background-position: 200% center; }
 }
 
 /* ============================================================
