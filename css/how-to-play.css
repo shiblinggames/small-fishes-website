@@ -310,6 +310,15 @@
   color: var(--gold-hover);
 }
 
+/* --- FOOTER --- */
+.htp-footer {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+}
+
 /* --- ACTIVE NAV LINK --- */
 .nav-link--active {
   color: var(--text) !important;
