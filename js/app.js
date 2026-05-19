@@ -158,8 +158,15 @@ var emailSuccess = document.getElementById('email-success');
 if (emailForm) {
   emailForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    emailForm.hidden = true;
-    emailSuccess.hidden = false;
+    var email = document.getElementById('email-input').value;
+    fetch('https://app.convertkit.com/forms/3d91d67926/subscriptions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email_address: email })
+    }).finally(function () {
+      emailForm.hidden = true;
+      emailSuccess.hidden = false;
+    });
   });
 }
 
