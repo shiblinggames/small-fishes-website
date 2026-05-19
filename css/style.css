@@ -1292,7 +1292,21 @@ footer {
 }
 
 .hero-heading {
-  animation: heroUp 0.9s cubic-bezier(0.2, 0, 0.2, 1) 0.15s both;
+  animation:
+    heroUp 0.9s cubic-bezier(0.2, 0, 0.2, 1) 0.15s both,
+    titleShimmer 10s ease-in-out 2s infinite;
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffffff 42%,
+    rgba(240, 192, 64, 0.28) 50%,
+    #ffffff 58%,
+    #ffffff 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-sub {
@@ -1387,3 +1401,48 @@ footer {
 .stats-row.visible .stat-item:nth-child(2) { animation: statUp 0.55s cubic-bezier(0.2, 0, 0.2, 1) 0.1s  both; }
 .stats-row.visible .stat-item:nth-child(3) { animation: statUp 0.55s cubic-bezier(0.2, 0, 0.2, 1) 0.2s  both; }
 .stats-row.visible .stat-item:nth-child(4) { animation: statUp 0.55s cubic-bezier(0.2, 0, 0.2, 1) 0.3s  both; }
+
+/* ============================================================
+   SHOP CARD IMAGE ZOOM ON HOVER
+   ============================================================ */
+.shop-card-image img {
+  transition: transform 0.5s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.shop-card:hover .shop-card-image img {
+  transform: scale(1.07);
+}
+
+/* ============================================================
+   REVIEW CARD LEFT ACCENT ON HOVER
+   ============================================================ */
+.review-card {
+  border-left: 2px solid transparent;
+  transition: border-left-color 0.3s ease;
+}
+
+.review-card:hover {
+  border-left-color: rgba(240, 192, 64, 0.4);
+}
+
+/* ============================================================
+   HERO TITLE GOLD SHIMMER
+   ============================================================ */
+@keyframes titleShimmer {
+  0%   { background-position: -100% center; }
+  30%  { background-position: 200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ============================================================
+   PAGE TRANSITION OVERLAY
+   ============================================================ */
+#page-transition {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}

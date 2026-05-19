@@ -30,9 +30,12 @@
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Karla:ital,wght@0,300;0,400;0,600;1,300&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="preload" as="image" href="Shiblinggamesbackground.jpeg">
 </head>
 
 <body>
+
+  <div id="page-transition"></div>
 
   <!-- SCROLL PROGRESS -->
   <div id="scroll-progress"></div>
@@ -129,7 +132,7 @@
         <div class="itb-inner">
           <span class="section-label">What's in the Box</span>
           <div class="itb-image-wrap" id="itb-wrap">
-            <img src="intheboxpreview.png" alt="What's in the Small Fishes box" class="itb-image">
+            <img src="intheboxpreview.png" alt="What's in the Small Fishes box" class="itb-image" loading="lazy">
             <button class="itb-reveal-btn" id="itb-open" aria-label="Click to reveal what's inside">
               <span class="itb-reveal-text">Click to Reveal</span>
             </button>
@@ -201,7 +204,7 @@
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="boardgame.png" alt="Small Fishes: Seas the Booty">
+              <img src="boardgame.png" alt="Small Fishes: Seas the Booty" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Small Fishes: Seas the Booty</h3>
@@ -214,7 +217,7 @@
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="catfishholo.png" alt="Holographic Catfish Card">
+              <img src="catfishholo.png" alt="Holographic Catfish Card" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Holographic Catfish Card</h3>
@@ -226,7 +229,7 @@
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="dobyholo.png" alt="Holographic Doby Card">
+              <img src="dobyholo.png" alt="Holographic Doby Card" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Holographic Doby Card</h3>
@@ -238,7 +241,7 @@
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="captainemblem.png" alt="Custom Captain Emblem">
+              <img src="captainemblem.png" alt="Custom Captain Emblem" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Custom Captain Emblem</h3>
@@ -250,7 +253,7 @@
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="specialmat.png" alt="Premium Game Mat">
+              <img src="specialmat.png" alt="Premium Game Mat" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Premium Game Mat</h3>
@@ -284,7 +287,7 @@
       <div class="online-header">
         <span class="section-label">Also from Shibling Games &nbsp;<span class="badge">Beta</span></span>
         <div class="online-heading-row">
-          <img src="smallfishesonline.png" alt="Small Fishes Bonus Game" class="online-app-icon">
+          <img src="smallfishesonline.png" alt="Small Fishes Bonus Game" class="online-app-icon" loading="lazy">
           <h2 class="online-heading">Small Fishes<br>Bonus Game</h2>
         </div>
         <p class="online-sub">A digital game set in the Small Fishes universe. Not the board game, a whole world of its own.</p>
@@ -381,7 +384,7 @@
     <div class="itb-modal-backdrop" id="itb-modal-backdrop"></div>
     <button class="itb-modal-close" id="itb-modal-close" aria-label="Close">✕</button>
     <div class="itb-modal-content">
-      <img src="INTHEBOXFINAL.png" alt="Everything in the Small Fishes box" class="itb-modal-img">
+      <img src="INTHEBOXFINAL.png" alt="Everything in the Small Fishes box" class="itb-modal-img" loading="lazy">
     </div>
   </div>
 

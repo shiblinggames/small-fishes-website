@@ -162,3 +162,26 @@ if (emailForm) {
     emailSuccess.hidden = false;
   });
 }
+
+/* ============================================================
+   PAGE TRANSITIONS
+   ============================================================ */
+var pageTransition = document.getElementById('page-transition');
+if (pageTransition) {
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      pageTransition.style.opacity = '0';
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href || href.startsWith('http') || href.startsWith('#') ||
+        href.startsWith('mailto') || link.target === '_blank') return;
+    e.preventDefault();
+    pageTransition.style.opacity = '1';
+    setTimeout(function () { window.location.href = href; }, 380);
+  });
+}
