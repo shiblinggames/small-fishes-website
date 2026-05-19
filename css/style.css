@@ -277,7 +277,7 @@ footer {
   left: 0;
   right: 0;
   z-index: 102;
-  background: rgba(0, 0, 0, 0.82);
+  background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--panel-border);
