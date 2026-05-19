@@ -33,6 +33,14 @@
 
 <body class="htp-page">
 
+  <!-- SCROLL PROGRESS -->
+  <div id="scroll-progress"></div>
+
+  <!-- OCEAN BACKGROUND -->
+  <div id="ocean-bg"></div>
+  <div id="depth-overlay"></div>
+  <div id="treasure-glow"></div>
+
   <!-- FIXED HEADER -->
   <header class="site-header">
     <nav>
@@ -42,8 +50,22 @@
         <a href="https://shiblingshop.com/products/small-fishes-seas-the-booty-strategy-card-game" class="nav-cta"
           target="_blank" rel="noopener">Buy the Game</a>
       </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
   </header>
+
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <nav class="nav-mobile-links">
+      <a href="how-to-play.html" class="nav-mobile-link">How to Play</a>
+      <a href="about.html" class="nav-mobile-link">About</a>
+      <a href="contact.html" class="nav-mobile-link">Contact</a>
+      <div class="nav-mobile-divider"></div>
+      <a href="https://shiblingshop.com/products/small-fishes-seas-the-booty-strategy-card-game"
+        class="cta-button nav-mobile-cta" target="_blank" rel="noopener">Buy the Game</a>
+    </nav>
+  </div>
 
   <main class="htp-main">
 
@@ -53,19 +75,18 @@
       <h1 class="htp-title">How to<br>Play.</h1>
     </section>
 
-    <!-- VIDEO PLACEHOLDER -->
-    <section class="htp-video-section">
-      <div class="htp-video-placeholder">
-        <div class="htp-construction">
-          <div class="htp-construction-pulse"></div>
-          <p class="htp-construction-text">How to Play video coming soon</p>
-          <p class="htp-construction-sub">Check back shortly — we're putting the finishing touches on it.</p>
-        </div>
+    <!-- VIDEO -->
+    <section class="htp-video-section fade-in">
+      <div class="htp-video-wrap">
+        <video controls playsinline preload="metadata" class="htp-video">
+          <source src="Small Fishes Tutorial White.mp4" type="video/mp4">
+        </video>
       </div>
+      <p class="htp-video-note">This is a working explainer to get you up and running — a full production how-to-play video is on its way.</p>
     </section>
 
     <!-- FAQ -->
-    <section class="htp-faq">
+    <section class="htp-faq fade-in">
       <div class="htp-faq-inner">
         <span class="section-label">FAQ</span>
         <h2 class="htp-faq-title">Got Questions?</h2>
@@ -139,7 +160,7 @@
     </section>
 
     <!-- FOOTER BUY BLOCK -->
-    <section class="htp-footer-buy">
+    <section class="htp-footer-buy fade-in">
       <p class="end-buy-details">$29.99 &nbsp;·&nbsp; 2–6 Players &nbsp;·&nbsp; Ages 8+</p>
       <a href="https://shiblingshop.com/products/small-fishes-seas-the-booty-strategy-card-game" class="cta-button"
         target="_blank" rel="noopener">Buy the Game</a>
@@ -147,5 +168,6 @@
 
   </main>
 
+  <script src="js/app.js"></script>
 </body>
 </html>

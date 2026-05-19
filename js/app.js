@@ -1,491 +1,155 @@
 /* ============================================================
-   SMALL FISHES: SEAS THE BOOTY — Scroll-Driven Animation
+   OCEAN BACKGROUND PARALLAX
+   Scrolls background-position-y from 0% (surface) to 100% (abyss)
    ============================================================ */
+var oceanBg = document.getElementById('ocean-bg');
+var depthOverlay = document.getElementById('depth-overlay');
+var scrollProgress = document.getElementById('scroll-progress');
+var treasureGlow = document.getElementById('treasure-glow');
 
-(function () {
-  'use strict';
+function updateOceanDepth() {
+  var scrolled = window.scrollY;
+  var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  var progress = maxScroll > 0 ? Math.min(scrolled / maxScroll, 1) : 0;
+  oceanBg.style.backgroundPositionY = (progress * 100) + '%';
+  depthOverlay.style.opacity = progress * 0.7;
+  scrollProgress.style.width = (progress * 100) + '%';
+  var glowProgress = Math.max(0, (progress - 0.62) / 0.38);
+  treasureGlow.style.opacity = glowProgress;
+}
 
-  /* ----------------------------------------------------------
-     CONFIG
-  ---------------------------------------------------------- */
-  const FRAME_COUNT  = 145;
-  const FRAME_SPEED  = 1.2;
-  const IMAGE_SCALE  = 0.85;
-  const PRELOAD_FAST = 12;
+window.addEventListener('scroll', updateOceanDepth, { passive: true });
+updateOceanDepth();
 
-  /* ----------------------------------------------------------
-     STATE — declared first so resizeCanvas can reference them
-  ---------------------------------------------------------- */
-  const frames   = new Array(FRAME_COUNT).fill(null);
-  let loadedCount  = 0;
-  let currentFrame = 0;
-  let sampledBg    = '#000000';
-  let lastSampleFrame = -999;
-
-  /* ----------------------------------------------------------
-     ELEMENTS
-  ---------------------------------------------------------- */
-  const loader      = document.getElementById('loader');
-  const loaderBar   = document.getElementById('loader-bar');
-  const loaderPct   = document.getElementById('loader-percent');
-  const canvas      = document.getElementById('canvas');
-  const canvasWrap  = document.getElementById('canvas-wrap');
-  const scrollCont  = document.getElementById('scroll-container');
-  const darkOverlay = document.getElementById('dark-overlay');
-  const heroSection = document.querySelector('.hero-standalone');
-  const ctx         = canvas.getContext('2d');
-
-  /* ----------------------------------------------------------
-     CANVAS SIZING
-  ---------------------------------------------------------- */
-  function resizeCanvas() {
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width  = window.innerWidth  * dpr;
-    canvas.height = window.innerHeight * dpr;
-    canvas.style.width  = window.innerWidth  + 'px';
-    canvas.style.height = window.innerHeight + 'px';
-    // reset scale after resize
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    if (frames[currentFrame]) drawFrame(currentFrame);
-  }
-
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  /* ----------------------------------------------------------
-     BACKGROUND COLOR SAMPLER
-  ---------------------------------------------------------- */
-  function sampleBgColor(img) {
-    try {
-      const tmp = document.createElement('canvas');
-      tmp.width = tmp.height = 4;
-      const tc = tmp.getContext('2d');
-      tc.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 4, 4);
-      const d = tc.getImageData(0, 0, 1, 1).data;
-      sampledBg = `rgb(${d[0]},${d[1]},${d[2]})`;
-    } catch (e) {
-      sampledBg = '#000000';
+/* ============================================================
+   SECTION FADE-IN ON SCROLL
+   ============================================================ */
+var fadeObserver = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      fadeObserver.unobserve(entry.target);
     }
-  }
-
-  /* ----------------------------------------------------------
-     FRAME DRAWING — padded cover mode
-  ---------------------------------------------------------- */
-  function drawFrame(index) {
-    const img = frames[index];
-    if (!img) return;
-    const cw = window.innerWidth;
-    const ch = window.innerHeight;
-    const iw = img.naturalWidth;
-    const ih = img.naturalHeight;
-    // On mobile portrait, fit to width so the full frame is visible.
-    // On desktop, cover mode fills the screen (letterbox handled by vignette + black bg).
-    const isMobile = cw < ch; // portrait orientation
-    const scale = isMobile
-      ? Math.max(cw / iw, ch * 0.70 / ih)
-      : Math.max(cw / iw, ch / ih) * IMAGE_SCALE;
-    const dw = iw * scale;
-    const dh = ih * scale;
-    const dx = (cw - dw) / 2;
-    const dy = (ch - dh) / 2;
-    ctx.fillStyle = '#000000';
-    ctx.fillRect(0, 0, cw, ch);
-    ctx.drawImage(img, dx, dy, dw, dh);
-  }
-
-  /* ----------------------------------------------------------
-     FRAME PRELOADER — two-phase
-  ---------------------------------------------------------- */
-  function framePath(i) {
-    const n = String(i + 1).padStart(4, '0');
-    return `frames/frame_${n}.webp`;
-  }
-
-  function loadFrame(i, onDone) {
-    const img = new Image();
-    img.onload = function () {
-      frames[i] = img;
-      loadedCount++;
-      if (Math.abs(i - lastSampleFrame) >= 20) {
-        sampleBgColor(img);
-        lastSampleFrame = i;
-      }
-      const pct = Math.round((loadedCount / FRAME_COUNT) * 100);
-      loaderBar.style.width = pct + '%';
-      loaderPct.textContent = pct + '%';
-      if (onDone) onDone(i);
-    };
-    img.onerror = function () {
-      loadedCount++;
-      const pct = Math.round((loadedCount / FRAME_COUNT) * 100);
-      loaderBar.style.width = pct + '%';
-      loaderPct.textContent = pct + '%';
-      if (onDone) onDone(i);
-    };
-    img.src = framePath(i);
-  }
-
-  function hideLoader() {
-    loader.classList.add('hidden');
-  }
-
-  function startPreload() {
-    var fastDone = 0;
-
-    // Phase 1: first PRELOAD_FAST frames — fast first paint
-    for (var i = 0; i < PRELOAD_FAST; i++) {
-      (function (idx) {
-        loadFrame(idx, function () {
-          fastDone++;
-          if (fastDone === PRELOAD_FAST) {
-            if (frames[0]) drawFrame(0);
-            init();
-            // Phase 2: load the rest in background
-            for (var j = PRELOAD_FAST; j < FRAME_COUNT; j++) {
-              (function (jdx) {
-                loadFrame(jdx, function () {
-                  if (loadedCount >= FRAME_COUNT) {
-                    hideLoader();
-                  }
-                });
-              })(j);
-            }
-          }
-        });
-      })(i);
-    }
-  }
-
-  /* ----------------------------------------------------------
-     LENIS SMOOTH SCROLL
-  ---------------------------------------------------------- */
-  gsap.registerPlugin(ScrollTrigger);
-
-  var lenis = new Lenis({
-    duration: 1.2,
-    easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-    smoothWheel: true,
   });
+}, { threshold: 0.12 });
 
-  lenis.on('scroll', ScrollTrigger.update);
+document.querySelectorAll('.fade-in').forEach(function (el) {
+  fadeObserver.observe(el);
+});
 
-  gsap.ticker.add(function (time) {
-    lenis.raf(time * 1000);
+/* ============================================================
+   STATS ROW STAGGER
+   ============================================================ */
+var statsRow = document.querySelector('.stats-row');
+if (statsRow) {
+  var statsObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  statsObserver.observe(statsRow);
+}
+
+/* ============================================================
+   MOBILE HAMBURGER MENU
+   ============================================================ */
+var navHamburger = document.getElementById('nav-hamburger');
+var navMobileMenu = document.getElementById('nav-mobile-menu');
+
+function openMobileMenu() {
+  navMobileMenu.classList.add('open');
+  navHamburger.classList.add('open');
+  navHamburger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileMenu() {
+  navMobileMenu.classList.remove('open');
+  navHamburger.classList.remove('open');
+  navHamburger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+if (navHamburger && navMobileMenu) {
+  navHamburger.addEventListener('click', function () {
+    navMobileMenu.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
   });
-  gsap.ticker.lagSmoothing(0);
-
-  /* ----------------------------------------------------------
-     SECTION POSITIONING
-  ---------------------------------------------------------- */
-  function positionSections() {
-    var totalH = scrollCont.offsetHeight;
-    document.querySelectorAll('.scroll-section').forEach(function (sec) {
-      if (sec.dataset.persist === 'true') return; // position:fixed via CSS, skip
-      var enter = parseFloat(sec.dataset.enter) / 100;
-      var leave = parseFloat(sec.dataset.leave) / 100;
-      var mid   = (enter + leave) / 2;
-      sec.style.top       = (mid * totalH) + 'px';
-      sec.style.transform = 'translateY(-50%)';
-    });
-  }
-
-  window.addEventListener('resize', function () {
-    positionSections();
-    ScrollTrigger.refresh();
+  navMobileMenu.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeMobileMenu);
   });
+}
 
-  /* ----------------------------------------------------------
-     HERO ENTRANCE — staggered word reveal on load
-  ---------------------------------------------------------- */
-  function initHeroEntrance() {
-    var words  = document.querySelectorAll('.hero-heading .word');
-    var label  = document.querySelector('.hero-label');
-    var sub    = document.querySelector('.hero-sub');
-    var tag    = document.querySelector('.hero-tagline');
-    var scroll = document.querySelector('.scroll-indicator');
-
-    gsap.set([label, words, sub, tag, scroll], { opacity: 0, y: 28 });
-
-    gsap.timeline({ delay: 0.2 })
-      .to(label,  { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' })
-      .to(words,  { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1 }, '-=0.3')
-      .to(sub,    { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.4')
-      .to(tag,    { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4')
-      .to(scroll, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.2');
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && navMobileMenu && navMobileMenu.classList.contains('open')) {
+    closeMobileMenu();
   }
+});
 
-  /* ----------------------------------------------------------
-     HERO TRANSITION — circle-wipe + fade
-  ---------------------------------------------------------- */
-  function initHeroTransition() {
-    ScrollTrigger.create({
-      trigger: scrollCont,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: true,
-      onUpdate: function (self) {
-        var p = self.progress;
-        heroSection.style.opacity = String(Math.max(0, 1 - p * 18));
-        heroSection.style.pointerEvents = p > 0.06 ? 'none' : '';
-        var wipe   = Math.min(1, Math.max(0, (p - 0.005) / 0.07));
-        var radius = wipe * 80;
-        canvasWrap.style.clipPath = 'circle(' + radius + '% at 50% 50%)';
-      },
-    });
+/* ============================================================
+   WHAT'S IN THE BOX — MODAL
+   ============================================================ */
+var itbOpen = document.getElementById('itb-open');
+var itbModal = document.getElementById('itb-modal');
+var itbModalClose = document.getElementById('itb-modal-close');
+var itbModalBackdrop = document.getElementById('itb-modal-backdrop');
+
+function openItbModal() {
+  itbModal.hidden = false;
+  document.body.style.overflow = 'hidden';
+  var content = document.querySelector('.itb-modal-content');
+  if (content) {
+    content.style.animation = 'none';
+    content.offsetHeight; // force reflow
+    content.style.animation = '';
   }
+}
 
-  /* ----------------------------------------------------------
-     CANVAS FRAME SCROLL BINDING
-  ---------------------------------------------------------- */
-  function initCanvasScroll() {
-    var targetFrame = 0;
-    var rafPending  = false;
+function closeItbModal() {
+  itbModal.hidden = true;
+  document.body.style.overflow = '';
+}
 
-    function tick() {
-      rafPending = false;
-      var diff = targetFrame - currentFrame;
-      if (Math.abs(diff) < 1) {
-        currentFrame = targetFrame;
-        drawFrame(currentFrame);
-        return;
-      }
-      currentFrame = Math.round(currentFrame + diff * 0.25);
-      drawFrame(currentFrame);
-      rafPending = true;
-      requestAnimationFrame(tick);
-    }
+if (itbOpen) itbOpen.addEventListener('click', openItbModal);
+if (itbModalClose) itbModalClose.addEventListener('click', closeItbModal);
+if (itbModalBackdrop) itbModalBackdrop.addEventListener('click', closeItbModal);
 
-    ScrollTrigger.create({
-      trigger: scrollCont,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: true,
-      onUpdate: function (self) {
-        var accelerated = Math.min(self.progress * FRAME_SPEED, 1);
-        targetFrame = Math.min(Math.floor(accelerated * FRAME_COUNT), FRAME_COUNT - 1);
-        if (!rafPending) {
-          rafPending = true;
-          requestAnimationFrame(tick);
-        }
-      },
-    });
-  }
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') closeItbModal();
+});
 
-  /* ----------------------------------------------------------
-     DARK OVERLAY — stats section (62–74%) + reviews section (90–100%)
-  ---------------------------------------------------------- */
-  function initDarkOverlay() {
-    var ranges = [
-      { enter: 0.62, leave: 0.74,  maxOp: 0.92, fadeRange: 0.035 },
-      { enter: 0.90, leave: 1.00,  maxOp: 0.96, fadeRange: 0.025 },
-    ];
+/* ============================================================
+   SHOP CAROUSEL
+   ============================================================ */
+var shopCarousel = document.getElementById('shop-carousel');
+var shopPrev = document.getElementById('shop-prev');
+var shopNext = document.getElementById('shop-next');
 
-    ScrollTrigger.create({
-      trigger: scrollCont,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: true,
-      onUpdate: function (self) {
-        var p = self.progress;
-        var opacity = 0;
-        ranges.forEach(function (r) {
-          var fr = r.fadeRange;
-          var mo = r.maxOp;
-          if (p >= r.enter - fr && p < r.enter) {
-            opacity = Math.max(opacity, mo * (p - (r.enter - fr)) / fr);
-          } else if (p >= r.enter && p <= r.leave) {
-            opacity = Math.max(opacity, mo);
-          } else if (p > r.leave && p <= r.leave + fr) {
-            opacity = Math.max(opacity, mo * (1 - (p - r.leave) / fr));
-          }
-        });
-        darkOverlay.style.opacity = String(opacity);
-      },
-    });
-  }
+if (shopCarousel && shopPrev && shopNext) {
+  var cardWidth = function () {
+    var card = shopCarousel.querySelector('.shop-card');
+    return card ? card.offsetWidth + 24 : 304;
+  };
+  shopPrev.addEventListener('click', function () {
+    shopCarousel.scrollBy({ left: -cardWidth(), behavior: 'smooth' });
+  });
+  shopNext.addEventListener('click', function () {
+    shopCarousel.scrollBy({ left: cardWidth(), behavior: 'smooth' });
+  });
+}
 
+/* ============================================================
+   EMAIL FORM
+   ============================================================ */
+var emailForm = document.getElementById('email-form');
+var emailSuccess = document.getElementById('email-success');
 
-  /* ----------------------------------------------------------
-     SECTION ANIMATIONS
-  ---------------------------------------------------------- */
-  function setupSectionAnimations() {
-    document.querySelectorAll('.scroll-section').forEach(function (section) {
-      var type    = section.dataset.animation;
-      var persist = section.dataset.persist === 'true';
-      var enter   = parseFloat(section.dataset.enter) / 100;
-      var leave   = parseFloat(section.dataset.leave) / 100;
-
-      var children = section.querySelectorAll(
-        '.section-label, .section-heading, .section-body, .section-price, .section-note, .cta-button, .stat, .section-image, .review-card'
-      );
-
-      var tl = gsap.timeline({ paused: true });
-
-      if (persist) {
-        tl.from(children, { opacity: 0, stagger: 0.12, duration: 0.9, ease: 'power2.out' });
-      } else {
-        // Hide section until enter so the background box doesn't bleed in early
-        gsap.set(section, { opacity: 0 });
-        switch (type) {
-          case 'slide-left':
-            tl.from(children, { x: -70, opacity: 0, stagger: 0.13, duration: 0.9, ease: 'power3.out' });
-            break;
-          case 'slide-right':
-            tl.from(children, { x: 70, opacity: 0, stagger: 0.07, duration: 0.7, ease: 'power3.out' });
-            break;
-          case 'stagger-up':
-            tl.from(children, { y: 55, opacity: 0, stagger: 0.14, duration: 0.85, ease: 'power3.out' });
-            break;
-          case 'scale-up':
-            tl.from(children, { scale: 0.88, opacity: 0, stagger: 0.12, duration: 1.0, ease: 'power2.out' });
-            break;
-          default: // fade-up
-            tl.from(children, { y: 45, opacity: 0, stagger: 0.12, duration: 0.9, ease: 'power3.out' });
-            break;
-        }
-      }
-
-      // Scrub window (fraction of total scroll progress) for fade in/out
-      var SCRUB = 0.05;
-
-      ScrollTrigger.create({
-        trigger: scrollCont,
-        start: 'top top',
-        end: 'bottom bottom',
-        onUpdate: function (self) {
-          var p = self.progress;
-
-          if (persist) {
-            // Fade in over SCRUB window after enter, fade out over SCRUB before leave
-            var fadeIn  = Math.max(0, Math.min(1, (p - enter) / SCRUB));
-            var fadeOut = Math.max(0, Math.min(1, (leave - p) / SCRUB));
-            var op = Math.min(fadeIn, fadeOut);
-            section.style.opacity = String(op);
-            section.style.pointerEvents = op > 0.1 ? 'auto' : 'none';
-            tl.progress(fadeIn);
-          } else {
-            var fadeIn  = Math.max(0, Math.min(1, (p - enter) / SCRUB));
-            var fadeOut = p > leave ? Math.max(0, Math.min(1, 1 - (p - leave) / SCRUB)) : 1;
-            var op = Math.min(fadeIn, fadeOut);
-            section.style.opacity = String(op);
-            section.style.pointerEvents = op > 0.1 ? 'auto' : 'none';
-            if (p >= enter) {
-              tl.play();
-            } else {
-              tl.reverse();
-            }
-          }
-        },
-      });
-    });
-  }
-
-  /* ----------------------------------------------------------
-     COUNTER ANIMATIONS
-  ---------------------------------------------------------- */
-  function initCounters() {
-    document.querySelectorAll('.stat-number').forEach(function (el) {
-      var target   = parseFloat(el.dataset.value);
-      var decimals = parseInt(el.dataset.decimals || '0', 10);
-      var statSec  = el.closest('.scroll-section');
-      var enter    = parseFloat(statSec.dataset.enter) / 100;
-      var triggered = false;
-
-      ScrollTrigger.create({
-        trigger: scrollCont,
-        start: 'top top',
-        end: 'bottom bottom',
-        onUpdate: function (self) {
-          if (!triggered && self.progress >= enter) {
-            triggered = true;
-            gsap.fromTo(el,
-              { textContent: 0 },
-              {
-                textContent: target,
-                duration: 1.8,
-                ease: 'power1.out',
-                snap: { textContent: decimals === 0 ? 1 : 0.01 },
-                onUpdate: function () {
-                  el.textContent = decimals === 0
-                    ? Math.round(parseFloat(el.textContent))
-                    : parseFloat(el.textContent).toFixed(decimals);
-                },
-              }
-            );
-          }
-          if (triggered && self.progress < enter - 0.03) {
-            triggered = false;
-            el.textContent = '0';
-          }
-        },
-      });
-    });
-  }
-
-  /* ----------------------------------------------------------
-     INIT — called after PRELOAD_FAST frames are ready
-  ---------------------------------------------------------- */
-  function init() {
-    positionSections();
-    initHeroEntrance();
-    initHeroTransition();
-    initCanvasScroll();
-    initDarkOverlay();
-    setupSectionAnimations();
-    initCounters();
-    ScrollTrigger.refresh();
-  }
-
-  /* ----------------------------------------------------------
-     EMAIL FORM HANDLER
-     To connect a real service, replace the submit handler below:
-       - Formspree:  fetch('https://formspree.io/f/YOUR_ID', ...)
-       - Mailchimp:  use their embedded form action URL
-       - ConvertKit: use their API endpoint
-  ---------------------------------------------------------- */
-  var emailForm    = document.getElementById('email-form');
-  var emailSuccess = document.getElementById('email-success');
-
-  if (emailForm) {
-    emailForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var email = document.getElementById('email-input').value.trim();
-      if (!email) return;
-
-      var btn = emailForm.querySelector('.email-submit');
-      btn.textContent = '...';
-      btn.disabled = true;
-
-      // ── Kit (ConvertKit) submission ──────────────────────────────
-      // Replace YOUR_FORM_ID with the numeric ID from your Kit embed code
-      // e.g. https://app.convertkit.com/forms/1234567/subscriptions → 1234567
-      var KIT_FORM_ID = '9161452';
-
-      fetch('https://app.kit.com/forms/' + KIT_FORM_ID + '/subscriptions', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'email_address=' + encodeURIComponent(email),
-      })
-        .then(function () {
-          showSuccess();
-        })
-        .catch(function () {
-          btn.textContent = 'Try again';
-          btn.disabled = false;
-        });
-      // ─────────────────────────────────────────────────────────────
-
-      function showSuccess() {
-        emailForm.style.display = 'none';
-        emailSuccess.hidden = false;
-      }
-    });
-  }
-
-  /* ----------------------------------------------------------
-     KICK OFF
-  ---------------------------------------------------------- */
-  startPreload();
-
-})();
+if (emailForm) {
+  emailForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    emailForm.hidden = true;
+    emailSuccess.hidden = false;
+  });
+}

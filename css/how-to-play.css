@@ -2,13 +2,10 @@
    HOW TO PLAY PAGE
    ============================================================ */
 
-.htp-page {
-  background: #000;
-}
-
-
 /* --- MAIN LAYOUT --- */
 .htp-main {
+  position: relative;
+  z-index: 2;
   padding-top: 80px;
   max-width: 780px;
   margin: 0 auto;
@@ -27,7 +24,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--gold);
   display: block;
   margin-bottom: 1rem;
 }
@@ -40,62 +37,31 @@
   color: var(--text);
 }
 
-/* --- VIDEO PLACEHOLDER --- */
+/* --- VIDEO --- */
 .htp-video-section {
   margin-bottom: 4rem;
 }
 
-.htp-video-placeholder {
+.htp-video-wrap {
   width: 100%;
-  aspect-ratio: 16 / 9;
-  border: 1px solid rgba(240, 192, 64, 0.2);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(240, 192, 64, 0.15);
 }
 
-.htp-construction {
-  text-align: center;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+.htp-video {
+  width: 100%;
+  display: block;
+  background: #000;
 }
 
-.htp-construction-pulse {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid rgba(240,192,64,0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: placeholderPulse 2.4s ease-in-out infinite;
-}
-
-.htp-construction-pulse::after {
-  content: '';
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--gold);
-  opacity: 0.6;
-}
-
-.htp-construction-text {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  color: var(--gold);
-  margin-bottom: 0.5rem;
-}
-
-.htp-construction-sub {
+.htp-video-note {
+  margin-top: 0.9rem;
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 0.8rem;
+  font-weight: 300;
   color: var(--text-muted);
+  font-style: italic;
 }
 
 /* --- FAQ --- */
@@ -108,7 +74,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--gold);
   display: block;
   margin-bottom: 1rem;
 }
@@ -132,10 +98,11 @@
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--gold);
+  opacity: 0.6;
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(240, 192, 64, 0.18);
 }
 
 /* FAQ accordion items */
@@ -197,6 +164,152 @@
   gap: 1.5rem;
 }
 
+/* --- ABOUT PAGE --- */
+.htp-about {
+  margin-bottom: 5rem;
+}
+
+.htp-about-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  opacity: 0.85;
+}
+
+.htp-about-body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--text-dim);
+  margin-bottom: 1.5rem;
+}
+
+/* --- TEAM --- */
+.htp-team {
+  margin-bottom: 5rem;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.team-card {
+  padding: 1.75rem;
+  border: 1px solid rgba(240, 192, 64, 0.15);
+  border-radius: 12px;
+  transition: border-color 0.25s;
+}
+
+.team-card:hover {
+  border-color: rgba(240, 192, 64, 0.35);
+}
+
+.team-info {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.team-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.team-role {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.75;
+}
+
+.team-bio {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-dim);
+}
+
+/* --- CONTACT PAGE --- */
+.contact-email-link {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(240, 192, 64, 0.35);
+  padding-bottom: 0.2rem;
+  margin-bottom: 3rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.contact-email-link:hover {
+  color: var(--gold-hover);
+  border-color: var(--gold-hover);
+}
+
+.contact-topics {
+  margin-top: 1rem;
+}
+
+.contact-topics-heading {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+  opacity: 0.7;
+}
+
+/* --- PRIVACY PAGE --- */
+.htp-hero-date {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 1rem;
+  letter-spacing: 0.08em;
+}
+
+.privacy-block {
+  margin-bottom: 2.5rem;
+}
+
+.privacy-heading {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.85;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(240, 192, 64, 0.15);
+}
+
+.privacy-link {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+.privacy-link:hover {
+  color: var(--gold-hover);
+}
+
 /* --- ACTIVE NAV LINK --- */
 .nav-link--active {
   color: var(--text) !important;
@@ -204,6 +317,10 @@
 
 /* --- MOBILE --- */
 @media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
   .htp-main {
     padding-top: 70px;
     padding-left: 1.5rem;
