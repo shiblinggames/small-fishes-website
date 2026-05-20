@@ -51,6 +51,8 @@
 
 .htp-video {
   width: 100%;
+  height: auto;
+  min-height: 0;
   display: block;
   background: #000;
   aspect-ratio: 16 / 9;
