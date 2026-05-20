@@ -1334,6 +1334,7 @@ footer {
   }
 
   .online-body { grid-template-columns: 1fr; gap: 3rem; }
+  .phone-frame { width: clamp(240px, 70vw, 340px); }
 
   .shop-grid { grid-template-columns: 1fr; }
 
