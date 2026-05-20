@@ -130,7 +130,7 @@ document.addEventListener('keydown', function (e) {
 });
 
 /* ============================================================
-   SHOP CAROUSEL
+   SHOP CAROUSEL + DOTS
    ============================================================ */
 var shopCarousel = document.getElementById('shop-carousel');
 var shopPrev = document.getElementById('shop-prev');
@@ -147,7 +147,88 @@ if (shopCarousel && shopPrev && shopNext) {
   shopNext.addEventListener('click', function () {
     shopCarousel.scrollBy({ left: cardWidth(), behavior: 'smooth' });
   });
+
+  var shopCards = shopCarousel.querySelectorAll('.shop-card');
+  if (shopCards.length > 1) {
+    var dotsWrap = document.createElement('div');
+    dotsWrap.className = 'carousel-dots';
+    shopCarousel.parentElement.parentElement.appendChild(dotsWrap);
+
+    var dots = Array.from(shopCards).map(function (card, i) {
+      var dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' carousel-dot--active' : '');
+      dot.setAttribute('aria-label', 'Go to item ' + (i + 1));
+      dot.addEventListener('click', function () {
+        shopCarousel.scrollTo({ left: card.offsetLeft - shopCarousel.offsetLeft, behavior: 'smooth' });
+      });
+      dotsWrap.appendChild(dot);
+      return dot;
+    });
+
+    shopCarousel.addEventListener('scroll', function () {
+      var center = shopCarousel.scrollLeft + shopCarousel.offsetWidth / 2;
+      var closest = 0;
+      var minDist = Infinity;
+      shopCards.forEach(function (card, i) {
+        var cardCenter = card.offsetLeft - shopCarousel.offsetLeft + card.offsetWidth / 2;
+        var dist = Math.abs(center - cardCenter);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      dots.forEach(function (d, i) {
+        d.classList.toggle('carousel-dot--active', i === closest);
+      });
+    }, { passive: true });
+  }
 }
+
+/* ============================================================
+   FAQ ACCORDION ANIMATION
+   ============================================================ */
+document.querySelectorAll('.faq-item').forEach(function (details) {
+  var answer = details.querySelector('.faq-answer');
+  if (!answer) return;
+
+  answer.style.overflow = 'hidden';
+  answer.style.transition = 'height 0.32s cubic-bezier(0.2, 0, 0.2, 1), opacity 0.28s ease';
+
+  details.querySelector('.faq-question').addEventListener('click', function (e) {
+    e.preventDefault();
+
+    if (details.open) {
+      answer.style.height = answer.scrollHeight + 'px';
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          answer.style.height = '0';
+          answer.style.opacity = '0';
+        });
+      });
+      answer.addEventListener('transitionend', function onClose(ev) {
+        if (ev.propertyName !== 'height') return;
+        details.removeAttribute('open');
+        answer.style.height = '';
+        answer.style.opacity = '';
+        answer.removeEventListener('transitionend', onClose);
+      });
+    } else {
+      details.setAttribute('open', '');
+      var h = answer.scrollHeight;
+      answer.style.height = '0';
+      answer.style.opacity = '0';
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          answer.style.height = h + 'px';
+          answer.style.opacity = '1';
+        });
+      });
+      answer.addEventListener('transitionend', function onOpen(ev) {
+        if (ev.propertyName !== 'height') return;
+        answer.style.height = 'auto';
+        answer.style.opacity = '';
+        answer.removeEventListener('transitionend', onOpen);
+      });
+    }
+  });
+});
 
 /* ============================================================
    EMAIL FORM
@@ -159,6 +240,9 @@ if (emailForm) {
   emailForm.addEventListener('submit', function (e) {
     e.preventDefault();
     var email = document.getElementById('email-input').value;
+    var btn = emailForm.querySelector('button[type="submit"]');
+    btn.textContent = '···';
+    btn.disabled = true;
     fetch('https://app.convertkit.com/forms/3d91d67926/subscriptions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -171,8 +255,11 @@ if (emailForm) {
 }
 
 /* ============================================================
-   PAGE TRANSITIONS
+   PAGE TRANSITIONS + SCROLL-TO-TOP
    ============================================================ */
+if (history.scrollRestoration) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
 var pageTransition = document.getElementById('page-transition');
 if (pageTransition) {
   requestAnimationFrame(function () {
