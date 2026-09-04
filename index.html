@@ -30,7 +30,7 @@
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Karla:ital,wght@0,300;0,400;0,600;1,300&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=22">
-  <link rel="stylesheet" href="css/home.css?v=5">
+  <link rel="stylesheet" href="css/home.css?v=7">
   <link rel="preload" as="image" href="art/hero-board.jpg">
   <link rel="preload" as="image" href="art/hero-tiderun.jpg">
   <link rel="preload" as="image" href="art/hero-online.jpg">
@@ -82,40 +82,52 @@
   </div>
   <!-- /SITE-HEADER -->
 
-  <!-- HERO: three games, three panels -->
-  <section class="fleet-hero">
-    <div class="fleet-intro">
-      <p>Pirate games for the table, the phone and the browser.</p>
+  <!-- HERO: one game at a time -->
+  <section class="hero-carousel" id="hero" aria-roledescription="carousel" aria-label="Our games">
+    <p class="hero-line">Pirate games for the table, the phone and the browser.</p>
+
+    <div class="slide slide--board is-active" role="group" aria-roledescription="slide" aria-label="1 of 3">
+      <img src="art/hero-board.jpg" alt="The Small Fishes: Seas the Booty box with gold coins" class="slide-art" width="1200" height="740">
+      <div class="slide-caption">
+        <span class="slide-num">01</span>
+        <h1 class="slide-name">Small Fishes:<br>Seas the Booty</h1>
+        <span class="slide-status">Card game &middot; $29.99</span>
+        <a href="#board-game" class="cta-button">See the game</a>
+      </div>
     </div>
-    <nav class="fleet" aria-label="Our games">
-      <a href="#board-game" class="fleet-panel fleet-panel--board">
-        <img src="art/hero-board.jpg" alt="The Small Fishes: Seas the Booty box with gold coins" class="fleet-art" width="1200" height="740">
-        <span class="fleet-arrow" aria-hidden="true">&rarr;</span>
-        <span class="fleet-meta">
-          <span class="fleet-num">01</span>
-          <span class="fleet-name">Small Fishes:<br>Seas the Booty</span>
-          <span class="fleet-status">Card game &middot; $29.99</span>
-        </span>
-      </a>
-      <a href="#tide-run" class="fleet-panel fleet-panel--tiderun">
-        <img src="art/hero-tiderun.jpg" alt="A pirate boat sailing into a sunset in Tide Run" class="fleet-art" width="900" height="1956">
-        <span class="fleet-arrow" aria-hidden="true">&rarr;</span>
-        <span class="fleet-meta">
-          <span class="fleet-num">02</span>
-          <span class="fleet-name">Tide Run</span>
-          <span class="fleet-status">iPhone &middot; Public beta</span>
-        </span>
-      </a>
-      <a href="#online" class="fleet-panel fleet-panel--online">
-        <img src="art/hero-online.jpg" alt="The pirate cat-fish from Small Fishes Online" class="fleet-art" width="1000" height="1000">
-        <span class="fleet-arrow" aria-hidden="true">&rarr;</span>
-        <span class="fleet-meta">
-          <span class="fleet-num">03</span>
-          <span class="fleet-name">Small Fishes<br>Online</span>
-          <span class="fleet-status fleet-status--soon">Browser &middot; Coming soon</span>
-        </span>
-      </a>
-    </nav>
+
+    <div class="slide slide--tiderun" role="group" aria-roledescription="slide" aria-label="2 of 3">
+      <img src="art/hero-tiderun.jpg" alt="A pirate boat sailing into a sunset in Tide Run" class="slide-art" width="1320" height="780">
+      <div class="slide-caption">
+        <span class="slide-num">02</span>
+        <h2 class="slide-name">Tide Run</h2>
+        <span class="slide-status">iPhone &middot; Public beta</span>
+        <a href="#tide-run" class="cta-button">See the game</a>
+      </div>
+    </div>
+
+    <div class="slide slide--online" role="group" aria-roledescription="slide" aria-label="3 of 3">
+      <img src="art/hero-online.jpg" alt="The pirate cat-fish from Small Fishes Online" class="slide-art" width="1000" height="1000">
+      <div class="slide-caption">
+        <span class="slide-num">03</span>
+        <h2 class="slide-name">Small Fishes<br>Online</h2>
+        <span class="slide-status slide-status--soon">Browser &middot; Coming soon</span>
+        <a href="#online" class="cta-button cta-button--ghost">See the game</a>
+      </div>
+    </div>
+
+    <button class="hero-arrow hero-arrow--prev" data-dir="-1" aria-label="Previous game">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg>
+    </button>
+    <button class="hero-arrow hero-arrow--next" data-dir="1" aria-label="Next game">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>
+    </button>
+
+    <div class="hero-tabs" role="tablist" aria-label="Choose a game">
+      <button class="hero-tab is-active" role="tab" aria-selected="true" data-slide="0">Small Fishes: Seas the Booty<small>Card game</small></button>
+      <button class="hero-tab" role="tab" aria-selected="false" data-slide="1">Tide Run<small>iPhone</small></button>
+      <button class="hero-tab" role="tab" aria-selected="false" data-slide="2">Small Fishes Online<small>Browser</small></button>
+    </div>
   </section>
 
   <!-- 01 The board game -->

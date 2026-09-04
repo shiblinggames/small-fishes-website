@@ -7,96 +7,84 @@
    it. Builds on style.css (Cinzel + Karla, ocean background, gold).
    ============================================================ */
 
-/* --- HERO: three panels --- */
-.fleet-hero {
+/* --- HERO: carousel, one game at a time --- */
+.hero-carousel {
   position: relative;
-  min-height: 100vh;
-  padding-top: 64px;
-  display: flex;
-  flex-direction: column;
-}
-
-.fleet-intro {
-  width: 100%;
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 1.5rem 2rem;
-  animation: riseIn 1s cubic-bezier(0.2, 0, 0, 1) 0.1s both;
-}
-
-.fleet-intro p {
-  font-family: var(--font-body);
-  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
-  font-weight: 300;
-  color: var(--text-dim);
-}
-
-.fleet {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2px;
-  min-height: 0;
-}
-
-.fleet-panel {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
+  margin-top: 64px;
+  height: calc(100vh - 64px);
   min-height: 560px;
-  padding: 2.25rem;
-  color: var(--text);
-  text-decoration: none;
+  overflow: hidden;
   background: #000;
-  animation: panelIn 1.2s cubic-bezier(0.2, 0, 0, 1) both;
 }
 
-.fleet-panel:nth-child(1) { animation-delay: 0.15s; }
-.fleet-panel:nth-child(2) { animation-delay: 0.3s; }
-.fleet-panel:nth-child(3) { animation-delay: 0.45s; }
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.2s ease, visibility 0s linear 1.2s;
+}
 
-.fleet-art {
+.slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1.2s ease, visibility 0s;
+  z-index: 1;
+}
+
+.slide-art {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.03);
-  transition: transform 1.4s cubic-bezier(0.2, 0, 0, 1), filter 0.8s ease;
-  will-change: transform;
+  transform: scale(1);
 }
 
-.fleet-panel--board .fleet-art { object-position: 36% 60%; }
-.fleet-panel--tiderun .fleet-art { object-position: 50% 100%; }
-.fleet-panel--online .fleet-art { object-position: 50% 50%; }
+.slide.is-active .slide-art { animation: slideZoom 8s linear both; }
 
-.fleet-panel::after {
+@keyframes slideZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.07); }
+}
+
+.slide--board .slide-art { object-position: 50% 55%; }
+.slide--tiderun .slide-art { object-position: 50% 50%; }
+.slide--online .slide-art { object-position: 50% 40%; }
+
+.slide::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.72) 100%);
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 30%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 55%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 45%);
   pointer-events: none;
 }
 
-.fleet-panel:hover .fleet-art,
-.fleet-panel:focus-visible .fleet-art { transform: scale(1.09); }
-
-.fleet:hover .fleet-panel:not(:hover) .fleet-art { filter: brightness(0.6) saturate(0.85); }
-
-.fleet-meta {
-  position: relative;
-  z-index: 1;
+.slide-caption {
+  position: absolute;
+  z-index: 2;
+  left: clamp(1.5rem, 6vw, 6rem);
+  right: clamp(1.5rem, 6vw, 6rem);
+  bottom: clamp(5.5rem, 14vh, 8rem);
+  max-width: 620px;
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
-  transform: translateY(6px);
-  transition: transform 0.9s cubic-bezier(0.2, 0, 0, 1);
+  align-items: flex-start;
+  gap: 0.6rem;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0, 0, 1) 0.35s, transform 0.9s cubic-bezier(0.2, 0, 0, 1) 0.35s;
 }
 
-.fleet-panel:hover .fleet-meta { transform: translateY(0); }
+.slide.is-active .slide-caption {
+  opacity: 1;
+  transform: none;
+}
 
-.fleet-num {
+.slide-num {
   font-family: var(--font-display);
   font-size: 0.8rem;
   font-weight: 700;
@@ -104,47 +92,141 @@
   color: var(--gold);
 }
 
-.fleet-name {
+.slide-name {
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 2.2vw, 2rem);
-  font-weight: 700;
-  line-height: 1.15;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+  font-size: clamp(2.2rem, 5vw, 4.4rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--text);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.6);
 }
 
-.fleet-status {
+.slide-status {
   font-family: var(--font-body);
-  font-size: 0.7rem;
+  font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
 }
 
-.fleet-status--soon { color: rgba(255, 255, 255, 0.6); }
+.slide-status--soon { color: rgba(255, 255, 255, 0.65); }
 
-.fleet-arrow {
+.slide-caption .cta-button { margin-top: 0.9rem; }
+
+.hero-line {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
-  z-index: 1;
-  color: var(--gold);
-  font-size: 1.4rem;
+  z-index: 2;
+  top: 1.5rem;
+  left: clamp(1.5rem, 6vw, 6rem);
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+  font-weight: 300;
+  color: var(--text-dim);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* tabs: one per game, with a progress bar during autoplay */
+.hero-tabs {
+  position: absolute;
+  z-index: 3;
+  left: clamp(1.5rem, 6vw, 6rem);
+  right: clamp(1.5rem, 6vw, 6rem);
+  bottom: 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.hero-tab {
+  position: relative;
+  padding: 0.9rem 0 0;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: color 0.4s;
+}
+
+.hero-tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.hero-tab::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.hero-tab:hover { color: var(--text); }
+.hero-tab.is-active { color: var(--text); }
+
+.hero-tab.is-active::after { animation: tabFill var(--slide-ms, 6500ms) linear forwards; }
+.hero-carousel.is-paused .hero-tab.is-active::after { animation-play-state: paused; }
+.hero-carousel.no-autoplay .hero-tab.is-active::after { animation: none; transform: scaleX(1); }
+
+@keyframes tabFill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.hero-tab small {
+  display: block;
+  margin-top: 0.25rem;
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.hero-arrow {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--r-sm);
+  color: var(--text);
+  cursor: pointer;
   opacity: 0;
-  transform: translate(-10px, 10px);
-  transition: opacity 0.6s ease, transform 0.9s cubic-bezier(0.2, 0, 0, 1);
+  transition: opacity 0.4s, background 0.3s, border-color 0.3s;
 }
 
-.fleet-panel:hover .fleet-arrow { opacity: 1; transform: none; }
+.hero-arrow--prev { left: 1.25rem; }
+.hero-arrow--next { right: 1.25rem; }
 
-@keyframes panelIn {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: none; }
-}
+.hero-carousel:hover .hero-arrow,
+.hero-arrow:focus-visible { opacity: 1; }
 
-@keyframes riseIn {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: none; }
+.hero-arrow:hover {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: var(--gold);
+  color: var(--gold);
 }
 
 /* --- MOTION: scroll reveal + drift --- */
@@ -337,13 +419,12 @@
 
 /* --- MOBILE --- */
 @media (max-width: 900px) {
-  .fleet-hero { min-height: 0; }
-  .fleet { grid-template-columns: 1fr; }
-
-  .fleet-panel {
-    min-height: 46vh;
-    padding: 1.5rem;
-  }
+  .hero-carousel { height: calc(100svh - 64px); min-height: 520px; }
+  .slide-caption { bottom: 4.75rem; }
+  .hero-tabs { gap: 0.6rem; bottom: 1.5rem; }
+  .hero-tab { font-size: 0; padding: 1.25rem 0 0; }
+  .hero-tab small { display: none; }
+  .hero-arrow { display: none; }
 
   .product-layout {
     grid-template-columns: 1fr;
@@ -354,7 +435,7 @@
 }
 
 @media (max-width: 768px) {
-  .fleet-intro { padding: 1.25rem 1.5rem; }
+  .hero-line { display: none; }
   .product-inner { padding: 0 1.5rem; }
   .product-head { margin-bottom: 2.5rem; }
   .product-phone .phone-frame { width: clamp(220px, 58vw, 300px); }

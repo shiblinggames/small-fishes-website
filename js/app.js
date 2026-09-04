@@ -69,6 +69,68 @@ if (revealEls.length && 'IntersectionObserver' in window && !reduceMotion) {
 }
 
 /* ============================================================
+   HERO CAROUSEL — crossfade, autoplay (paused on hover / hidden tab /
+   reduced motion), tabs, arrows, keys, swipe
+   ============================================================ */
+var heroCarousel = document.getElementById('hero');
+if (heroCarousel) {
+  var slides = Array.prototype.slice.call(heroCarousel.querySelectorAll('.slide'));
+  var tabs = Array.prototype.slice.call(heroCarousel.querySelectorAll('.hero-tab'));
+  var SLIDE_MS = 6500;
+  var current = 0;
+  var timer = null;
+  var autoplay = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  heroCarousel.style.setProperty('--slide-ms', SLIDE_MS + 'ms');
+  if (!autoplay) heroCarousel.classList.add('no-autoplay');
+
+  function showSlide(index) {
+    current = (index + slides.length) % slides.length;
+    slides.forEach(function (s, i) { s.classList.toggle('is-active', i === current); });
+    tabs.forEach(function (t, i) {
+      var on = i === current;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  }
+
+  function restart() {
+    if (timer) clearInterval(timer);
+    if (autoplay) timer = setInterval(function () { showSlide(current + 1); }, SLIDE_MS);
+  }
+
+  function goTo(index) { showSlide(index); restart(); }
+
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { goTo(+t.dataset.slide); });
+  });
+  heroCarousel.querySelectorAll('.hero-arrow').forEach(function (b) {
+    b.addEventListener('click', function () { goTo(current + (+b.dataset.dir)); });
+  });
+
+  heroCarousel.addEventListener('mouseenter', function () { heroCarousel.classList.add('is-paused'); if (timer) clearInterval(timer); timer = null; });
+  heroCarousel.addEventListener('mouseleave', function () { heroCarousel.classList.remove('is-paused'); restart(); });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { if (timer) clearInterval(timer); timer = null; } else restart();
+  });
+
+  heroCarousel.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') goTo(current + 1);
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+  });
+
+  var touchX = null;
+  heroCarousel.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+  heroCarousel.addEventListener('touchend', function (e) {
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    touchX = null;
+    if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  restart();
+}
+
+/* ============================================================
    MOBILE HAMBURGER MENU
    ============================================================ */
 var navHamburger = document.getElementById('nav-hamburger');
