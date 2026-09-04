@@ -30,7 +30,7 @@
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Karla:ital,wght@0,300;0,400;0,600;1,300&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=20">
-  <link rel="stylesheet" href="css/home.css?v=2">
+  <link rel="stylesheet" href="css/home.css?v=3">
   <link rel="preload" as="image" href="Shiblinggamesbackground.jpeg">
 </head>
 
@@ -147,11 +147,17 @@
               How to play
             </a>
           </div>
-          <p class="product-note"><a href="#" id="itb-open">See everything in the box</a></p>
         </div>
-        <div class="product-visual">
-          <div class="box-glow" aria-hidden="true"></div>
-          <img src="boardgame-cut.png" alt="The Small Fishes: Seas the Booty box" class="box-shot" width="1100" height="738">
+        <div class="product-visual product-visual--top">
+          <div class="itb-inner">
+            <span class="section-label">What's in the Box</span>
+            <div class="itb-image-wrap" id="itb-wrap">
+              <img src="intheboxpreview.png" alt="What's in the Small Fishes box" class="itb-image" loading="lazy">
+              <button class="itb-reveal-btn" id="itb-open" aria-label="Click to reveal what's inside">
+                <span class="itb-reveal-text">Click to Reveal</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
