@@ -366,7 +366,8 @@
 /* 02: trailer in the phone frame */
 .product-phone .phone-frame { width: clamp(220px, 24vw, 300px); }
 
-.product-phone video {
+.product-phone video,
+.product-phone .phone-shot {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -374,47 +375,6 @@
   object-fit: cover;
   display: block;
   background: #000;
-}
-
-/* 03: overlapping browser screenshots */
-.online-shots {
-  position: relative;
-  width: 100%;
-  max-width: 560px;
-  aspect-ratio: 5 / 4;
-}
-
-.online-shot {
-  position: absolute;
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  border: 1px solid rgba(240, 192, 64, 0.22);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65);
-  background: #000;
-}
-
-.online-shot img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-  display: block;
-}
-
-.online-shot--packs {
-  top: 0;
-  left: 0;
-  width: 78%;
-  aspect-ratio: 1178 / 737;
-  z-index: 1;
-}
-
-.online-shot--collection {
-  right: 0;
-  bottom: 0;
-  width: 48%;
-  aspect-ratio: 952 / 1067;
-  z-index: 2;
 }
 
 /* --- MOBILE --- */
@@ -439,5 +399,4 @@
   .product-inner { padding: 0 1.5rem; }
   .product-head { margin-bottom: 2.5rem; }
   .product-phone .phone-frame { width: clamp(220px, 58vw, 300px); }
-  .online-shots { max-width: 100%; }
 }
