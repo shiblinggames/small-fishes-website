@@ -19,9 +19,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Karla:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/style.css?v=10">
-  <link rel="stylesheet" href="../../css/how-to-play.css?v=3">
-  <link rel="stylesheet" href="../../css/tiderun.css?v=1">
+  <link rel="stylesheet" href="../../css/style.css?v=20">
+  <link rel="stylesheet" href="../../css/how-to-play.css?v=5">
+  <link rel="stylesheet" href="../../css/tiderun.css?v=2">
   <link rel="preload" as="image" href="../../Shiblinggamesbackground.jpeg">
 </head>
 
@@ -34,11 +34,18 @@
   <div id="depth-overlay"></div>
   <div id="treasure-glow"></div>
 
+  <!-- SITE-HEADER -->
   <header class="site-header">
     <nav>
-      <a href="../../index.html" class="nav-logo">Shibling<br>Games</a>
+      <a href="../../index.html" class="nav-logo" aria-label="Shibling Games home">
+        <img src="../../logo-mark.png" alt="Shibling Games">
+      </a>
       <div class="nav-links">
-        <a href="../" class="nav-link">Tide Run</a>
+        <a href="../../index.html#board-game" class="nav-link">Board Game</a>
+        <a href="../../tiderun/" class="nav-link nav-link--active">Tide Run</a>
+        <a href="../../index.html#online" class="nav-link">Online</a>
+        <a href="../../about.html" class="nav-link">About</a>
+        <a href="../../contact.html" class="nav-link">Contact</a>
         <a href="https://testflight.apple.com/join/uxF3JSHH" class="nav-cta" target="_blank" rel="noopener">Public Beta</a>
       </div>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
@@ -49,14 +56,17 @@
 
   <div class="nav-mobile-menu" id="nav-mobile-menu">
     <nav class="nav-mobile-links">
-      <a href="../" class="nav-mobile-link">Tide Run</a>
+      <a href="../../index.html#board-game" class="nav-mobile-link">Board Game</a>
       <a href="../../how-to-play.html" class="nav-mobile-link">How to Play</a>
+      <a href="../../tiderun/" class="nav-mobile-link">Tide Run</a>
+      <a href="../../index.html#online" class="nav-mobile-link">Online</a>
       <a href="../../about.html" class="nav-mobile-link">About</a>
       <a href="../../contact.html" class="nav-mobile-link">Contact</a>
       <div class="nav-mobile-divider"></div>
-      <a href="https://testflight.apple.com/join/uxF3JSHH" class="cta-button nav-mobile-cta" target="_blank" rel="noopener">Public Beta</a>
+      <a href="https://testflight.apple.com/join/uxF3JSHH" class="cta-button nav-mobile-cta" target="_blank" rel="noopener">Join the Tide Run Beta</a>
     </nav>
   </div>
+  <!-- /SITE-HEADER -->
 
   <main class="htp-main">
 
@@ -111,16 +121,84 @@
 
   </main>
 
-  <footer class="htp-footer">
+  <!-- SITE-FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <img src="../../logo-mark.png" alt="Shibling Games" class="footer-logo" loading="lazy">
+        <p class="footer-body">A small studio run by siblings, making pirate games for the table, the phone and the browser.</p>
+        <div class="socials">
+          <span class="socials-label">Follow along</span>
+          <div class="socials-links">
+            <a href="https://www.instagram.com/shiblinggames/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg class="social-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="1.6" />
+                <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6" />
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+              </svg>
+              <span>Instagram</span>
+            </a>
+            <a href="https://www.tiktok.com/@shiblinggames" class="social-link" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg class="social-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span>TikTok</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Games</h4>
+        <a href="../../index.html#board-game">Small Fishes: Seas the Booty</a>
+        <a href="../../how-to-play.html">How to Play</a>
+        <a href="../../tiderun/">Tide Run <small>Beta</small></a>
+        <a href="../../index.html#online">Small Fishes Online <small>Soon</small></a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Studio</h4>
+        <a href="../../about.html">About</a>
+        <a href="../../contact.html">Contact</a>
+        <a href="https://shiblingshop.com" target="_blank" rel="noopener">Shibling Shop</a>
+        <a href="https://seasthebooty.com" target="_blank" rel="noopener">seasthebooty.com</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Support</h4>
+        <a href="../../how-to-play.html#faq">Board Game FAQ</a>
+        <a href="../../tiderun/support/">Tide Run Support</a>
+        <a href="../../privacy.html">Privacy Policy</a>
+        <a href="mailto:hello@shiblinggames.com">hello@shiblinggames.com</a>
+      </div>
+
+      <div class="footer-email">
+        <h4 class="footer-col-title">Join the Crew</h4>
+        <p class="footer-body">New games, exclusive drops, and dispatches from the deep. Straight to your inbox.</p>
+        <form id="email-form" class="email-form">
+          <div class="email-form-row">
+            <input type="email" id="email-input" name="email" placeholder="your@email.com" required autocomplete="email" />
+            <button type="submit" class="email-submit">Join</button>
+          </div>
+          <p class="email-legal">No spam. Unsubscribe anytime.</p>
+        </form>
+        <div id="email-success" class="email-success" hidden>
+          <span class="email-success-icon">&#10022;</span>
+          <p>Welcome aboard. We'll be in touch.</p>
+        </div>
+      </div>
+
+    </div>
     <div class="footer-bar">
-      <span>© 2026 Shibling Games &nbsp;·&nbsp; Tide Run</span>
+      <span>&copy; 2026 Shibling Games &nbsp;&middot;&nbsp; Small Fishes: Seas the Booty &nbsp;&middot;&nbsp; Tide Run</span>
       <div class="footer-bar-links">
-        <a href="../">Tide Run</a>
         <a href="../../privacy.html">Privacy Policy</a>
         <a href="../../contact.html">Contact</a>
       </div>
     </div>
   </footer>
+  <!-- /SITE-FOOTER -->
 
   <script src="../../js/app.js"></script>
 </body>

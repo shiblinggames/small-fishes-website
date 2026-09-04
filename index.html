@@ -4,22 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Small Fishes: Seas the Booty — A Strategy Card Game</title>
+  <title>Shibling Games — Small Fishes: Seas the Booty, Tide Run &amp; Small Fishes Online</title>
   <meta name="description"
-    content="Recruit a crew of pirate fish and outwit your rivals in a battle of bluff, strategy, and treasure. For 2–6 players. Ages 8+.">
+    content="Shibling Games is a small studio making pirate games: the Small Fishes: Seas the Booty strategy card game, the Tide Run one-touch runner for iPhone, and Small Fishes Online in your browser.">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Shibling Games">
   <meta property="og:url" content="https://shiblinggames.com">
-  <meta property="og:title" content="Small Fishes: Seas the Booty — A Strategy Card Game">
-  <meta property="og:description" content="Recruit a crew of pirate fish and outwit your rivals in a battle of bluff, strategy, and treasure. For 2–6 players. Ages 8+.">
+  <meta property="og:title" content="Shibling Games — Games from the deep">
+  <meta property="og:description" content="The Small Fishes: Seas the Booty card game, the Tide Run runner for iPhone, and Small Fishes Online in your browser.">
   <meta property="og:image" content="https://shiblinggames.com/OG_image.jpeg">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Small Fishes: Seas the Booty — A Strategy Card Game">
-  <meta name="twitter:description" content="Recruit a crew of pirate fish and outwit your rivals in a battle of bluff, strategy, and treasure. For 2–6 players. Ages 8+.">
+  <meta name="twitter:title" content="Shibling Games — Games from the deep">
+  <meta name="twitter:description" content="The Small Fishes: Seas the Booty card game, the Tide Run runner for iPhone, and Small Fishes Online in your browser.">
   <meta name="twitter:image" content="https://shiblinggames.com/OG_image.jpeg">
 
   <link rel="icon" type="image/png" href="favicon.png">
@@ -29,7 +29,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Karla:ital,wght@0,300;0,400;0,600;1,300&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=10">
+  <link rel="stylesheet" href="css/style.css?v=20">
+  <link rel="stylesheet" href="css/home.css?v=1">
   <link rel="preload" as="image" href="Shiblinggamesbackground.jpeg">
 </head>
 
@@ -45,14 +46,19 @@
   <div id="depth-overlay"></div>
   <div id="treasure-glow"></div>
 
-  <!-- FIXED HEADER -->
+  <!-- SITE-HEADER -->
   <header class="site-header">
     <nav>
-      <a href="index.html" class="nav-logo">Shibling<br>Games</a>
+      <a href="index.html" class="nav-logo" aria-label="Shibling Games home">
+        <img src="logo-mark.png" alt="Shibling Games">
+      </a>
       <div class="nav-links">
-        <a href="how-to-play.html" class="nav-link">How to Play</a>
-        <a href="https://shiblingshop.com/products/small-fishes-seas-the-booty-strategy-card-game" class="nav-cta"
-          target="_blank" rel="noopener">Buy the Game</a>
+        <a href="#board-game" class="nav-link">Board Game</a>
+        <a href="tiderun/" class="nav-link">Tide Run</a>
+        <a href="#online" class="nav-link">Online</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="https://shiblingshop.com/products/small-fishes-seas-the-booty-strategy-card-game" class="nav-cta" target="_blank" rel="noopener">Buy the Game</a>
       </div>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -62,81 +68,91 @@
 
   <div class="nav-mobile-menu" id="nav-mobile-menu">
     <nav class="nav-mobile-links">
+      <a href="#board-game" class="nav-mobile-link">Board Game</a>
       <a href="how-to-play.html" class="nav-mobile-link">How to Play</a>
+      <a href="tiderun/" class="nav-mobile-link">Tide Run</a>
+      <a href="#online" class="nav-mobile-link">Online</a>
       <a href="about.html" class="nav-mobile-link">About</a>
       <a href="contact.html" class="nav-mobile-link">Contact</a>
       <div class="nav-mobile-divider"></div>
-      <a href="https://shiblingshop.com/products/small-fishes-seas-the-booty-strategy-card-game"
-        class="cta-button nav-mobile-cta" target="_blank" rel="noopener">Buy the Game</a>
+      <a href="https://shiblingshop.com/products/small-fishes-seas-the-booty-strategy-card-game" class="cta-button nav-mobile-cta" target="_blank" rel="noopener">Buy the Game</a>
     </nav>
   </div>
+  <!-- /SITE-HEADER -->
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <h1 class="hero-heading">
-        <span class="word">SMALL</span>
-        <span class="word">FISHES</span>
-      </h1>
-      <p class="hero-sub">Seas the Booty</p>
-      <p class="hero-tagline">Recruit a crew of pirate fish and outwit your rivals<br>in a battle of bluff, strategy
-        &amp; treasure.</p>
-      <div class="hero-ctas">
-        <a href="https://shiblingshop.com/products/small-fishes-seas-the-booty-strategy-card-game"
-          class="cta-button" target="_blank" rel="noopener">Buy the Game</a>
-      </div>
-      <a href="#online-section" class="hero-online-link">Online Game Beta <span class="hero-online-arrow">↓</span></a>
-    </div>
-    <div class="scroll-indicator">
-      <div class="scroll-arrow"></div>
+  <section class="home-hero">
+    <div class="home-hero-inner">
+      <span class="home-hero-label">Shibling Games &nbsp;·&nbsp; Independent game studio</span>
+      <h1 class="home-hero-heading">Games from<br>the <em>deep.</em></h1>
+      <p class="home-hero-tagline">We're a small studio run by siblings, making pirate games for the table, for your pocket, and for the browser. Three games, one sea.</p>
+
+      <nav class="manifest" aria-label="Our games">
+        <a href="#board-game" class="manifest-item">
+          <span class="manifest-top"><span class="manifest-num">01</span><span class="manifest-arrow" aria-hidden="true">→</span></span>
+          <span class="manifest-name">Small Fishes: Seas the Booty</span>
+          <span class="manifest-desc">The strategy card game. Recruit a crew of pirate fish and outwit your rivals.</span>
+          <span class="manifest-status">Available now &nbsp;·&nbsp; $29.99</span>
+        </a>
+        <a href="#tide-run" class="manifest-item">
+          <span class="manifest-top"><span class="manifest-num">02</span><span class="manifest-arrow" aria-hidden="true">→</span></span>
+          <span class="manifest-name">Tide Run</span>
+          <span class="manifest-desc">A one-touch pirate runner for iPhone. Hold to jump.</span>
+          <span class="manifest-status manifest-status--beta">Public beta on TestFlight</span>
+        </a>
+        <a href="#online" class="manifest-item">
+          <span class="manifest-top"><span class="manifest-num">03</span><span class="manifest-arrow" aria-hidden="true">→</span></span>
+          <span class="manifest-name">Small Fishes Online</span>
+          <span class="manifest-desc">The collectible card game, in your browser.</span>
+          <span class="manifest-status manifest-status--soon">Coming soon</span>
+        </a>
+      </nav>
     </div>
   </section>
 
-  <!-- THE CARD GAME + WHAT'S IN THE BOX -->
-  <section class="content-section fade-in">
-    <div class="content-layout">
-      <div class="content-text">
-        <span class="section-label">The Card Game</span>
-        <h2 class="content-heading">Recruit.<br>Bluff.<br>Plunder.</h2>
-        <p class="content-body">Small Fishes is a fast-playing strategy card game where every hand is an opportunity
-          and every player is a pirate. Read the tide, gather your crew, and claim the biggest haul before anyone
-          else.</p>
-        <div class="stats-row">
-          <div class="stat-item">
-            <span class="stat-num">2–6</span>
-            <span class="stat-lbl">Players</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-num">30–60</span>
-            <span class="stat-lbl">Minutes</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-num">8+</span>
-            <span class="stat-lbl">Ages</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-num">120+</span>
-            <span class="stat-lbl">Cards</span>
-          </div>
-        </div>
-        <div class="content-actions">
-          <a href="https://shiblingshop.com/products/small-fishes-seas-the-booty-strategy-card-game"
-            class="cta-button" target="_blank" rel="noopener">Buy the Game — $29.99</a>
-          <a href="how-to-play.html" class="section-learn-link">
-            <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><polygon points="2,1 11,6 2,11"/></svg>
-            Watch how to play
-          </a>
-        </div>
+  <!-- 01 — THE BOARD GAME -->
+  <section class="product fade-in" id="board-game">
+    <div class="product-inner">
+      <div class="product-head">
+        <span class="product-index">01</span>
+        <span class="product-kicker">The Board Game</span>
       </div>
-      <div class="content-visual" style="align-items: flex-start;">
-        <div class="itb-inner">
-          <span class="section-label">What's in the Box</span>
-          <div class="itb-image-wrap" id="itb-wrap">
-            <img src="intheboxpreview.png" alt="What's in the Small Fishes box" class="itb-image" loading="lazy">
-            <button class="itb-reveal-btn" id="itb-open" aria-label="Click to reveal what's inside">
-              <span class="itb-reveal-text">Click to Reveal</span>
-            </button>
+      <div class="product-layout">
+        <div class="product-text">
+          <h2 class="product-heading">Recruit.<br>Bluff.<br><em>Plunder.</em></h2>
+          <p class="product-sub">Small Fishes: Seas the Booty</p>
+          <p class="product-body">A fast-playing strategy card game where every hand is an opportunity and every player is a pirate. Read the tide, gather your crew, and claim the biggest haul before anyone else.</p>
+          <div class="stats-row">
+            <div class="stat-item">
+              <span class="stat-num">2–6</span>
+              <span class="stat-lbl">Players</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">30–60</span>
+              <span class="stat-lbl">Minutes</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">8+</span>
+              <span class="stat-lbl">Ages</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">120+</span>
+              <span class="stat-lbl">Cards</span>
+            </div>
           </div>
+          <div class="product-actions">
+            <a href="https://shiblingshop.com/products/small-fishes-seas-the-booty-strategy-card-game"
+              class="cta-button" target="_blank" rel="noopener">Buy the Game — $29.99</a>
+            <a href="how-to-play.html" class="section-learn-link">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><polygon points="2,1 11,6 2,11"/></svg>
+              How to play
+            </a>
+          </div>
+          <p class="product-note"><a href="#" id="itb-open">See everything in the box</a></p>
+        </div>
+        <div class="product-visual">
+          <div class="box-glow" aria-hidden="true"></div>
+          <img src="boardgame-cut.png" alt="The Small Fishes: Seas the Booty box" class="box-shot" width="1100" height="738">
         </div>
       </div>
     </div>
@@ -146,6 +162,7 @@
   <section class="reviews-section fade-in">
     <div class="reviews-inner">
       <span class="section-label">What Players Say</span>
+      <h2 class="reviews-heading">Word from the crew.</h2>
       <div class="reviews-grid">
 
         <figure class="review-card">
@@ -193,8 +210,105 @@
     </div>
   </section>
 
+  <!-- 02 — TIDE RUN -->
+  <section class="product fade-in" id="tide-run">
+    <div class="product-inner">
+      <div class="product-head">
+        <span class="product-index">02</span>
+        <span class="product-kicker">For iPhone</span>
+        <span class="badge">Public Beta</span>
+      </div>
+      <div class="product-layout product-layout--reverse">
+        <div class="product-text">
+          <div class="product-title-row">
+            <img src="tiderun/app-icon.png" alt="Tide Run app icon" class="product-app-icon" width="512" height="512" loading="lazy">
+            <h2 class="product-heading">Tide Run</h2>
+          </div>
+          <p class="product-sub">hold to jump. don't jump the ones with the light.</p>
+          <p class="product-body">A one-touch pirate endless runner. Nine hand-painted seas with their own weather, seventeen boats, and crates that wash up on the water. No accounts, no ads, no tracking: everything stays on your phone.</p>
+          <div class="stats-row">
+            <div class="stat-item">
+              <span class="stat-num">1</span>
+              <span class="stat-lbl">Touch</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">9</span>
+              <span class="stat-lbl">Seas</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">17</span>
+              <span class="stat-lbl">Boats</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">33</span>
+              <span class="stat-lbl">Achievements</span>
+            </div>
+          </div>
+          <div class="product-actions">
+            <a href="tiderun/" class="cta-button">Explore Tide Run</a>
+            <a href="https://testflight.apple.com/join/uxF3JSHH" class="section-learn-link" target="_blank" rel="noopener">Join the public beta</a>
+          </div>
+          <p class="product-note">Free on TestFlight now. App Store listing coming soon.</p>
+        </div>
+        <div class="product-visual product-phone">
+          <div class="phone-mockup">
+            <div class="phone-frame">
+              <div class="phone-screen">
+                <video id="home-trailer" muted loop playsinline preload="none" poster="tiderun/trailer-poster.png" aria-label="Tide Run gameplay trailer">
+                  <source src="tiderun/trailer.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+          <p class="product-phone-note">25 seconds of real gameplay. silent on purpose.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — SMALL FISHES ONLINE -->
+  <section class="product fade-in" id="online">
+    <div class="product-inner">
+      <div class="product-head">
+        <span class="product-index">03</span>
+        <span class="product-kicker">In your browser</span>
+        <span class="badge">Coming Soon</span>
+      </div>
+      <div class="product-layout">
+        <div class="product-text">
+          <div class="product-title-row">
+            <img src="smallfishesonline.png" alt="Small Fishes Online icon" class="product-app-icon" width="1024" height="1024" loading="lazy">
+            <h2 class="product-heading">Small Fishes<br>Online</h2>
+          </div>
+          <p class="product-sub">A whole world of its own</p>
+          <p class="product-body">A digital game set in the Small Fishes universe. Not the board game, but the same crew, the same seas, and a collection that keeps growing. Free to play, no catch.</p>
+          <ul class="feature-list">
+            <li>A skill-based fishing game that is easy to learn, with more than a hundred kinds of fish to discover and collect</li>
+            <li>Open collectible card packs and chase rare finds, featuring art from the Small Fishes universe</li>
+            <li>Assemble a crew, send them out, and battle other ships in a story-driven adventure</li>
+            <li>Mini-games, daily challenges, and leaderboards to compete with friends</li>
+          </ul>
+          <div class="product-actions">
+            <a href="https://seasthebooty.com" class="cta-button cta-button--ghost" target="_blank" rel="noopener">Visit seasthebooty.com</a>
+          </div>
+          <p class="product-note">In early access while we build it out. Every Shibling Shop order comes with pack codes.</p>
+        </div>
+        <div class="product-visual">
+          <div class="online-shots">
+            <div class="online-shot online-shot--packs">
+              <img src="packopening.png" alt="Opening booster packs in Small Fishes Online" loading="lazy" width="1178" height="737">
+            </div>
+            <div class="online-shot online-shot--collection">
+              <img src="collection.png" alt="The card collection in Small Fishes Online" loading="lazy" width="952" height="1067">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- SHOP -->
-  <section class="shop-section fade-in">
+  <section class="shop-section fade-in" id="shop">
     <div class="shop-inner">
       <span class="section-label">The Captain's Chest</span>
       <h2 class="shop-heading">Claim Your Haul.</h2>
@@ -263,76 +377,33 @@
             </div>
           </div>
 
-
         </div>
         <button class="shop-nav shop-nav--next" id="shop-next" aria-label="Next">&#8594;</button>
       </div>
     </div>
   </section>
 
-  <!-- ONLINE GAME -->
-  <section class="online-section fade-in" id="online-section">
-    <div class="online-inner">
-      <div class="online-header">
-        <span class="section-label">Venture Further &nbsp;<span class="badge">Beta</span></span>
-        <div class="online-heading-row">
-          <img src="smallfishesonline.png" alt="Small Fishes Bonus Game" class="online-app-icon" loading="lazy">
-          <h2 class="online-heading">Small Fishes<br>Bonus Game</h2>
-        </div>
-        <p class="online-sub">A digital game set in the Small Fishes universe. Not the board game, a whole world of its own. Completely free to play — no catch.</p>
-      </div>
-      <div class="online-body">
-        <div class="online-text">
-          <ul class="feature-list">
-            <li>A fun, skill-based fishing game that is easy to learn, with more than a hundred kinds of fish to discover and collect</li>
-            <li>Open collectible card packs and chase rare finds, featuring art from the Small Fishes universe</li>
-            <li>Assemble a crew, send them out, and battle other ships in a story-driven adventure</li>
-            <li>Loads of mini-games, daily challenges, and leaderboards to compete with friends</li>
-          </ul>
-          <a href="https://seasthebooty.com" class="cta-button cta-button--ghost" target="_blank"
-            rel="noopener">Play Now</a>
-        </div>
-        <div class="online-video">
-          <div class="phone-mockup">
-            <div class="phone-frame">
-              <div class="phone-screen">
-                <iframe src="https://www.youtube.com/embed/97RD-TY94HE" title="Small Fishes Bonus Game — Gameplay" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
+  <!-- SITE-FOOTER -->
   <footer class="site-footer">
     <div class="footer-inner">
 
-      <!-- Left: branding + socials -->
       <div class="footer-brand">
-        <span class="section-label">Join the Crew</span>
-        <h3 class="footer-heading">Get On<br>Board.</h3>
-        <p class="footer-body">New games, exclusive drops, and dispatches from the deep — straight to your inbox.</p>
+        <img src="logo-mark.png" alt="Shibling Games" class="footer-logo" loading="lazy">
+        <p class="footer-body">A small studio run by siblings, making pirate games for the table, the phone and the browser.</p>
         <div class="socials">
           <span class="socials-label">Follow along</span>
           <div class="socials-links">
-            <a href="https://www.instagram.com/shiblinggames/" class="social-link" target="_blank" rel="noopener"
-              aria-label="Instagram">
-              <svg class="social-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <a href="https://www.instagram.com/shiblinggames/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg class="social-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="1.6" />
                 <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6" />
                 <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
               </svg>
               <span>Instagram</span>
             </a>
-            <a href="https://www.tiktok.com/@shiblinggames" class="social-link" target="_blank" rel="noopener"
-              aria-label="TikTok">
-              <svg class="social-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" stroke="currentColor" stroke-width="1.6"
-                  stroke-linecap="round" stroke-linejoin="round" />
+            <a href="https://www.tiktok.com/@shiblinggames" class="social-link" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg class="social-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
               <span>TikTok</span>
             </a>
@@ -340,32 +411,56 @@
         </div>
       </div>
 
-      <!-- Right: email form -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Games</h4>
+        <a href="#board-game">Small Fishes: Seas the Booty</a>
+        <a href="how-to-play.html">How to Play</a>
+        <a href="tiderun/">Tide Run <small>Beta</small></a>
+        <a href="#online">Small Fishes Online <small>Soon</small></a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Studio</h4>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://shiblingshop.com" target="_blank" rel="noopener">Shibling Shop</a>
+        <a href="https://seasthebooty.com" target="_blank" rel="noopener">seasthebooty.com</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Support</h4>
+        <a href="how-to-play.html#faq">Board Game FAQ</a>
+        <a href="tiderun/support/">Tide Run Support</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="mailto:hello@shiblinggames.com">hello@shiblinggames.com</a>
+      </div>
+
       <div class="footer-email">
+        <h4 class="footer-col-title">Join the Crew</h4>
+        <p class="footer-body">New games, exclusive drops, and dispatches from the deep. Straight to your inbox.</p>
         <form id="email-form" class="email-form">
           <div class="email-form-row">
-            <input type="email" id="email-input" name="email" placeholder="your@email.com" required
-              autocomplete="email" />
-            <button type="submit" class="email-submit">Join the Crew</button>
+            <input type="email" id="email-input" name="email" placeholder="your@email.com" required autocomplete="email" />
+            <button type="submit" class="email-submit">Join</button>
           </div>
           <p class="email-legal">No spam. Unsubscribe anytime.</p>
         </form>
         <div id="email-success" class="email-success" hidden>
-          <span class="email-success-icon">✦</span>
+          <span class="email-success-icon">&#10022;</span>
           <p>Welcome aboard. We'll be in touch.</p>
         </div>
       </div>
 
     </div>
     <div class="footer-bar">
-      <span>© 2026 Shibling Games &nbsp;·&nbsp; Small Fishes: Seas the Booty</span>
+      <span>&copy; 2026 Shibling Games &nbsp;&middot;&nbsp; Small Fishes: Seas the Booty &nbsp;&middot;&nbsp; Tide Run</span>
       <div class="footer-bar-links">
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
         <a href="privacy.html">Privacy Policy</a>
+        <a href="contact.html">Contact</a>
       </div>
     </div>
   </footer>
+  <!-- /SITE-FOOTER -->
 
   <!-- WHAT'S IN THE BOX MODAL -->
   <div class="itb-modal" id="itb-modal" hidden>

@@ -49,8 +49,8 @@ document.querySelectorAll('.fade-in').forEach(function (el) {
 /* ============================================================
    STATS ROW STAGGER
    ============================================================ */
-var statsRow = document.querySelector('.stats-row');
-if (statsRow) {
+var statsRows = document.querySelectorAll('.stats-row');
+if (statsRows.length) {
   var statsObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
@@ -59,7 +59,26 @@ if (statsRow) {
       }
     });
   }, { threshold: 0.5 });
-  statsObserver.observe(statsRow);
+  statsRows.forEach(function (row) { statsObserver.observe(row); });
+}
+
+/* ============================================================
+   HOMEPAGE TRAILER — load and play only while on screen
+   ============================================================ */
+var homeTrailer = document.getElementById('home-trailer');
+if (homeTrailer) {
+  var trailerObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        if (homeTrailer.preload === 'none') homeTrailer.preload = 'auto';
+        var p = homeTrailer.play();
+        if (p && p.catch) p.catch(function () {});
+      } else {
+        homeTrailer.pause();
+      }
+    });
+  }, { threshold: 0.35 });
+  trailerObserver.observe(homeTrailer);
 }
 
 /* ============================================================
@@ -105,7 +124,8 @@ var itbModal = document.getElementById('itb-modal');
 var itbModalClose = document.getElementById('itb-modal-close');
 var itbModalBackdrop = document.getElementById('itb-modal-backdrop');
 
-function openItbModal() {
+function openItbModal(e) {
+  if (e && e.preventDefault) e.preventDefault();
   itbModal.hidden = false;
   document.body.style.overflow = 'hidden';
   var content = document.querySelector('.itb-modal-content');
@@ -258,7 +278,7 @@ if (emailForm) {
    PAGE TRANSITIONS + SCROLL-TO-TOP
    ============================================================ */
 if (history.scrollRestoration) history.scrollRestoration = 'manual';
-window.scrollTo(0, 0);
+if (!location.hash) window.scrollTo(0, 0);
 
 var pageTransition = document.getElementById('page-transition');
 if (pageTransition) {
