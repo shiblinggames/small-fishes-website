@@ -30,7 +30,7 @@
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Karla:ital,wght@0,300;0,400;0,600;1,300&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=22">
-  <link rel="stylesheet" href="css/home.css?v=7">
+  <link rel="stylesheet" href="css/home.css?v=8">
   <link rel="preload" as="image" href="art/hero-board.jpg">
   <link rel="preload" as="image" href="art/hero-tiderun.jpg">
   <link rel="preload" as="image" href="art/hero-online.jpg">
@@ -107,7 +107,10 @@
     </div>
 
     <div class="slide slide--online" role="group" aria-roledescription="slide" aria-label="3 of 3">
-      <img src="art/hero-online.jpg" alt="The pirate cat-fish from Small Fishes Online" class="slide-art" width="1000" height="1000">
+      <picture>
+        <source media="(max-width: 900px)" srcset="art/hero-online-tall.jpg">
+        <img src="art/hero-online.jpg" alt="Fishing from a rowboat in Small Fishes Online, waiting on a bite" class="slide-art" width="1290" height="784">
+      </picture>
       <div class="slide-caption">
         <span class="slide-num">03</span>
         <h2 class="slide-name">Small Fishes<br>Online</h2>

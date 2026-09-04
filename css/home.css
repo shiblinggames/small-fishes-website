@@ -50,7 +50,7 @@
 
 .slide--board .slide-art { object-position: 50% 55%; }
 .slide--tiderun .slide-art { object-position: 50% 50%; }
-.slide--online .slide-art { object-position: 50% 40%; }
+.slide--online .slide-art { object-position: 50% 50%; }
 
 .slide::after {
   content: '';
