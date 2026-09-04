@@ -1,0 +1,401 @@
+/* ============================================================
+   TIDE RUN PAGES  (/tiderun, /tiderun/support)
+   Same fonts and layout system as the rest of the site
+   (Cinzel + Karla, ocean background, gold accents), with a
+   parchment / deep-ink register for the game's hand-painted art.
+   ============================================================ */
+:root {
+  --tr-ink: #0b1a33;
+  --tr-ink-deep: #06101f;
+  --tr-ink-text: #1c2438;
+  --tr-parchment: #efe3c6;
+  --tr-parchment-light: #f5ecd6;
+  --tr-parchment-deep: #e2d0a6;
+  --tr-parchment-rule: rgba(110, 80, 30, 0.28);
+  --tr-parchment-accent: #8a5f1a;
+}
+
+.tr-page { background: var(--tr-ink-deep); }
+
+/* Pull the ocean photo toward deep ink so gold and parchment sit on it */
+.tr-page #ocean-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 16, 31, 0.35) 0%, rgba(6, 16, 31, 0.65) 100%);
+  pointer-events: none;
+}
+
+/* --- LAYOUT --- */
+.tr-main {
+  position: relative;
+  z-index: 2;
+  padding-top: 64px;
+}
+
+.tr-section { padding: var(--section-pad); }
+
+.tr-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* --- HERO --- */
+.tr-hero {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  min-height: calc(100vh - 64px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 3rem;
+  align-items: center;
+  padding: 3rem 2rem 4rem;
+}
+
+.tr-app-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.tr-app-icon {
+  width: 88px;
+  height: 88px;
+  border-radius: 22px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(240, 192, 64, 0.25);
+  flex-shrink: 0;
+}
+
+.tr-wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  font-weight: 900;
+  line-height: 0.95;
+  color: var(--text);
+}
+
+.tr-headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.4vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--gold);
+  max-width: 24ch;
+  margin-bottom: 1.5rem;
+}
+
+.tr-copy { margin-bottom: 2.25rem; }
+
+.tr-copy p {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-dim);
+  margin-bottom: 0.6rem;
+}
+
+.tr-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.25rem;
+}
+
+.tr-badge {
+  display: inline-block;
+  line-height: 0;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.tr-badge img {
+  height: 52px;
+  width: auto;
+}
+
+.tr-badge:hover { transform: translateY(-2px); }
+
+.tr-badge.is-placeholder {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.tr-badge.is-placeholder:hover { transform: none; }
+
+.tr-beta-link {
+  padding: 0.9rem 1.6rem;
+  font-size: 0.78rem;
+}
+
+.tr-cta-note {
+  margin-top: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+/* Trailer in a phone-shaped column (portrait, never stretched wide) */
+.tr-hero-phone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tr-hero .phone-frame { width: clamp(220px, 27vw, 310px); }
+
+.tr-trailer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #000;
+}
+
+.tr-trailer-note {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* --- PULL LINE + SCREENSHOTS --- */
+.tr-pull {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+  max-width: 30ch;
+  margin-bottom: 2.5rem;
+}
+
+.tr-pull em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.tr-shots {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.tr-shot {
+  margin: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(240, 192, 64, 0.22);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
+  background: #000;
+  aspect-ratio: 1320 / 2868;
+}
+
+.tr-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- CRATES (parchment) --- */
+.tr-parchment {
+  position: relative;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) 150px;
+  gap: 2rem;
+  align-items: center;
+  padding: 3rem;
+  border-radius: 20px;
+  color: var(--tr-ink-text);
+  background: linear-gradient(165deg, var(--tr-parchment-light) 0%, var(--tr-parchment) 45%, var(--tr-parchment-deep) 100%);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px var(--tr-parchment-rule),
+    inset 0 0 70px rgba(120, 90, 40, 0.14);
+}
+
+.tr-chest {
+  width: 150px;
+  height: auto;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.35));
+}
+
+.tr-parchment-label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tr-parchment-accent);
+  margin-bottom: 1rem;
+}
+
+.tr-parchment-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--tr-ink);
+  margin-bottom: 1.25rem;
+}
+
+.tr-parchment-text {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--tr-ink-text);
+}
+
+/* --- ON YOUR PHONE (deep ink) --- */
+.tr-ink {
+  text-align: center;
+  padding: 3.5rem 2rem;
+  border-radius: 20px;
+  background: rgba(11, 26, 51, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(240, 192, 64, 0.22);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+.tr-ink-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.tr-ink-text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--text-dim);
+  max-width: 54ch;
+  margin: 0 auto 2rem;
+}
+
+.tr-ink .tr-ctas { justify-content: center; }
+
+/* --- FOOTER --- */
+.tr-footer {
+  position: relative;
+  z-index: 2;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+}
+
+/* --- SUPPORT PAGE --- */
+.tr-support-lead {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-dim);
+  margin-top: 1.25rem;
+  max-width: 40ch;
+}
+
+.tr-steps { counter-reset: step; }
+
+.tr-steps li {
+  position: relative;
+  padding-left: 2.6rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-dim);
+  margin-bottom: 1.1rem;
+}
+
+.tr-steps li strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.tr-steps li::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  border: 1px solid rgba(240, 192, 64, 0.5);
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- MOBILE --- */
+@media (max-width: 900px) {
+  .tr-hero {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    min-height: 0;
+    padding: 2rem 1.5rem 3rem;
+    text-align: center;
+  }
+
+  /* the clip is the pitch: video first on small screens */
+  .tr-hero-phone { order: -1; }
+  .tr-hero .phone-frame { width: clamp(220px, 58vw, 300px); }
+
+  .tr-app-row { justify-content: center; }
+  .tr-headline { margin-left: auto; margin-right: auto; }
+  .tr-ctas { justify-content: center; }
+
+  .tr-shots { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  .tr-parchment {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .tr-chest {
+    width: 120px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .tr-inner { padding: 0 1.5rem; }
+
+  .tr-shots {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 0.9rem;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem 1rem;
+    scrollbar-width: none;
+  }
+
+  .tr-shots::-webkit-scrollbar { display: none; }
+
+  .tr-shot {
+    flex: 0 0 60vw;
+    scroll-snap-align: center;
+  }
+
+  .tr-footer { padding: 0 1.5rem 3rem; }
+}

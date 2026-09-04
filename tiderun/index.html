@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tide Run — A One-Touch Pirate Runner for iPhone | Shibling Games</title>
+  <meta name="description" content="tide run. hold to jump. don't jump the ones with the light. A one-touch pirate endless runner for iPhone from Shibling Games.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Shibling Games">
+  <meta property="og:url" content="https://shiblinggames.com/tiderun/">
+  <meta property="og:title" content="Tide Run — A One-Touch Pirate Runner for iPhone">
+  <meta property="og:description" content="tide run. hold to jump. don't jump the ones with the light.">
+  <meta property="og:image" content="https://shiblinggames.com/tiderun/app-icon.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Tide Run — A One-Touch Pirate Runner for iPhone">
+  <meta name="twitter:description" content="tide run. hold to jump. don't jump the ones with the light.">
+  <meta name="twitter:image" content="https://shiblinggames.com/tiderun/app-icon.png">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="canonical" href="https://shiblinggames.com/tiderun/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Karla:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=10">
+  <link rel="stylesheet" href="../css/tiderun.css?v=1">
+  <link rel="preload" as="image" href="../Shiblinggamesbackground.jpeg">
+  <link rel="preload" as="image" href="trailer-poster.png">
+
+  <script>
+    /* ============================================================
+       APP STORE URL — FILL THIS IN WHEN THE LISTING IS LIVE
+       e.g. 'https://apps.apple.com/app/id0000000000'
+       Leave empty until then: the badge shows as "coming soon"
+       and the TestFlight public beta link stays alongside it.
+       ============================================================ */
+    var APP_STORE_URL = '';
+  </script>
+</head>
+
+<body class="htp-page tr-page">
+
+  <div id="page-transition"></div>
+
+  <div id="scroll-progress"></div>
+  <div id="ocean-bg"></div>
+  <div id="depth-overlay"></div>
+  <div id="treasure-glow"></div>
+
+  <header class="site-header">
+    <nav>
+      <a href="../index.html" class="nav-logo">Shibling<br>Games</a>
+      <div class="nav-links">
+        <a href="support/" class="nav-link">Support</a>
+        <a href="https://testflight.apple.com/join/uxF3JSHH" class="nav-cta" target="_blank" rel="noopener">Public Beta</a>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <nav class="nav-mobile-links">
+      <a href="support/" class="nav-mobile-link">Tide Run Support</a>
+      <a href="../how-to-play.html" class="nav-mobile-link">How to Play</a>
+      <a href="../about.html" class="nav-mobile-link">About</a>
+      <a href="../contact.html" class="nav-mobile-link">Contact</a>
+      <div class="nav-mobile-divider"></div>
+      <a href="https://testflight.apple.com/join/uxF3JSHH" class="cta-button nav-mobile-cta" target="_blank" rel="noopener">Public Beta</a>
+    </nav>
+  </div>
+
+  <main class="tr-main">
+
+    <!-- HERO: copy + trailer -->
+    <section class="tr-hero">
+      <div class="tr-hero-text">
+        <span class="section-label">Shibling Games &nbsp;·&nbsp; for iPhone</span>
+        <div class="tr-app-row">
+          <img src="app-icon.png" alt="Tide Run app icon" class="tr-app-icon" width="512" height="512">
+          <h1 class="tr-wordmark">Tide<br>Run</h1>
+        </div>
+        <p class="tr-headline">everything in this game says jump. the ones with a light say don't.</p>
+        <div class="tr-copy">
+          <p>the mini game in my game got more playtime than my game.</p>
+          <p>so it has its own app now.</p>
+          <p>tide run. hold to jump. don't jump the ones with the light.</p>
+        </div>
+        <div class="tr-ctas">
+          <a href="#" class="tr-badge js-app-store-link" aria-label="Download on the App Store">
+            <img src="app-store-badge.svg" alt="Download on the App Store" width="156" height="52">
+          </a>
+          <a href="https://testflight.apple.com/join/uxF3JSHH" class="cta-button cta-button--ghost tr-beta-link" target="_blank" rel="noopener">Public beta on TestFlight</a>
+        </div>
+        <p class="tr-cta-note js-app-store-note">app store listing coming soon &nbsp;·&nbsp; play the public beta now</p>
+      </div>
+
+      <div class="tr-hero-phone">
+        <div class="phone-mockup">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <video class="tr-trailer" autoplay loop muted playsinline preload="auto" poster="trailer-poster.png" aria-label="Tide Run gameplay trailer">
+                <source src="trailer.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <p class="tr-trailer-note">25 seconds of it. silent on purpose.</p>
+      </div>
+    </section>
+
+    <!-- THE GAME: pull line + screenshots -->
+    <section class="tr-section fade-in">
+      <div class="tr-inner">
+        <span class="section-label">The Game</span>
+        <h2 class="tr-pull">one touch. nine seas. seventeen boats.<br><em>the rocks with a light on them are the ones you don't jump.</em></h2>
+        <div class="tr-shots">
+          <figure class="tr-shot"><img src="screenshots/01-long-evening.png" alt="Tide Run gameplay in The Long Evening" loading="lazy" width="1320" height="2868"></figure>
+          <figure class="tr-shot"><img src="screenshots/02-glowing-deep.png" alt="Tide Run gameplay in The Glowing Deep" loading="lazy" width="1320" height="2868"></figure>
+          <figure class="tr-shot"><img src="screenshots/03-witchlight.png" alt="Tide Run gameplay in The Witchlight" loading="lazy" width="1320" height="2868"></figure>
+          <figure class="tr-shot"><img src="screenshots/06-boats.png" alt="The Boats shelf in Tide Run" loading="lazy" width="1320" height="2868"></figure>
+          <figure class="tr-shot"><img src="screenshots/07-wakes.png" alt="The Wakes shelf in Tide Run" loading="lazy" width="1320" height="2868"></figure>
+          <figure class="tr-shot"><img src="screenshots/08-crates.png" alt="The Crates room in Tide Run" loading="lazy" width="1320" height="2868"></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- CRATES -->
+    <section class="tr-section fade-in">
+      <div class="tr-inner">
+        <div class="tr-parchment">
+          <img src="chest-closed.png" alt="A closed crate" class="tr-chest tr-chest--closed" loading="lazy" width="512" height="512">
+          <div class="tr-parchment-body">
+            <span class="tr-parchment-label">Crates</span>
+            <h2 class="tr-parchment-heading">crates wash up on the water now. most are doubloons. some are a rainbow wake.</h2>
+            <p class="tr-parchment-text">crates wash up on the water now. you take them like a coin, then open them back at the locker. most of them are a few doubloons. every so often one has something for the boat instead — a colour for your wake (fourteen, from ember to a proper rainbow) or a different way the beacon smashes when you go through it (twelve, from fireworks to an ink cloud). you can't buy crates, and you can't buy what's in them. you find them. the five deep-water hulls each carry their own wake shape too — a comet, a braid, a boil — so the boat you sail and the trail you leave are two separate things to want.</p>
+          </div>
+          <img src="chest-open.png" alt="An open crate" class="tr-chest tr-chest--open" loading="lazy" width="512" height="512">
+        </div>
+      </div>
+    </section>
+
+    <!-- ON YOUR PHONE -->
+    <section class="tr-section fade-in">
+      <div class="tr-inner">
+        <div class="tr-ink">
+          <span class="section-label">On your phone</span>
+          <h2 class="tr-ink-heading">no accounts. no ads. no tracking.</h2>
+          <p class="tr-ink-text">all progress is stored on the device only. no servers, no analytics. the only outside service is Game Center, for the leaderboard and 33 achievements under your Game Center nickname.</p>
+          <div class="tr-ctas">
+            <a href="#" class="tr-badge js-app-store-link" aria-label="Download on the App Store">
+              <img src="app-store-badge.svg" alt="Download on the App Store" width="156" height="52">
+            </a>
+            <a href="https://testflight.apple.com/join/uxF3JSHH" class="cta-button cta-button--ghost tr-beta-link" target="_blank" rel="noopener">Public beta on TestFlight</a>
+          </div>
+          <p class="tr-cta-note js-app-store-note">app store listing coming soon &nbsp;·&nbsp; play the public beta now</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="tr-footer">
+    <div class="footer-bar">
+      <span>© 2026 Shibling Games &nbsp;·&nbsp; Tide Run</span>
+      <div class="footer-bar-links">
+        <a href="support/">Support</a>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../index.html">Shibling Games</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script>
+    /* Wire the App Store badges to APP_STORE_URL (set in <head>). */
+    (function () {
+      var url = (window.APP_STORE_URL || '').trim();
+      document.querySelectorAll('.js-app-store-link').forEach(function (a) {
+        if (url) {
+          a.href = url;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.classList.remove('is-placeholder');
+          a.removeAttribute('aria-disabled');
+        } else {
+          a.classList.add('is-placeholder');
+          a.setAttribute('aria-disabled', 'true');
+          a.setAttribute('title', 'App Store listing coming soon');
+          a.addEventListener('click', function (e) { e.preventDefault(); });
+        }
+      });
+      document.querySelectorAll('.js-app-store-note').forEach(function (n) { n.hidden = !!url; });
+    })();
+  </script>
+</body>
+
+</html>

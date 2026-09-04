@@ -6,3 +6,6 @@ smallfishesboardgame.mp4
 smallfishesfinalvideo.mp4
 Small Fishes Tutorial White.mp4
 *.mp4
+
+# Tide Run trailer is served from the site (exception to *.mp4 above)
+!tiderun/trailer.mp4
