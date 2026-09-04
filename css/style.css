@@ -13,6 +13,10 @@
   --font-body: 'Karla', sans-serif;
   --max-w: 1100px;
   --section-pad: 6rem 0;
+  /* radius by role: controls, cards, framed media */
+  --r-sm: 4px;
+  --r-md: 10px;
+  --r-lg: 16px;
 }
 
 *, *::before, *::after {
@@ -94,11 +98,10 @@ footer {
    ============================================================ */
 .section-label {
   display: inline-block;
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   color: var(--gold);
   margin-bottom: 1.25rem;
 }
@@ -114,6 +117,7 @@ footer {
   border: 1px solid rgba(240, 192, 64, 0.35);
   color: var(--gold);
   padding: 0.2em 0.55em;
+  border-radius: 2px;
   vertical-align: middle;
   margin-left: 0.35em;
   line-height: 1.8;
@@ -134,8 +138,8 @@ footer {
   color: #000;
   background: var(--gold);
   border: 2px solid var(--gold);
-  border-radius: 100px;
-  transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.2s;
+  border-radius: var(--r-sm);
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
   cursor: pointer;
 }
 
@@ -143,7 +147,6 @@ footer {
   background: transparent;
   color: var(--gold-hover);
   border-color: var(--gold-hover);
-  transform: translateY(-2px);
 }
 
 .cta-button--ghost {
@@ -167,16 +170,15 @@ footer {
   text-transform: uppercase;
   color: var(--gold);
   border: 1px solid rgba(240, 192, 64, 0.35);
-  border-radius: 100px;
+  border-radius: var(--r-sm);
   padding: 0.75rem 1.4rem;
-  transition: border-color 0.25s, color 0.25s, transform 0.2s;
+  transition: border-color 0.25s, color 0.25s;
   text-decoration: none;
 }
 
 .section-learn-link:hover {
   border-color: var(--gold-hover);
   color: var(--gold-hover);
-  transform: translateY(-2px);
 }
 
 /* ============================================================
@@ -351,7 +353,7 @@ footer {
   color: #000;
   background: var(--gold);
   border: 1px solid var(--gold);
-  border-radius: 100px;
+  border-radius: var(--r-sm);
   padding: 0.6rem 1.3rem;
   text-decoration: none;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
@@ -360,20 +362,6 @@ footer {
 .nav-cta:hover {
   background: transparent;
   color: var(--gold);
-}
-
-/* ============================================================
-   SECTION FADE-IN ANIMATION
-   ============================================================ */
-.fade-in {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* ============================================================
@@ -558,7 +546,6 @@ footer {
   font-weight: 700;
   color: var(--text);
   line-height: 1;
-  text-shadow: 0 0 40px rgba(240, 192, 64, 0.18);
 }
 
 .stat-lbl {
@@ -593,7 +580,7 @@ footer {
 
 .content-image--screen {
   filter: none;
-  border-radius: 100px;
+  border-radius: var(--r-lg);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
 }
@@ -662,7 +649,7 @@ footer {
   color: #000;
   background: var(--gold);
   border: 2px solid var(--gold);
-  border-radius: 100px;
+  border-radius: var(--r-sm);
   padding: 0.7rem 1.6rem;
   pointer-events: none;
   transition: background 0.2s;
@@ -729,7 +716,7 @@ footer {
   justify-content: center;
   background: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 100px;
+  border-radius: var(--r-sm);
   color: var(--text);
   font-size: 1rem;
   cursor: pointer;
@@ -859,7 +846,7 @@ footer {
   justify-content: center;
   background: transparent;
   border: 1px solid rgba(240, 192, 64, 0.3);
-  border-radius: 100px;
+  border-radius: var(--r-sm);
   color: var(--gold);
   font-size: 1rem;
   cursor: pointer;
@@ -878,10 +865,10 @@ footer {
 .shop-card {
   background: transparent;
   border: 1px solid rgba(240, 192, 64, 0.2);
-  border-radius: 16px;
+  border-radius: var(--r-lg);
   display: flex;
   flex-direction: column;
-  transition: border-color 0.25s, transform 0.25s;
+  transition: border-color 0.25s;
   overflow: hidden;
   flex: 0 0 280px;
   scroll-snap-align: start;
@@ -889,7 +876,6 @@ footer {
 
 .shop-card:hover {
   border-color: rgba(240, 192, 64, 0.5);
-  transform: translateY(-4px);
 }
 
 .shop-card-image {
@@ -982,11 +968,10 @@ footer {
 }
 
 .footer-col-title {
-  font-family: var(--font-body);
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   color: var(--gold);
   margin-bottom: 1.1rem;
 }
@@ -999,12 +984,11 @@ footer {
   color: var(--text-dim);
   padding: 0.28rem 0;
   text-decoration: none;
-  transition: color 0.2s, transform 0.2s;
+  transition: color 0.2s;
 }
 
 .footer-col a:hover {
   color: var(--text);
-  transform: translateX(3px);
 }
 
 .footer-col a small {
@@ -1096,7 +1080,7 @@ footer {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-right: none;
-  border-radius: 100px 0 0 100px;
+  border-radius: var(--r-sm) 0 0 var(--r-sm);
   color: var(--text);
   font-family: var(--font-body);
   font-size: 0.9rem;
@@ -1115,7 +1099,7 @@ footer {
   padding: 0.9rem 1.5rem;
   background: var(--gold);
   border: 1px solid var(--gold);
-  border-radius: 0 100px 100px 0;
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
   color: #000;
   font-family: var(--font-body);
   font-size: 0.78rem;
@@ -1235,9 +1219,9 @@ footer {
 
   .email-form-row input {
     border-right: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 100px;
+    border-radius: var(--r-sm);
   }
-  .email-submit { border-radius: 100px; }
+  .email-submit { border-radius: var(--r-sm); }
 }
 
 @media (max-width: 960px) {
@@ -1271,72 +1255,7 @@ footer {
 .nav-cta:active,
 .section-learn-link:active,
 .shop-nav:active {
-  transform: scale(0.96);
-}
-
-/* ============================================================
-   SHOP CARD HOVER GLOW
-   ============================================================ */
-.shop-card:hover {
-  border-color: rgba(240, 192, 64, 0.5);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(240, 192, 64, 0.08), 0 2px 8px rgba(0, 0, 0, 0.4);
-}
-
-/* ============================================================
-   REVIEW CARDS STAGGER ON SCROLL
-   ============================================================ */
-.reviews-section.fade-in {
-  opacity: 1;
-  transform: none;
-}
-
-.reviews-section .review-card {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.reviews-section.visible .review-card:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.05s; }
-.reviews-section.visible .review-card:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.12s; }
-.reviews-section.visible .review-card:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.19s; }
-.reviews-section.visible .review-card:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.26s; }
-.reviews-section.visible .review-card:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.33s; }
-.reviews-section.visible .review-card:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.4s; }
-
-/* ============================================================
-   CONTENT VISUAL SLIGHT DELAY
-   ============================================================ */
-.fade-in .content-visual {
-  transition-delay: 0.18s;
-}
-
-/* ============================================================
-   STATS ROW STAGGER ANIMATION
-   ============================================================ */
-@keyframes statUp {
-  from { opacity: 0; transform: translateY(14px) scale(0.82); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.stats-row .stat-item {
-  opacity: 0;
-}
-
-.stats-row.visible .stat-item:nth-child(1) { animation: statUp 0.55s cubic-bezier(0.2, 0, 0.2, 1) 0.0s  both; }
-.stats-row.visible .stat-item:nth-child(2) { animation: statUp 0.55s cubic-bezier(0.2, 0, 0.2, 1) 0.1s  both; }
-.stats-row.visible .stat-item:nth-child(3) { animation: statUp 0.55s cubic-bezier(0.2, 0, 0.2, 1) 0.2s  both; }
-.stats-row.visible .stat-item:nth-child(4) { animation: statUp 0.55s cubic-bezier(0.2, 0, 0.2, 1) 0.3s  both; }
-
-/* ============================================================
-   SHOP CARD IMAGE ZOOM ON HOVER
-   ============================================================ */
-.shop-card-image img {
-  transition: transform 0.5s cubic-bezier(0.2, 0, 0.2, 1);
-}
-
-.shop-card:hover .shop-card-image img {
-  transform: scale(1.07);
+  opacity: 0.85;
 }
 
 /* ============================================================
@@ -1387,4 +1306,16 @@ footer {
   pointer-events: none;
   opacity: 1;
   transition: opacity 0.4s ease;
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
 }

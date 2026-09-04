@@ -107,7 +107,7 @@
 .tr-badge {
   display: inline-block;
   line-height: 0;
-  transition: transform 0.2s, opacity 0.2s;
+  transition: opacity 0.2s;
 }
 
 .tr-badge img {
@@ -115,14 +115,10 @@
   width: auto;
 }
 
-.tr-badge:hover { transform: translateY(-2px); }
-
 .tr-badge.is-placeholder {
   opacity: 0.55;
   cursor: default;
 }
-
-.tr-badge.is-placeholder:hover { transform: none; }
 
 .tr-beta-link {
   padding: 0.9rem 1.6rem;
@@ -190,7 +186,7 @@
 
 .tr-shot {
   margin: 0;
-  border-radius: 20px;
+  border-radius: var(--r-lg);
   overflow: hidden;
   border: 1px solid rgba(240, 192, 64, 0.22);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
@@ -212,7 +208,7 @@
   gap: 2rem;
   align-items: center;
   padding: 3rem;
-  border-radius: 20px;
+  border-radius: var(--r-lg);
   color: var(--tr-ink-text);
   background: linear-gradient(165deg, var(--tr-parchment-light) 0%, var(--tr-parchment) 45%, var(--tr-parchment-deep) 100%);
   box-shadow:
@@ -229,11 +225,10 @@
 
 .tr-parchment-label {
   display: inline-block;
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   color: var(--tr-parchment-accent);
   margin-bottom: 1rem;
 }
@@ -259,10 +254,8 @@
 .tr-ink {
   text-align: center;
   padding: 3.5rem 2rem;
-  border-radius: 20px;
-  background: rgba(11, 26, 51, 0.72);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--r-lg);
+  background: rgba(11, 26, 51, 0.88);
   border: 1px solid rgba(240, 192, 64, 0.22);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
 }

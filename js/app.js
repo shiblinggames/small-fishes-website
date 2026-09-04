@@ -31,38 +31,6 @@ window.addEventListener('scroll', function () {
 updateOceanDepth();
 
 /* ============================================================
-   SECTION FADE-IN ON SCROLL
-   ============================================================ */
-var fadeObserver = new IntersectionObserver(function (entries) {
-  entries.forEach(function (entry) {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      fadeObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
-
-document.querySelectorAll('.fade-in').forEach(function (el) {
-  fadeObserver.observe(el);
-});
-
-/* ============================================================
-   STATS ROW STAGGER
-   ============================================================ */
-var statsRows = document.querySelectorAll('.stats-row');
-if (statsRows.length) {
-  var statsObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        statsObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  statsRows.forEach(function (row) { statsObserver.observe(row); });
-}
-
-/* ============================================================
    HOMEPAGE TRAILER — load and play only while on screen
    ============================================================ */
 var homeTrailer = document.getElementById('home-trailer');

@@ -20,11 +20,6 @@
 }
 
 .htp-hero .section-label {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
   display: block;
   margin-bottom: 1rem;
 }
@@ -73,11 +68,6 @@
 }
 
 .htp-faq .section-label {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
   display: block;
   margin-bottom: 1rem;
 }
@@ -96,13 +86,12 @@
 }
 
 .faq-category-label {
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   color: var(--gold);
-  opacity: 0.6;
+  opacity: 0.75;
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(240, 192, 64, 0.18);
@@ -205,7 +194,7 @@
 .team-card {
   padding: 1.75rem;
   border: 1px solid rgba(240, 192, 64, 0.15);
-  border-radius: 12px;
+  border-radius: var(--r-md);
   transition: border-color 0.25s;
 }
 
