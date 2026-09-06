@@ -23,6 +23,7 @@
   <meta name="twitter:image" content="https://shiblinggames.com/OG_image.jpeg">
 
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="canonical" href="https://shiblinggames.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +35,35 @@
   <link rel="preload" as="image" href="art/hero-board.jpg">
   <link rel="preload" as="image" href="art/hero-tiderun.jpg">
   <link rel="preload" as="image" href="art/hero-online.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Shibling Games",
+        "url": "https://shiblinggames.com",
+        "logo": "https://shiblinggames.com/logo-mark.png",
+        "email": "hello@shiblinggames.com",
+        "sameAs": ["https://www.instagram.com/shiblinggames/", "https://www.tiktok.com/@shiblinggames"]
+      },
+      {
+        "@type": "Product",
+        "name": "Small Fishes: Seas the Booty",
+        "description": "A fast-playing strategy card game where every player is a pirate. 2 to 6 players, 30 to 60 minutes, ages 8 and up.",
+        "image": "https://shiblinggames.com/OG_image.jpeg",
+        "brand": { "@type": "Brand", "name": "Shibling Games" },
+        "offers": {
+          "@type": "Offer",
+          "price": "29.99",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://shiblinggames.com/#board-game"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -252,7 +282,7 @@
           <div class="phone-mockup drift">
             <div class="phone-frame">
               <div class="phone-screen">
-                <video id="home-trailer" muted loop playsinline preload="none" poster="tiderun/trailer-poster.png" aria-label="Tide Run gameplay trailer">
+                <video id="home-trailer" muted loop playsinline preload="none" poster="tiderun/trailer-poster.jpg" aria-label="Tide Run gameplay trailer">
                   <source src="tiderun/trailer.mp4" type="video/mp4">
                 </video>
               </div>
@@ -322,7 +352,7 @@
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="boardgame.png" alt="Small Fishes: Seas the Booty" loading="lazy">
+              <img src="boardgame.webp" alt="Small Fishes: Seas the Booty" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Small Fishes: Seas the Booty</h3>
@@ -334,7 +364,7 @@
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="catfishholo.png" alt="Holographic Catfish Card" loading="lazy">
+              <img src="catfishholo.webp" alt="Holographic Catfish Card" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Holographic Catfish Card</h3>
@@ -345,7 +375,7 @@
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="dobyholo.png" alt="Holographic Doby Card" loading="lazy">
+              <img src="dobyholo.webp" alt="Holographic Doby Card" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Holographic Doby Card</h3>
@@ -356,7 +386,7 @@
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="captainemblem.png" alt="Custom Captain Emblem" loading="lazy">
+              <img src="captainemblem.webp" alt="Custom Captain Emblem" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Custom Captain Emblem</h3>
@@ -367,7 +397,7 @@
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="specialmat.png" alt="Premium Game Mat" loading="lazy">
+              <img src="specialmat.webp" alt="Premium Game Mat" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Premium Game Mat</h3>
@@ -466,7 +496,7 @@
     <div class="itb-modal-backdrop" id="itb-modal-backdrop"></div>
     <button class="itb-modal-close" id="itb-modal-close" aria-label="Close"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12"/></svg></button>
     <div class="itb-modal-content">
-      <img src="INTHEBOXFINAL.png" alt="Everything in the Small Fishes box" class="itb-modal-img" loading="lazy">
+      <img src="inthebox.webp" alt="Everything in the Small Fishes box" class="itb-modal-img" loading="lazy">
     </div>
   </div>
 
