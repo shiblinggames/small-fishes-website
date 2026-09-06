@@ -178,6 +178,16 @@
   color: var(--gold);
 }
 
+.tr-about {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text-dim);
+  max-width: 62ch;
+  margin: -1rem 0 2.5rem;
+}
+
 .tr-shots {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
