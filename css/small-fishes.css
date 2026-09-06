@@ -136,3 +136,5 @@
 @media (max-width: 768px) {
   .sf-hero { padding-top: 3rem; }
 }
+
+.sf-credits { font-size: 0.85rem; color: var(--text-muted); }
