@@ -110,8 +110,6 @@
   color: var(--gold);
 }
 
-.slide-status--soon { color: rgba(255, 255, 255, 0.65); }
-
 .slide-caption .cta-button { margin-top: 0.9rem; }
 
 .hero-line {
@@ -121,7 +119,7 @@
   left: clamp(1.5rem, 6vw, 6rem);
   font-family: var(--font-body);
   font-size: clamp(0.9rem, 1.3vw, 1.05rem);
-  font-weight: 300;
+  font-weight: 400;
   color: var(--text-dim);
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
 }
@@ -145,7 +143,7 @@
   border: none;
   text-align: left;
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.68);
   font-family: var(--font-display);
   font-size: 0.85rem;
   font-weight: 700;
@@ -195,7 +193,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .hero-arrow {
@@ -340,7 +338,7 @@
 .product-body {
   font-family: var(--font-body);
   font-size: 1.05rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
   color: var(--text-dim);
   margin-bottom: 2rem;
@@ -362,6 +360,12 @@
 }
 
 .product-visual--top { align-items: flex-start; }
+
+/* 01: feather the product photo so its black edge melts into the section */
+.itb-image {
+  -webkit-mask-image: radial-gradient(ellipse 72% 64% at 50% 46%, #000 62%, transparent 100%);
+  mask-image: radial-gradient(ellipse 72% 64% at 50% 46%, #000 62%, transparent 100%);
+}
 
 /* 02: trailer in the phone frame */
 .product-phone .phone-frame { width: clamp(220px, 24vw, 300px); }

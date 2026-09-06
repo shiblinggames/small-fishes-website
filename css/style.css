@@ -6,7 +6,7 @@
   --gold-hover: #F5D060;
   --bg: #000;
   --text: #fff;
-  --text-muted: rgba(255, 255, 255, 0.5);
+  --text-muted: rgba(255, 255, 255, 0.62);
   --text-dim: rgba(255, 255, 255, 0.72);
   --panel-border: rgba(255, 255, 255, 0.07);
   --font-display: 'Cinzel', serif;
@@ -521,7 +521,7 @@ footer {
 .content-body {
   font-family: var(--font-body);
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   color: var(--text-dim);
   margin-bottom: 2rem;
@@ -595,7 +595,7 @@ footer {
 .feature-list li {
   font-family: var(--font-body);
   font-size: 0.95rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.55;
   color: var(--text-dim);
   padding-left: 1.2rem;
@@ -921,7 +921,7 @@ footer {
 .shop-card-desc {
   font-family: var(--font-body);
   font-size: 0.85rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--text-muted);
   line-height: 1.55;
   flex: 1;
@@ -980,7 +980,7 @@ footer {
   display: block;
   font-family: var(--font-body);
   font-size: 0.9rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--text-dim);
   padding: 0.28rem 0;
   text-decoration: none;
@@ -1014,7 +1014,7 @@ footer {
 .footer-body {
   font-family: var(--font-body);
   font-size: 0.9rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.75;
   color: var(--text-dim);
   margin-bottom: 1.75rem;
@@ -1242,7 +1242,8 @@ footer {
   left: 0;
   height: 2px;
   width: 0%;
-  background: #0D4F72;
+  background: var(--gold);
+  opacity: 0.8;
   z-index: 200;
   pointer-events: none;
   transition: width 0.05s linear;
@@ -1307,6 +1308,28 @@ footer {
   opacity: 1;
   transition: opacity 0.4s ease;
 }
+
+/* ============================================================
+   SKIP LINK (keyboard users)
+   ============================================================ */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 300;
+  padding: 0.6rem 1rem;
+  background: var(--gold);
+  color: #000;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--r-sm);
+  text-decoration: none;
+}
+
+.skip-link:focus { top: 1rem; }
 
 /* ============================================================
    REDUCED MOTION
