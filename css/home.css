@@ -10,8 +10,8 @@
 /* --- HERO: carousel, one game at a time --- */
 .hero-carousel {
   position: relative;
-  margin-top: 64px;
-  height: calc(100vh - 64px);
+  /* runs under the transparent header, so the header sits on the art */
+  height: 100vh;
   min-height: 560px;
   overflow: hidden;
   background: #000;
@@ -114,18 +114,6 @@
 }
 
 .slide-caption .cta-button { margin-top: 0.9rem; }
-
-.hero-line {
-  position: absolute;
-  z-index: 2;
-  top: 1.5rem;
-  left: clamp(1.5rem, 6vw, 6rem);
-  font-family: var(--font-body);
-  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
-  font-weight: 400;
-  color: var(--text-dim);
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
-}
 
 /* tabs: one per game, with a progress bar during autoplay */
 .hero-tabs {
@@ -356,7 +344,7 @@
 
 .product-visual--top { align-items: flex-start; }
 
-/* card game: the box with a hand of fish cards against it */
+/* board game: the box with a hand of fish cards against it */
 .box-visual {
   flex-direction: column;
   gap: 1.5rem;
@@ -393,23 +381,6 @@
   cursor: pointer;
 }
 
-.pack-note {
-  margin-top: 1.5rem;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  color: var(--text-dim);
-}
-
-.pack-note::before {
-  content: '';
-  display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
-  margin-right: 0.6rem;
-  background: var(--gold);
-  transform: rotate(45deg) translateY(-2px);
-}
-
 /* 02: trailer in the phone frame */
 .product-phone .phone-frame { width: clamp(220px, 24vw, 300px); }
 
@@ -424,45 +395,53 @@
   background: #000;
 }
 
-/* 03: three phones, fishing in front, campaign and almanac behind */
-.product-layout--wide { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); }
-
-.phone-trio {
+/* 03: Steam game, trailer to come: the art in a widescreen frame */
+.online-frame {
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
   width: 100%;
+  margin: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid rgba(240, 192, 64, 0.22);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+  aspect-ratio: 16 / 10;
+  background: #000;
 }
 
-.phone-trio .phone-frame { width: clamp(150px, 14vw, 190px); }
-.phone-trio-main .phone-frame { width: clamp(200px, 19vw, 250px); }
-
-.phone-trio-main { position: relative; z-index: 2; }
-
-.phone-trio-side {
-  position: relative;
-  z-index: 1;
-  margin-bottom: 2rem;
-}
-
-.phone-trio-side--l { margin-right: -2.25rem; }
-.phone-trio-side--r { margin-left: -2.25rem; }
-
-.phone-trio .phone-shot {
-  position: absolute;
-  inset: 0;
+.online-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
-  display: block;
-  background: #000;
+}
+
+.online-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 45%);
+  pointer-events: none;
+}
+
+.online-frame-tag {
+  position: absolute;
+  z-index: 1;
+  left: 1.25rem;
+  bottom: 1.1rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 0.45rem 0.8rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(240, 192, 64, 0.35);
+  border-radius: var(--r-sm);
 }
 
 /* --- MOBILE --- */
 @media (max-width: 900px) {
-  .hero-carousel { height: calc(100svh - 64px); min-height: 520px; }
+  .hero-carousel { height: 100svh; min-height: 560px; }
   .slide-caption { bottom: 4.75rem; }
   .hero-tabs { gap: 0.6rem; bottom: 1.5rem; }
   .hero-tab { font-size: 0; min-height: 44px; padding: 0.8rem 0 0; }
@@ -471,7 +450,7 @@
   /* show the front of one box, title readable, above the caption */
   .slide--board .slide-art {
     inset: auto;
-    top: 7%;
+    top: 13%;
     left: -5%;
     width: min(175vw, 1000px);
     max-width: none;
@@ -490,15 +469,9 @@
 }
 
 @media (max-width: 768px) {
-  .hero-line { display: none; }
   .product-inner { padding: 0 1.5rem; }
   .product-head { margin-bottom: 2.5rem; }
   .box-stage { margin-right: 8%; }
   .box-cards { right: -9%; }
   .product-phone .phone-frame { width: clamp(220px, 58vw, 300px); }
-  .phone-trio .phone-frame { width: 27vw; }
-  .phone-trio-main .phone-frame { width: 40vw; }
-  .phone-trio-side { margin-bottom: 1.25rem; }
-  .phone-trio-side--l { margin-right: -5vw; }
-  .phone-trio-side--r { margin-left: -5vw; }
 }

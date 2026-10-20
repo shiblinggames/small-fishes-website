@@ -288,10 +288,18 @@ footer {
   left: 0;
   right: 0;
   z-index: 102;
-  background: rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--panel-border);
+  /* no bar at the top: a soft shade that fades into the page;
+     it firms up once the page scrolls under it */
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.35s ease, border-color 0.35s ease, -webkit-backdrop-filter 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+.site-header.is-scrolled {
+  background-color: rgba(2, 7, 16, 0.78);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom-color: rgba(255, 255, 255, 0.05);
 }
 
 .site-header nav {
@@ -450,7 +458,7 @@ footer {
 }
 
 /* ============================================================
-   CONTENT SECTIONS (Card Game & Online Game)
+   CONTENT SECTIONS
    ============================================================ */
 .content-section {
   padding: var(--section-pad);
@@ -891,7 +899,8 @@ footer {
 
 .footer-inner {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1.7fr;
+  grid-template-columns: 1.4fr 1.15fr 0.9fr 1.15fr 1.6fr;
+  align-items: start;
   gap: 3rem 2.5rem;
   max-width: var(--max-w);
   margin: 0 auto;
@@ -899,9 +908,9 @@ footer {
 }
 
 .footer-logo {
-  height: 64px;
+  height: 48px;
   width: auto;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.1rem;
 }
 
 .footer-col-title {
@@ -997,7 +1006,6 @@ footer {
 .footer-email {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .email-form {

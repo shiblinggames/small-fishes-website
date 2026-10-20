@@ -9,6 +9,7 @@ var oceanBg = document.getElementById('ocean-bg');
 var depthOverlay = document.getElementById('depth-overlay');
 var scrollProgress = document.getElementById('scroll-progress');
 var treasureGlow = document.getElementById('treasure-glow');
+var siteHeader = document.querySelector('.site-header');
 
 function updateOceanDepth() {
   var scrolled = window.scrollY;
@@ -18,6 +19,7 @@ function updateOceanDepth() {
   if (depthOverlay) depthOverlay.style.opacity = progress * 0.7;
   if (scrollProgress) scrollProgress.style.width = (progress * 100) + '%';
   if (treasureGlow) treasureGlow.style.opacity = Math.max(0, (progress - 0.62) / 0.38);
+  if (siteHeader) siteHeader.classList.toggle('is-scrolled', scrolled > 24);
 }
 
 var scrollTicking = false;

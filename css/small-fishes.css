@@ -189,7 +189,7 @@
   color: var(--text-dim);
 }
 
-.sf-buy-body .pack-note { margin: 1rem 0 2rem; }
+.sf-buy-body .cta-button { margin-top: 2rem; }
 
 /* mobile buy bar */
 .sf-sticky-buy { display: none; }
@@ -199,7 +199,6 @@
   .sf-steps-aside { padding: 2rem 0 0; border-left: none; border-top: 1px solid rgba(240, 192, 64, 0.25); }
   .sf-buy-card { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 1.75rem; text-align: center; }
   .sf-buy-box { max-width: 360px; margin: 0 auto; }
-  .sf-buy-body .pack-note { text-align: left; display: inline-block; }
 }
 
 @media (max-width: 768px) {
