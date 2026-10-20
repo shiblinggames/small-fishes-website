@@ -80,19 +80,15 @@
 /* long reading over the illustrated sea: give it a quiet surface */
 .sf-panel {
   padding: 3rem;
-  background: var(--paper);
+  background: var(--surface);
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-card);
 }
 
-.sf-panel .sf-steps li,
-.sf-panel .htp-about-body { color: var(--ink-soft); }
-.sf-panel .sf-steps li strong { color: var(--ink); }
-.sf-panel .sf-steps li::before { border-color: var(--ink-accent); color: var(--ink-accent); }
 
 .sf-steps-aside {
   padding-left: 2.5rem;
-  border-left: 1px solid rgba(110, 74, 16, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .sf-steps-aside .htp-about-body { margin-bottom: 1rem; }
@@ -152,7 +148,7 @@
   align-items: center;
   padding: 3.5rem;
   border-radius: var(--r-lg);
-  background: var(--paper);
+  background: var(--surface);
   box-shadow: var(--shadow-card);
 }
 
@@ -169,7 +165,7 @@
   font-size: clamp(1.8rem, 3.2vw, 2.6rem);
   font-weight: 900;
   line-height: 1.1;
-  color: var(--ink);
+  color: var(--text);
   margin-bottom: 1.25rem;
   text-wrap: balance;
 }
@@ -178,7 +174,7 @@
   font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 700;
-  color: var(--ink-accent);
+  color: var(--gold);
   line-height: 1;
   margin-bottom: 0.6rem;
 }
@@ -186,7 +182,7 @@
 .sf-buy-details {
   font-family: var(--font-body);
   font-size: 0.95rem;
-  color: var(--ink-soft);
+  color: var(--text-dim);
 }
 
 .sf-buy-body .cta-button { margin-top: 2rem; }
@@ -196,7 +192,7 @@
 
 @media (max-width: 900px) {
   .sf-steps-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-  .sf-steps-aside { padding: 2rem 0 0; border-left: none; border-top: 1px solid rgba(110, 74, 16, 0.3); }
+  .sf-steps-aside { padding: 2rem 0 0; border-left: none; border-top: 1px solid rgba(255, 255, 255, 0.08); }
   .sf-buy-card { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 1.75rem; text-align: center; }
   .sf-buy-box { max-width: 360px; margin: 0 auto; }
 }
