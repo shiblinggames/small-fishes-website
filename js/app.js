@@ -410,3 +410,22 @@ if (stickyBuy && heroActions && buyCard && 'IntersectionObserver' in window) {
     syncStickyBuy();
   }).observe(buyCard);
 }
+
+/* ============================================================
+   SEAS THE BOOTY (STEAM) — screenshot picker
+   ============================================================ */
+var onlineMain = document.getElementById('online-main');
+if (onlineMain) {
+  var onlineThumbs = Array.prototype.slice.call(document.querySelectorAll('.online-thumb'));
+  onlineThumbs.forEach(function (thumb) {
+    thumb.addEventListener('click', function () {
+      onlineMain.src = thumb.dataset.src;
+      onlineMain.alt = thumb.dataset.alt + ' in Seas the Booty';
+      onlineThumbs.forEach(function (t) {
+        var on = t === thumb;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    });
+  });
+}
