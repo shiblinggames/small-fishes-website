@@ -13,10 +13,15 @@
 
 .sf-lead { max-width: 48ch; }
 
-.sf-box {
-  width: 100%;
-  max-width: 560px;
-  height: auto;
+.sf-hero-visual { padding-bottom: 0; }
+
+.sf-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 2.25rem;
 }
 
 .sf-section { padding-top: 0; }
@@ -72,10 +77,19 @@
   color: var(--gold);
 }
 
+/* long reading over the illustrated sea: give it a quiet surface */
+.sf-panel {
+  padding: 2.75rem;
+  background: rgba(3, 10, 22, 0.72);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--r-lg);
+}
+
 .sf-steps-aside {
-  padding: 1.75rem;
-  border: 1px solid rgba(240, 192, 64, 0.2);
-  border-radius: var(--r-md);
+  padding-left: 2.5rem;
+  border-left: 1px solid rgba(240, 192, 64, 0.25);
 }
 
 .sf-steps-aside .htp-about-body { margin-bottom: 1rem; }
@@ -119,22 +133,124 @@
 /* faq: same left edge as the other sections, narrower reading width */
 .sf-faq .faq-item { max-width: 820px; }
 
-/* buy */
+/* buy: the last thing on the page is the box, the price and the button */
 .sf-buy {
   position: relative;
   z-index: 2;
-  max-width: 780px;
-  margin: 0 auto 5rem;
-  padding: 3rem 2rem;
+  max-width: var(--max-w);
+  margin: 0 auto 6rem;
+  padding: 0 2rem;
 }
+
+.sf-buy-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3.5rem;
+  align-items: center;
+  padding: 3.5rem;
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(240, 192, 64, 0.3);
+  background:
+    radial-gradient(ellipse 60% 80% at 25% 50%, rgba(240, 192, 64, 0.12), transparent 70%),
+    rgba(3, 10, 22, 0.8);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+.sf-buy-box {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+  transform: rotate(-2deg);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.sf-buy-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+  text-wrap: balance;
+}
+
+.sf-buy-price {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.6rem;
+}
+
+.sf-buy-details {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-dim);
+}
+
+.sf-buy-body .pack-note { margin: 1rem 0 2rem; }
+
+/* mobile buy bar */
+.sf-sticky-buy { display: none; }
 
 @media (max-width: 900px) {
   .sf-steps-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-  .sf-box { max-width: 100%; }
+  .sf-steps-aside { padding: 2rem 0 0; border-left: none; border-top: 1px solid rgba(240, 192, 64, 0.25); }
+  .sf-buy-card { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 1.75rem; text-align: center; }
+  .sf-buy-box { max-width: 360px; margin: 0 auto; }
+  .sf-buy-body .pack-note { text-align: left; display: inline-block; }
 }
 
 @media (max-width: 768px) {
-  .sf-hero { padding-top: 3rem; }
+  .sf-hero { padding-top: 2rem; }
+  .sf-hero .product-layout { gap: 2.5rem; }
+  .sf-hero-visual { order: -1; }
+  .sf-hero .box-stage { max-width: 400px; }
+  .sf-panel { padding: 1.75rem 1.25rem; }
+  .sf-buy { padding: 0 1.5rem; }
+  .sf-contents { max-width: 260px; margin: 0 auto; }
+
+  .sf-hero .stats-row { flex-wrap: nowrap; justify-content: space-between; gap: 0.75rem; }
+  .sf-hero .stat-num { font-size: 1.6rem; }
+  .sf-hero .stat-lbl { letter-spacing: 0.08em; }
+
+  .sf-sticky-buy {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1.25rem calc(0.75rem + env(safe-area-inset-bottom));
+    background: rgba(0, 0, 0, 0.9);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(240, 192, 64, 0.25);
+    transform: translateY(110%);
+    visibility: hidden;
+    transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1), visibility 0s linear 0.35s;
+  }
+
+  .sf-sticky-buy.is-visible {
+    transform: none;
+    visibility: visible;
+    transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1), visibility 0s;
+  }
+
+  .sf-sticky-buy[hidden] { display: none; }
+
+  .sf-sticky-price {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-dim);
+  }
+
+  .sf-sticky-price strong { color: var(--gold); font-weight: 600; }
+  .sf-sticky-buy .cta-button { padding: 0.8rem 1.6rem; }
 }
 
 .sf-credits { font-size: 0.85rem; color: var(--text-muted); }

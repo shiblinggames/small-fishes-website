@@ -49,6 +49,17 @@
 }
 
 .slide--board .slide-art { object-position: 50% 55%; }
+
+/* the box photo sits on black: give it the right side so the title
+   never lands on the box's own printed logo */
+@media (min-width: 901px) {
+  .slide--board .slide-art {
+    left: auto;
+    width: 60%;
+    object-fit: contain;
+    object-position: 100% 30%;
+  }
+}
 .slide--tiderun .slide-art { object-position: 50% 50%; }
 .slide--online .slide-art { object-position: 50% 50%; }
 
@@ -82,14 +93,6 @@
 .slide.is-active .slide-caption {
   opacity: 1;
   transform: none;
-}
-
-.slide-num {
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: var(--gold);
 }
 
 .slide-name {
@@ -228,14 +231,14 @@
 }
 
 /* --- MOTION: scroll reveal + drift --- */
-.reveal {
+.js .reveal {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 1.1s cubic-bezier(0.2, 0, 0, 1), transform 1.1s cubic-bezier(0.2, 0, 0, 1);
   transition-delay: var(--d, 0s);
 }
 
-.reveal.in {
+.js .reveal.in {
   opacity: 1;
   transform: none;
 }
@@ -269,14 +272,6 @@
   padding-bottom: 1rem;
   margin-bottom: 3.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.product-index {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: var(--gold);
 }
 
 .product-kicker {
@@ -361,10 +356,58 @@
 
 .product-visual--top { align-items: flex-start; }
 
-/* 01: feather the product photo so its black edge melts into the section */
-.itb-image {
-  -webkit-mask-image: radial-gradient(ellipse 72% 64% at 50% 46%, #000 62%, transparent 100%);
-  mask-image: radial-gradient(ellipse 72% 64% at 50% 46%, #000 62%, transparent 100%);
+/* card game: the box with a hand of fish cards against it */
+.box-visual {
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.box-stage {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  margin-right: 8%;
+  margin-bottom: 18%;
+}
+
+.box-face {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+  transform: rotate(-2deg);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.box-cards {
+  position: absolute;
+  right: -12%;
+  bottom: -34%;
+  width: 46%;
+  height: auto;
+  transform: rotate(5deg);
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.55));
+}
+
+.box-open {
+  background: transparent;
+  cursor: pointer;
+}
+
+.pack-note {
+  margin-top: 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-dim);
+}
+
+.pack-note::before {
+  content: '';
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.6rem;
+  background: var(--gold);
+  transform: rotate(45deg) translateY(-2px);
 }
 
 /* 02: trailer in the phone frame */
@@ -422,8 +465,19 @@
   .hero-carousel { height: calc(100svh - 64px); min-height: 520px; }
   .slide-caption { bottom: 4.75rem; }
   .hero-tabs { gap: 0.6rem; bottom: 1.5rem; }
-  .hero-tab { font-size: 0; padding: 1.25rem 0 0; }
-  .hero-tab small { display: none; }
+  .hero-tab { font-size: 0; min-height: 44px; padding: 0.8rem 0 0; }
+  .hero-tab small { font-size: 0.7rem; margin-top: 0; }
+
+  /* show the front of one box, title readable, above the caption */
+  .slide--board .slide-art {
+    inset: auto;
+    top: 7%;
+    left: -5%;
+    width: min(175vw, 1000px);
+    max-width: none;
+    height: auto;
+    object-fit: initial;
+  }
   .hero-arrow { display: none; }
 
   .product-layout,
@@ -439,6 +493,8 @@
   .hero-line { display: none; }
   .product-inner { padding: 0 1.5rem; }
   .product-head { margin-bottom: 2.5rem; }
+  .box-stage { margin-right: 8%; }
+  .box-cards { right: -9%; }
   .product-phone .phone-frame { width: clamp(220px, 58vw, 300px); }
   .phone-trio .phone-frame { width: 27vw; }
   .phone-trio-main .phone-frame { width: 40vw; }

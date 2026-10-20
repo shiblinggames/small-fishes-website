@@ -30,8 +30,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Karla:ital,wght@0,300;0,400;0,600;1,300&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=23">
-  <link rel="stylesheet" href="css/home.css?v=11">
+  <link rel="stylesheet" href="css/style.css?v=24">
+  <link rel="stylesheet" href="css/home.css?v=12">
   <link rel="preload" as="image" href="art/hero-board.jpg">
   <script type="application/ld+json">
   {
@@ -67,14 +67,14 @@
   <header class="site-header">
     <nav>
       <a href="index.html" class="nav-logo" aria-label="Shibling Games home">
-        <img src="logo-mark.png" alt="Shibling Games">
+        <img src="logo-mark.png" alt="Shibling Games" width="391" height="160">
       </a>
       <div class="nav-links">
-        <a href="small-fishes/" class="nav-link">Board Game</a>
+        <a href="small-fishes/" class="nav-link">Card Game</a>
+        <a href="how-to-play.html" class="nav-link">How to Play</a>
         <a href="tiderun/" class="nav-link">Tide Run</a>
         <a href="#online" class="nav-link">Online</a>
         <a href="about.html" class="nav-link">About</a>
-        <a href="contact.html" class="nav-link">Contact</a>
         <a href="https://shiblingshop.com/products/small-fishes-seas-the-booty-strategy-card-game" class="nav-cta" target="_blank" rel="noopener">Buy the Game</a>
       </div>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
@@ -85,7 +85,7 @@
 
   <div class="nav-mobile-menu" id="nav-mobile-menu">
     <nav class="nav-mobile-links">
-      <a href="small-fishes/" class="nav-mobile-link">Board Game</a>
+      <a href="small-fishes/" class="nav-mobile-link">Card Game</a>
       <a href="how-to-play.html" class="nav-mobile-link">How to Play</a>
       <a href="tiderun/" class="nav-mobile-link">Tide Run</a>
       <a href="#online" class="nav-mobile-link">Online</a>
@@ -101,33 +101,30 @@
   <section class="hero-carousel" id="hero" aria-roledescription="carousel" aria-label="Our games">
     <p class="hero-line">Pirate games for the table, the phone and the browser.</p>
 
-    <div class="slide slide--board is-active" role="group" aria-roledescription="slide" aria-label="1 of 3">
+    <div class="slide slide--board is-active" id="slide-0" role="tabpanel" aria-roledescription="slide" aria-label="1 of 3">
       <img src="art/hero-board.jpg" alt="The Small Fishes: Seas the Booty box with gold coins" class="slide-art" width="1200" height="740">
       <div class="slide-caption">
-        <span class="slide-num">01</span>
         <h1 class="slide-name">Small Fishes:<br>Seas the Booty</h1>
         <span class="slide-status">Card game &middot; $29.99</span>
         <a href="small-fishes/" class="cta-button">See the game</a>
       </div>
     </div>
 
-    <div class="slide slide--tiderun" role="group" aria-roledescription="slide" aria-label="2 of 3">
+    <div class="slide slide--tiderun" id="slide-1" role="tabpanel" aria-roledescription="slide" aria-label="2 of 3">
       <img src="art/hero-tiderun.jpg" alt="A pirate boat sailing into a sunset in Tide Run" class="slide-art" width="1320" height="780">
       <div class="slide-caption">
-        <span class="slide-num">02</span>
         <h2 class="slide-name">Tide Run</h2>
         <span class="slide-status">iPhone &middot; Public beta</span>
-        <a href="#tide-run" class="cta-button">See the game</a>
+        <a href="tiderun/" class="cta-button">See the game</a>
       </div>
     </div>
 
-    <div class="slide slide--online" role="group" aria-roledescription="slide" aria-label="3 of 3">
+    <div class="slide slide--online" id="slide-2" role="tabpanel" aria-roledescription="slide" aria-label="3 of 3">
       <picture>
         <source media="(max-width: 900px)" srcset="art/hero-online-tall.jpg">
         <img src="art/hero-online.jpg" alt="Fishing from a rowboat in Small Fishes Online, waiting on a bite" class="slide-art" width="1290" height="784">
       </picture>
       <div class="slide-caption">
-        <span class="slide-num">03</span>
         <h2 class="slide-name">Small Fishes<br>Online</h2>
         <span class="slide-status">Browser &middot; Open beta</span>
         <a href="#online" class="cta-button">See the game</a>
@@ -142,9 +139,9 @@
     </button>
 
     <div class="hero-tabs" role="tablist" aria-label="Choose a game">
-      <button class="hero-tab is-active" role="tab" aria-selected="true" data-slide="0">Small Fishes: Seas the Booty<small>Card game</small></button>
-      <button class="hero-tab" role="tab" aria-selected="false" data-slide="1">Tide Run<small>iPhone</small></button>
-      <button class="hero-tab" role="tab" aria-selected="false" data-slide="2">Small Fishes Online<small>Browser</small></button>
+      <button class="hero-tab is-active" role="tab" aria-selected="true" aria-controls="slide-0" data-slide="0">Small Fishes: Seas the Booty<small>Card game</small></button>
+      <button class="hero-tab" role="tab" aria-selected="false" aria-controls="slide-1" tabindex="-1" data-slide="1">Tide Run<small>iPhone</small></button>
+      <button class="hero-tab" role="tab" aria-selected="false" aria-controls="slide-2" tabindex="-1" data-slide="2">Small Fishes Online<small>Browser</small></button>
     </div>
   </section>
 
@@ -152,8 +149,7 @@
   <section class="product" id="board-game">
     <div class="product-inner">
       <div class="product-head reveal">
-        <span class="product-index">01</span>
-        <span class="product-kicker">The Board Game</span>
+        <span class="product-kicker">The Card Game</span>
       </div>
       <div class="product-layout">
         <div class="product-text reveal">
@@ -179,17 +175,14 @@
               class="cta-button" target="_blank" rel="noopener">Buy the Game &middot; $29.99</a>
             <a href="small-fishes/" class="section-learn-link">See the game</a>
           </div>
+          <p class="pack-note">Every order includes pack codes for Small Fishes Online.</p>
         </div>
-        <div class="product-visual product-visual--top reveal" style="--d: 0.15s">
-          <div class="itb-inner">
-            <span class="section-label">What's in the Box</span>
-            <div class="itb-image-wrap drift" id="itb-wrap">
-              <img src="art/box-front.jpg" alt="The Small Fishes: Seas the Booty box" class="itb-image" width="1600" height="1074" loading="lazy">
-              <button class="itb-reveal-btn" id="itb-open" aria-label="Click to reveal what's inside">
-                <span class="itb-reveal-text">Click to Reveal</span>
-              </button>
-            </div>
+        <div class="product-visual box-visual reveal" style="--d: 0.15s">
+          <div class="box-stage drift">
+            <img src="art/box-face.webp" alt="The Small Fishes: Seas the Booty box" class="box-face" width="1100" height="651" loading="lazy">
+            <img src="art/fish-cards.webp" alt="Three fish cards from the game: Angelfish, Sailfish and Angler Fish" class="box-cards" width="538" height="330" loading="lazy">
           </div>
+          <button type="button" class="section-learn-link box-open" id="itb-open" aria-haspopup="dialog">See what's in the box</button>
         </div>
       </div>
     </div>
@@ -230,31 +223,17 @@
   <section class="product" id="tide-run">
     <div class="product-inner">
       <div class="product-head reveal">
-        <span class="product-index">02</span>
         <span class="product-kicker">For iPhone</span>
         <span class="badge">Public Beta</span>
       </div>
       <div class="product-layout product-layout--reverse">
         <div class="product-text reveal">
           <div class="product-title-row">
-            <img src="tiderun/app-icon.png" alt="Tide Run app icon" class="product-app-icon" width="512" height="512" loading="lazy">
+            <img src="tiderun/app-icon-176.webp" alt="Tide Run app icon" class="product-app-icon" width="176" height="176" loading="lazy">
             <h2 class="product-heading">Tide Run</h2>
           </div>
           <p class="product-sub">Hold to jump. Smash the beacons.</p>
-          <div class="stats-row">
-            <div class="stat-item">
-              <span class="stat-num">1</span>
-              <span class="stat-lbl">Touch</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-num">9</span>
-              <span class="stat-lbl">Seas</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-num">17</span>
-              <span class="stat-lbl">Boats</span>
-            </div>
-          </div>
+          <p class="product-body">A one-touch endless runner across nine seas, with seventeen boats to unlock.</p>
           <div class="product-actions">
             <a href="tiderun/" class="cta-button">Explore Tide Run</a>
             <a href="https://testflight.apple.com/join/uxF3JSHH" class="section-learn-link" target="_blank" rel="noopener">Join the public beta</a>
@@ -279,14 +258,13 @@
   <section class="product" id="online">
     <div class="product-inner">
       <div class="product-head reveal">
-        <span class="product-index">03</span>
         <span class="product-kicker">In your browser</span>
         <span class="badge">Open Beta</span>
       </div>
       <div class="product-layout product-layout--wide">
         <div class="product-text reveal">
           <div class="product-title-row">
-            <img src="smallfishesonline.png" alt="Small Fishes Online icon" class="product-app-icon" width="1024" height="1024" loading="lazy">
+            <img src="art/icon-online.webp" alt="Small Fishes Online icon" class="product-app-icon" width="176" height="176" loading="lazy">
             <h2 class="product-heading">Small Fishes<br>Online</h2>
           </div>
           <p class="product-body">Fish the seas, fill your collection, and send your crew out to battle. Free to play.</p>
@@ -329,12 +307,12 @@
       <span class="section-label reveal">The Captain's Chest</span>
       <h2 class="shop-heading reveal">Claim Your Haul.</h2>
       <div class="shop-carousel-wrap reveal" style="--d: 0.1s">
-        <button class="shop-nav shop-nav--prev" id="shop-prev" aria-label="Previous">&#8592;</button>
+        <button class="shop-nav shop-nav--prev" id="shop-prev" aria-label="Previous items">&#8592;</button>
         <div class="shop-carousel" id="shop-carousel">
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="boardgame.webp" alt="Small Fishes: Seas the Booty" loading="lazy">
+              <img src="boardgame.webp" alt="Small Fishes: Seas the Booty" width="800" height="537" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Small Fishes: Seas the Booty</h3>
@@ -346,7 +324,7 @@
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="catfishholo.webp" alt="Holographic Catfish Card" loading="lazy">
+              <img src="catfishholo.webp" alt="Holographic Catfish Card" width="800" height="1071" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Holographic Catfish Card</h3>
@@ -357,7 +335,7 @@
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="dobyholo.webp" alt="Holographic Doby Card" loading="lazy">
+              <img src="dobyholo.webp" alt="Holographic Doby Card" width="800" height="1071" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Holographic Doby Card</h3>
@@ -368,7 +346,7 @@
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="captainemblem.webp" alt="Custom Captain Emblem" loading="lazy">
+              <img src="captainemblem.webp" alt="Custom Captain Emblem" width="800" height="800" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Custom Captain Emblem</h3>
@@ -379,7 +357,7 @@
 
           <div class="shop-card">
             <div class="shop-card-image">
-              <img src="specialmat.webp" alt="Premium Game Mat" loading="lazy">
+              <img src="specialmat.webp" alt="Premium Game Mat" width="800" height="800" loading="lazy">
             </div>
             <div class="shop-card-body">
               <h3 class="shop-card-title">Premium Game Mat</h3>
@@ -389,7 +367,7 @@
           </div>
 
         </div>
-        <button class="shop-nav shop-nav--next" id="shop-next" aria-label="Next">&#8594;</button>
+        <button class="shop-nav shop-nav--next" id="shop-next" aria-label="Next items">&#8594;</button>
       </div>
     </div>
   </section>
@@ -399,7 +377,7 @@
     <div class="footer-inner">
 
       <div class="footer-brand">
-        <img src="logo-mark.png" alt="Shibling Games" class="footer-logo" loading="lazy">
+        <img src="logo-mark.png" alt="Shibling Games" class="footer-logo" width="391" height="160" loading="lazy">
         <p class="footer-body">Three siblings making pirate games.</p>
         <div class="socials">
           <span class="socials-label">Follow along</span>
@@ -440,7 +418,7 @@
 
       <div class="footer-col">
         <p class="footer-col-title">Support</p>
-        <a href="how-to-play.html#faq">Board Game FAQ</a>
+        <a href="how-to-play.html#faq">Card Game FAQ</a>
         <a href="tiderun/support/">Tide Run Support</a>
         <a href="privacy.html">Privacy Policy</a>
         <a href="mailto:hello@shiblinggames.com">hello@shiblinggames.com</a>
@@ -458,7 +436,7 @@
         </form>
         <div id="email-success" class="email-success" hidden>
           <span class="email-success-icon">&#10022;</span>
-          <p>Welcome aboard. We'll be in touch.</p>
+          <p>Welcome aboard. Check your inbox to confirm.</p>
         </div>
       </div>
 
@@ -474,15 +452,15 @@
   <!-- /SITE-FOOTER -->
 
   <!-- WHAT'S IN THE BOX MODAL -->
-  <div class="itb-modal" id="itb-modal" hidden>
+  <div class="itb-modal" id="itb-modal" role="dialog" aria-modal="true" aria-label="What's in the box" hidden>
     <div class="itb-modal-backdrop" id="itb-modal-backdrop"></div>
     <button class="itb-modal-close" id="itb-modal-close" aria-label="Close"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12"/></svg></button>
     <div class="itb-modal-content">
-      <img src="inthebox.webp" alt="Everything in the Small Fishes box" class="itb-modal-img" loading="lazy">
+      <img src="inthebox.webp" alt="Everything in the Small Fishes box: playmat, 124 fish cards, 15 treasure cards, 12 indicators, captain's emblem, 50 coins and rulebook" class="itb-modal-img" width="1000" height="3514" loading="lazy">
     </div>
   </div>
 
-  <script src="js/app.js"></script>
+  <script src="js/app.js?v=3"></script>
 </body>
 
 </html>

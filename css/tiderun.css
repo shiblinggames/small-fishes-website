@@ -12,7 +12,7 @@
   --tr-parchment-light: #f5ecd6;
   --tr-parchment-deep: #e2d0a6;
   --tr-parchment-rule: rgba(110, 80, 30, 0.28);
-  --tr-parchment-accent: #8a5f1a;
+  --tr-parchment-accent: #6e4a10;
 }
 
 .tr-page { background: var(--tr-ink-deep); }
@@ -115,21 +115,14 @@
   width: auto;
 }
 
-.tr-badge.is-placeholder {
-  opacity: 0.55;
-  cursor: default;
-}
+.tr-badge[hidden] { display: none; }
 
-.tr-beta-link {
-  padding: 0.9rem 1.6rem;
-  font-size: 0.78rem;
-}
+.tr-beta-link { padding: 1rem 1.8rem; }
 
 .tr-cta-note {
   margin-top: 1rem;
   font-family: var(--font-body);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
@@ -155,9 +148,8 @@
 
 .tr-trailer-note {
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   font-weight: 400;
-  letter-spacing: 0.08em;
   color: var(--text-muted);
   font-style: italic;
 }
@@ -188,10 +180,15 @@
   margin: -1rem 0 2.5rem;
 }
 
+/* a scrolling strip of phone-sized shots, big enough to read */
 .tr-shots {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 1rem;
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(240, 192, 64, 0.4) transparent;
 }
 
 .tr-shot {
@@ -202,6 +199,8 @@
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
   background: #000;
   aspect-ratio: 1320 / 2868;
+  flex: 0 0 clamp(200px, 23vw, 250px);
+  scroll-snap-align: start;
 }
 
 .tr-shot img {
@@ -223,8 +222,7 @@
   background: linear-gradient(165deg, var(--tr-parchment-light) 0%, var(--tr-parchment) 45%, var(--tr-parchment-deep) 100%);
   box-shadow:
     0 30px 80px rgba(0, 0, 0, 0.6),
-    inset 0 0 0 1px var(--tr-parchment-rule),
-    inset 0 0 70px rgba(120, 90, 40, 0.14);
+    inset 0 0 0 1px var(--tr-parchment-rule);
 }
 
 .tr-chest {
@@ -365,8 +363,6 @@
   .tr-app-row { justify-content: center; }
   .tr-headline { margin-left: auto; margin-right: auto; }
   .tr-ctas { justify-content: center; }
-
-  .tr-shots { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
   .tr-parchment {
     grid-template-columns: 1fr;

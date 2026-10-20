@@ -1,3 +1,6 @@
+/* Content hidden for scroll reveals only once this script has run (css: .js .reveal) */
+document.documentElement.classList.add('js');
+
 /* ============================================================
    OCEAN BACKGROUND PARALLAX
    Scrolls background-position-y from 0% (surface) to 100% (abyss)
@@ -11,11 +14,10 @@ function updateOceanDepth() {
   var scrolled = window.scrollY;
   var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   var progress = maxScroll > 0 ? Math.min(scrolled / maxScroll, 1) : 0;
-  oceanBg.style.backgroundPositionY = (progress * 100) + '%';
-  depthOverlay.style.opacity = progress * 0.7;
-  scrollProgress.style.width = (progress * 100) + '%';
-  var glowProgress = Math.max(0, (progress - 0.62) / 0.38);
-  treasureGlow.style.opacity = glowProgress;
+  if (oceanBg) oceanBg.style.backgroundPositionY = (progress * 100) + '%';
+  if (depthOverlay) depthOverlay.style.opacity = progress * 0.7;
+  if (scrollProgress) scrollProgress.style.width = (progress * 100) + '%';
+  if (treasureGlow) treasureGlow.style.opacity = Math.max(0, (progress - 0.62) / 0.38);
 }
 
 var scrollTicking = false;
@@ -90,6 +92,7 @@ if (heroCarousel) {
       var on = i === current;
       t.classList.toggle('is-active', on);
       t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
     });
   }
 
@@ -114,8 +117,9 @@ if (heroCarousel) {
   });
 
   heroCarousel.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowRight') goTo(current + 1);
-    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    goTo(current + (e.key === 'ArrowRight' ? 1 : -1));
+    if (tabs.indexOf(document.activeElement) !== -1) tabs[current].focus();
   });
 
   var touchX = null;
@@ -173,8 +177,11 @@ var itbModal = document.getElementById('itb-modal');
 var itbModalClose = document.getElementById('itb-modal-close');
 var itbModalBackdrop = document.getElementById('itb-modal-backdrop');
 
+var itbReturnFocus = null;
+
 function openItbModal(e) {
   if (e && e.preventDefault) e.preventDefault();
+  itbReturnFocus = document.activeElement;
   itbModal.hidden = false;
   document.body.style.overflow = 'hidden';
   var content = document.querySelector('.itb-modal-content');
@@ -183,20 +190,28 @@ function openItbModal(e) {
     content.offsetHeight; // force reflow
     content.style.animation = '';
   }
+  if (itbModalClose) itbModalClose.focus();
 }
 
 function closeItbModal() {
+  if (!itbModal || itbModal.hidden) return;
   itbModal.hidden = true;
   document.body.style.overflow = '';
+  if (itbReturnFocus && itbReturnFocus.focus) itbReturnFocus.focus();
 }
 
 if (itbOpen) itbOpen.addEventListener('click', openItbModal);
 if (itbModalClose) itbModalClose.addEventListener('click', closeItbModal);
 if (itbModalBackdrop) itbModalBackdrop.addEventListener('click', closeItbModal);
 
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape') closeItbModal();
-});
+if (itbModal) {
+  document.addEventListener('keydown', function (e) {
+    if (itbModal.hidden) return;
+    if (e.key === 'Escape') closeItbModal();
+    // the close button is the only control inside, so Tab stays on it
+    if (e.key === 'Tab') { e.preventDefault(); if (itbModalClose) itbModalClose.focus(); }
+  });
+}
 
 /* ============================================================
    SHOP CAROUSEL + DOTS
@@ -302,49 +317,94 @@ document.querySelectorAll('.faq-item').forEach(function (details) {
 /* ============================================================
    EMAIL FORM
    ============================================================ */
+/* Kit form 9161452 ("Join our crew"). Kit answers 200 even on failure,
+   so success is read from the JSON status, not the HTTP code. */
+var KIT_FORM_URL = 'https://app.kit.com/forms/9161452/subscriptions';
+
 var emailForm = document.getElementById('email-form');
 var emailSuccess = document.getElementById('email-success');
 
-if (emailForm) {
+if (emailForm && emailSuccess) {
+  var emailInput = document.getElementById('email-input');
+  var emailBtn = emailForm.querySelector('button[type="submit"]');
+  var emailError = document.createElement('p');
+  emailError.className = 'email-error';
+  emailError.setAttribute('role', 'alert');
+  emailError.hidden = true;
+  emailForm.appendChild(emailError);
+  emailSuccess.setAttribute('role', 'status');
+
   emailForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    var email = document.getElementById('email-input').value;
-    var btn = emailForm.querySelector('button[type="submit"]');
-    btn.textContent = '···';
-    btn.disabled = true;
-    fetch('https://app.convertkit.com/forms/3d91d67926/subscriptions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email_address: email })
-    }).finally(function () {
-      emailForm.hidden = true;
-      emailSuccess.hidden = false;
-    });
+    var data = new FormData();
+    data.append('email_address', emailInput.value);
+    emailBtn.textContent = '···';
+    emailBtn.disabled = true;
+    emailError.hidden = true;
+    fetch(KIT_FORM_URL, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+      .then(function (res) {
+        if (!res.ok) throw new Error('Kit responded ' + res.status);
+        return res.json();
+      })
+      .then(function (body) {
+        if (!body || body.status !== 'success') throw new Error('Kit status ' + (body && body.status));
+        emailForm.hidden = true;
+        emailSuccess.hidden = false;
+      })
+      .catch(function () {
+        emailBtn.textContent = 'Join';
+        emailBtn.disabled = false;
+        emailError.innerHTML = 'That didn’t go through. Try again, or email <a href="mailto:hello@shiblinggames.com">hello@shiblinggames.com</a>.';
+        emailError.hidden = false;
+      });
   });
 }
 
 /* ============================================================
-   PAGE TRANSITIONS + SCROLL-TO-TOP
+   PAGE TRANSITIONS
+   The overlay fades out on its own in CSS, so a failed script never
+   leaves the page black. JS only adds the fade-out before leaving.
    ============================================================ */
-if (history.scrollRestoration) history.scrollRestoration = 'manual';
-if (!location.hash) window.scrollTo(0, 0);
-
 var pageTransition = document.getElementById('page-transition');
 if (pageTransition) {
-  requestAnimationFrame(function () {
-    requestAnimationFrame(function () {
-      pageTransition.style.opacity = '0';
-    });
-  });
-
   document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
     var link = e.target.closest('a[href]');
     if (!link) return;
     var href = link.getAttribute('href');
     if (!href || href.startsWith('http') || href.startsWith('#') ||
-        href.startsWith('mailto') || link.target === '_blank') return;
+        href.startsWith('mailto') || link.target === '_blank' || link.hasAttribute('download')) return;
     e.preventDefault();
-    pageTransition.style.opacity = '1';
+    pageTransition.classList.add('is-leaving');
     setTimeout(function () { window.location.href = href; }, 380);
   });
+
+  // Back/forward restores the page from cache with the overlay still black
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) pageTransition.classList.remove('is-leaving');
+  });
+}
+
+/* ============================================================
+   PRODUCT PAGE — mobile buy bar between the hero and the buy card
+   ============================================================ */
+var stickyBuy = document.getElementById('sf-sticky-buy');
+var heroActions = document.querySelector('.sf-hero .product-actions');
+var buyCard = document.getElementById('sf-buy');
+if (stickyBuy && heroActions && buyCard && 'IntersectionObserver' in window) {
+  stickyBuy.hidden = false;
+  var heroGone = false;
+  var buyInView = false;
+  var syncStickyBuy = function () {
+    stickyBuy.classList.toggle('is-visible', heroGone && !buyInView);
+  };
+  new IntersectionObserver(function (entries) {
+    var en = entries[0];
+    heroGone = !en.isIntersecting && en.boundingClientRect.top < 0;
+    syncStickyBuy();
+  }).observe(heroActions);
+  new IntersectionObserver(function (entries) {
+    buyInView = entries[0].isIntersecting;
+    syncStickyBuy();
+  }).observe(buyCard);
 }

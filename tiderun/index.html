@@ -27,8 +27,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Karla:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=23">
-  <link rel="stylesheet" href="../css/tiderun.css?v=5">
+  <link rel="stylesheet" href="../css/style.css?v=24">
+  <link rel="stylesheet" href="../css/tiderun.css?v=6">
   <link rel="preload" as="image" href="../Shiblinggamesbackground.jpeg">
   <link rel="preload" as="image" href="trailer-poster.jpg">
 
@@ -91,14 +91,14 @@
   <header class="site-header">
     <nav>
       <a href="../index.html" class="nav-logo" aria-label="Shibling Games home">
-        <img src="../logo-mark.png" alt="Shibling Games">
+        <img src="../logo-mark.png" alt="Shibling Games" width="391" height="160">
       </a>
       <div class="nav-links">
-        <a href="../small-fishes/" class="nav-link">Board Game</a>
+        <a href="../small-fishes/" class="nav-link">Card Game</a>
+        <a href="../how-to-play.html" class="nav-link">How to Play</a>
         <a href="../tiderun/" class="nav-link nav-link--active">Tide Run</a>
         <a href="../index.html#online" class="nav-link">Online</a>
         <a href="../about.html" class="nav-link">About</a>
-        <a href="../contact.html" class="nav-link">Contact</a>
         <a href="https://testflight.apple.com/join/uxF3JSHH" class="nav-cta" target="_blank" rel="noopener">Public Beta</a>
       </div>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
@@ -109,7 +109,7 @@
 
   <div class="nav-mobile-menu" id="nav-mobile-menu">
     <nav class="nav-mobile-links">
-      <a href="../small-fishes/" class="nav-mobile-link">Board Game</a>
+      <a href="../small-fishes/" class="nav-mobile-link">Card Game</a>
       <a href="../how-to-play.html" class="nav-mobile-link">How to Play</a>
       <a href="../tiderun/" class="nav-mobile-link">Tide Run</a>
       <a href="../index.html#online" class="nav-mobile-link">Online</a>
@@ -126,9 +126,8 @@
     <!-- HERO: copy + trailer -->
     <section class="tr-hero">
       <div class="tr-hero-text">
-        <span class="section-label">For iPhone</span>
         <div class="tr-app-row">
-          <img src="app-icon.png" alt="Tide Run app icon" class="tr-app-icon" width="512" height="512">
+          <img src="app-icon-176.webp" alt="Tide Run app icon" class="tr-app-icon" width="176" height="176">
           <h1 class="tr-wordmark">Tide<br>Run</h1>
         </div>
         <p class="tr-headline">Hold to jump. Smash the beacons.</p>
@@ -136,10 +135,10 @@
           <p>Tide Run is a one-touch endless runner for iPhone. Hold to jump your boat over the rocks. The rocks with a light on them are beacons, and jumping one ends your run. Hold still and sail straight through instead.</p>
         </div>
         <div class="tr-ctas">
-          <a href="#" class="tr-badge js-app-store-link" aria-label="Download on the App Store">
+          <a href="#" class="tr-badge js-app-store-link" hidden aria-label="Download on the App Store">
             <img src="app-store-badge.svg" alt="Download on the App Store" width="156" height="52">
           </a>
-          <a href="https://testflight.apple.com/join/uxF3JSHH" class="cta-button cta-button--ghost tr-beta-link" target="_blank" rel="noopener">Public beta on TestFlight</a>
+          <a href="https://testflight.apple.com/join/uxF3JSHH" class="cta-button tr-beta-link" target="_blank" rel="noopener">Join the beta on TestFlight</a>
         </div>
         <p class="tr-cta-note js-app-store-note">Free on TestFlight now. App Store listing coming soon.</p>
       </div>
@@ -194,10 +193,10 @@
           <h2 class="tr-ink-heading">No account. No timers. No energy.</h2>
           <p class="tr-ink-text">Progress is saved on your phone. The leaderboard and 33 achievements run through Game Center. A short ad shows between runs, and a one-time 99c purchase removes it.</p>
           <div class="tr-ctas">
-            <a href="#" class="tr-badge js-app-store-link" aria-label="Download on the App Store">
+            <a href="#" class="tr-badge js-app-store-link" hidden aria-label="Download on the App Store">
               <img src="app-store-badge.svg" alt="Download on the App Store" width="156" height="52">
             </a>
-            <a href="https://testflight.apple.com/join/uxF3JSHH" class="cta-button cta-button--ghost tr-beta-link" target="_blank" rel="noopener">Public beta on TestFlight</a>
+            <a href="https://testflight.apple.com/join/uxF3JSHH" class="cta-button tr-beta-link" target="_blank" rel="noopener">Join the beta on TestFlight</a>
           </div>
         </div>
       </div>
@@ -210,7 +209,7 @@
     <div class="footer-inner">
 
       <div class="footer-brand">
-        <img src="../logo-mark.png" alt="Shibling Games" class="footer-logo" loading="lazy">
+        <img src="../logo-mark.png" alt="Shibling Games" class="footer-logo" width="391" height="160" loading="lazy">
         <p class="footer-body">Three siblings making pirate games.</p>
         <div class="socials">
           <span class="socials-label">Follow along</span>
@@ -251,7 +250,7 @@
 
       <div class="footer-col">
         <p class="footer-col-title">Support</p>
-        <a href="../how-to-play.html#faq">Board Game FAQ</a>
+        <a href="../how-to-play.html#faq">Card Game FAQ</a>
         <a href="../tiderun/support/">Tide Run Support</a>
         <a href="../privacy.html">Privacy Policy</a>
         <a href="mailto:hello@shiblinggames.com">hello@shiblinggames.com</a>
@@ -269,7 +268,7 @@
         </form>
         <div id="email-success" class="email-success" hidden>
           <span class="email-success-icon">&#10022;</span>
-          <p>Welcome aboard. We'll be in touch.</p>
+          <p>Welcome aboard. Check your inbox to confirm.</p>
         </div>
       </div>
 
@@ -284,7 +283,7 @@
   </footer>
   <!-- /SITE-FOOTER -->
 
-  <script src="../js/app.js"></script>
+  <script src="../js/app.js?v=3"></script>
   <script>
     /* Wire the App Store badges to APP_STORE_URL (set in <head>). */
     (function () {
@@ -294,15 +293,14 @@
           a.href = url;
           a.target = '_blank';
           a.rel = 'noopener';
-          a.classList.remove('is-placeholder');
-          a.removeAttribute('aria-disabled');
+          a.hidden = false;
         } else {
-          a.classList.add('is-placeholder');
-          a.setAttribute('aria-disabled', 'true');
-          a.setAttribute('title', 'App Store listing coming soon');
-          a.addEventListener('click', function (e) { e.preventDefault(); });
+          // no listing yet: the badge stays hidden so TestFlight is the one action
+          a.hidden = true;
         }
       });
+      // once the App Store is live, TestFlight steps back to a secondary button
+      if (url) document.querySelectorAll('.tr-beta-link').forEach(function (b) { b.classList.add('cta-button--ghost'); });
       document.querySelectorAll('.js-app-store-note').forEach(function (n) { n.hidden = !!url; });
     })();
   </script>

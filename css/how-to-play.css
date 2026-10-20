@@ -34,7 +34,13 @@
 
 /* --- VIDEO --- */
 .htp-video-section {
-  margin-bottom: 4rem;
+  /* the video is the page: break out of the 780px reading column */
+  width: min(1100px, calc(100vw - 4rem));
+  margin: 0 0 4rem calc(50% - min(550px, 50vw - 2rem));
+}
+
+@media (max-width: 768px) {
+  .htp-video-section { width: 100%; margin-left: 0; }
 }
 
 .htp-video-wrap {
@@ -219,12 +225,11 @@
 
 .team-role {
   font-family: var(--font-body);
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold);
-  opacity: 0.75;
 }
 
 .team-bio {
