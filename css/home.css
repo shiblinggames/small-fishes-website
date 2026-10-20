@@ -376,10 +376,7 @@
   filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.55));
 }
 
-.box-open {
-  background: transparent;
-  cursor: pointer;
-}
+.box-open { cursor: pointer; }
 
 /* 02: trailer in the phone frame */
 .product-phone .phone-frame { width: clamp(220px, 24vw, 300px); }
@@ -400,24 +397,25 @@
   position: relative;
   width: 100%;
   margin: 0;
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  border: 1px solid rgba(240, 192, 64, 0.22);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
-  aspect-ratio: 16 / 10;
-  background: #000;
+  padding: 10px;
+  border-radius: var(--r-md);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+  transform: rotate(1deg);
 }
 
 .online-frame img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 16 / 10;
   object-fit: cover;
+  border-radius: 4px;
 }
 
 .online-frame::after {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: 10px;
+  border-radius: 4px;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 45%);
   pointer-events: none;
 }
@@ -425,18 +423,18 @@
 .online-frame-tag {
   position: absolute;
   z-index: 1;
-  left: 1.25rem;
-  bottom: 1.1rem;
+  left: 1.6rem;
+  bottom: 1.5rem;
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--ink);
   padding: 0.45rem 0.8rem;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(240, 192, 64, 0.35);
-  border-radius: var(--r-sm);
+  background: var(--parchment);
+  border-radius: 2px;
+  transform: rotate(-2deg);
 }
 
 /* --- MOBILE --- */

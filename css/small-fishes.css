@@ -79,17 +79,20 @@
 
 /* long reading over the illustrated sea: give it a quiet surface */
 .sf-panel {
-  padding: 2.75rem;
-  background: rgba(3, 10, 22, 0.72);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 3rem;
+  background: var(--paper);
   border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
 }
+
+.sf-panel .sf-steps li,
+.sf-panel .htp-about-body { color: var(--ink-soft); }
+.sf-panel .sf-steps li strong { color: var(--ink); }
+.sf-panel .sf-steps li::before { border-color: var(--ink-accent); color: var(--ink-accent); }
 
 .sf-steps-aside {
   padding-left: 2.5rem;
-  border-left: 1px solid rgba(240, 192, 64, 0.25);
+  border-left: 1px solid rgba(110, 74, 16, 0.3);
 }
 
 .sf-steps-aside .htp-about-body { margin-bottom: 1rem; }
@@ -149,11 +152,8 @@
   align-items: center;
   padding: 3.5rem;
   border-radius: var(--r-lg);
-  border: 1px solid rgba(240, 192, 64, 0.3);
-  background:
-    radial-gradient(ellipse 60% 80% at 25% 50%, rgba(240, 192, 64, 0.12), transparent 70%),
-    rgba(3, 10, 22, 0.8);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
 }
 
 .sf-buy-box {
@@ -169,7 +169,7 @@
   font-size: clamp(1.8rem, 3.2vw, 2.6rem);
   font-weight: 900;
   line-height: 1.1;
-  color: var(--text);
+  color: var(--ink);
   margin-bottom: 1.25rem;
   text-wrap: balance;
 }
@@ -178,7 +178,7 @@
   font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--ink-accent);
   line-height: 1;
   margin-bottom: 0.6rem;
 }
@@ -186,7 +186,7 @@
 .sf-buy-details {
   font-family: var(--font-body);
   font-size: 0.95rem;
-  color: var(--text-dim);
+  color: var(--ink-soft);
 }
 
 .sf-buy-body .cta-button { margin-top: 2rem; }
@@ -196,7 +196,7 @@
 
 @media (max-width: 900px) {
   .sf-steps-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-  .sf-steps-aside { padding: 2rem 0 0; border-left: none; border-top: 1px solid rgba(240, 192, 64, 0.25); }
+  .sf-steps-aside { padding: 2rem 0 0; border-left: none; border-top: 1px solid rgba(110, 74, 16, 0.3); }
   .sf-buy-card { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 1.75rem; text-align: center; }
   .sf-buy-box { max-width: 360px; margin: 0 auto; }
 }
@@ -206,7 +206,7 @@
   .sf-hero .product-layout { gap: 2.5rem; }
   .sf-hero-visual { order: -1; }
   .sf-hero .box-stage { max-width: 400px; }
-  .sf-panel { padding: 1.75rem 1.25rem; }
+  .sf-panel { padding: 2rem 1.4rem; }
   .sf-buy { padding: 0 1.5rem; }
   .sf-contents { max-width: 260px; margin: 0 auto; }
 

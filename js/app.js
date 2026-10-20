@@ -16,7 +16,7 @@ function updateOceanDepth() {
   var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   var progress = maxScroll > 0 ? Math.min(scrolled / maxScroll, 1) : 0;
   if (oceanBg) oceanBg.style.backgroundPositionY = (progress * 100) + '%';
-  if (depthOverlay) depthOverlay.style.opacity = progress * 0.7;
+  if (depthOverlay) depthOverlay.style.opacity = progress * 0.35;
   if (scrollProgress) scrollProgress.style.width = (progress * 100) + '%';
   if (treasureGlow) treasureGlow.style.opacity = Math.max(0, (progress - 0.62) / 0.38);
   if (siteHeader) siteHeader.classList.toggle('is-scrolled', scrolled > 24);
