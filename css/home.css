@@ -48,20 +48,26 @@
   to   { transform: scale(1.07); }
 }
 
-.slide--board .slide-art { object-position: 50% 55%; }
-
-/* the box photo sits on black: give it the right side so the title
-   never lands on the box's own printed logo */
+/* desktop: every game's art takes the right 60% at its own size, so
+   nothing is stretched past its resolution and the title keeps the
+   dark left side; the edges feather into the black */
 @media (min-width: 901px) {
-  .slide--board .slide-art {
-    left: auto;
+  .slide-art {
+    inset: 0 0 0 auto;
     width: 60%;
-    object-fit: contain;
-    object-position: 100% 30%;
+    height: auto;
+    margin: auto 0;
+    object-fit: initial;
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent 0%, #000 22%),
+      linear-gradient(180deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(90deg, transparent 0%, #000 22%),
+      linear-gradient(180deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+    mask-composite: intersect;
   }
 }
-.slide--tiderun .slide-art { object-position: 50% 50%; }
-.slide--online .slide-art { object-position: 25% 50%; }
 
 .slide::after {
   content: '';
@@ -114,22 +120,6 @@
 }
 
 .slide-caption .cta-button { margin-top: 0.9rem; }
-
-/* Seas the Booty: the boats sit left, so the title takes the open water on the right */
-@media (min-width: 901px) {
-  .slide--online .slide-caption {
-    left: auto;
-    align-items: flex-end;
-    text-align: right;
-  }
-
-  .slide--online::after {
-    background:
-      linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 30%),
-      linear-gradient(270deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 55%),
-      linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 45%);
-  }
-}
 
 /* tabs: one per game, with a progress bar during autoplay */
 .hero-tabs {
@@ -521,12 +511,25 @@
     object-fit: initial;
   }
 
+  /* Tide Run: the boat and sunset across the top, like the other two */
+  .slide--tiderun .slide-art {
+    inset: auto;
+    top: 11%;
+    left: -5vw;
+    width: 140vw;
+    max-width: none;
+    height: auto;
+    object-fit: initial;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 70%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 70%, transparent 100%);
+  }
+
   /* the flotilla, zoomed so the whole group of boats spans the screen */
   .slide--online .slide-art {
     inset: auto;
-    top: 4%;
-    left: -37vw;
-    width: 250vw;
+    top: 10%;
+    left: -19vw;
+    width: 160vw;
     max-width: none;
     height: auto;
     object-fit: initial;
