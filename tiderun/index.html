@@ -32,14 +32,11 @@
   <link rel="preload" as="image" href="../Shiblinggamesbackground.jpeg">
   <link rel="preload" as="image" href="trailer-poster.jpg">
 
+  <meta name="apple-itunes-app" content="app-id=6801934789">
+
   <script>
-    /* ============================================================
-       APP STORE URL: FILL THIS IN WHEN THE LISTING IS LIVE
-       e.g. 'https://apps.apple.com/app/id0000000000'
-       Leave empty until then: the badge shows as "coming soon"
-       and the TestFlight public beta link stays alongside it.
-       ============================================================ */
-    var APP_STORE_URL = '';
+    /* App Store listing is live (released Nov 9, 2026). */
+    var APP_STORE_URL = 'https://apps.apple.com/us/app/tide-run/id6801934789';
   </script>
 
   <script type="application/ld+json">
@@ -99,7 +96,7 @@
         <a href="../tiderun/" class="nav-link nav-link--active">Tide Run</a>
         <a href="../index.html#seas-the-booty" class="nav-link">Seas the Booty</a>
         <a href="../about.html" class="nav-link">About</a>
-        <a href="https://testflight.apple.com/join/uxF3JSHH" class="nav-cta" target="_blank" rel="noopener">Public Beta</a>
+        <a href="https://apps.apple.com/us/app/tide-run/id6801934789" class="nav-cta" target="_blank" rel="noopener">App Store</a>
       </div>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -116,7 +113,7 @@
       <a href="../about.html" class="nav-mobile-link">About</a>
       <a href="../contact.html" class="nav-mobile-link">Contact</a>
       <div class="nav-mobile-divider"></div>
-      <a href="https://testflight.apple.com/join/uxF3JSHH" class="cta-button nav-mobile-cta" target="_blank" rel="noopener">Join the Tide Run Beta</a>
+      <a href="https://apps.apple.com/us/app/tide-run/id6801934789" class="cta-button nav-mobile-cta" target="_blank" rel="noopener">Download on the App Store</a>
     </nav>
   </div>
   <!-- /SITE-HEADER -->
@@ -135,12 +132,11 @@
           <p>Tide Run is a one-touch endless runner for iPhone. Hold to jump your boat over the rocks. The rocks with a light on them are beacons, and jumping one ends your run. Hold still and sail straight through instead.</p>
         </div>
         <div class="tr-ctas">
-          <a href="#" class="tr-badge js-app-store-link" hidden aria-label="Download on the App Store">
+          <a href="https://apps.apple.com/us/app/tide-run/id6801934789" class="tr-badge js-app-store-link" target="_blank" rel="noopener" aria-label="Download on the App Store">
             <img src="app-store-badge.svg" alt="Download on the App Store" width="156" height="52">
           </a>
-          <a href="https://testflight.apple.com/join/uxF3JSHH" class="cta-button tr-beta-link" target="_blank" rel="noopener">Join the beta on TestFlight</a>
         </div>
-        <p class="tr-cta-note js-app-store-note">Free on TestFlight now. App Store listing coming soon.</p>
+        <p class="tr-cta-note">Free on the App Store.</p>
       </div>
 
       <div class="tr-hero-phone">
@@ -179,7 +175,7 @@
           <img src="chest-closed.png" alt="A closed crate" class="tr-chest tr-chest--closed" loading="lazy" width="512" height="512">
           <div class="tr-parchment-body">
             <h2 class="tr-parchment-heading">Crates</h2>
-            <p class="tr-parchment-text">Crates wash up on the water. Open them at the locker for doubloons, new wake colours and new beacon smashes. You can't buy them. You find them.</p>
+            <p class="tr-parchment-text">Crates wash up on the water. Open them at the locker for doubloons, new wake colors and new beacon smashes. You can't buy them. You find them.</p>
           </div>
           <img src="chest-open.png" alt="An open crate" class="tr-chest tr-chest--open" loading="lazy" width="512" height="512">
         </div>
@@ -193,10 +189,9 @@
           <h2 class="tr-ink-heading">No account. No timers. No energy.</h2>
           <p class="tr-ink-text">Progress is saved on your phone. The leaderboard and 33 achievements run through Game Center. A short ad shows between runs, and a one-time 99c purchase removes it.</p>
           <div class="tr-ctas">
-            <a href="#" class="tr-badge js-app-store-link" hidden aria-label="Download on the App Store">
+            <a href="https://apps.apple.com/us/app/tide-run/id6801934789" class="tr-badge js-app-store-link" target="_blank" rel="noopener" aria-label="Download on the App Store">
               <img src="app-store-badge.svg" alt="Download on the App Store" width="156" height="52">
             </a>
-            <a href="https://testflight.apple.com/join/uxF3JSHH" class="cta-button tr-beta-link" target="_blank" rel="noopener">Join the beta on TestFlight</a>
           </div>
         </div>
       </div>
@@ -236,7 +231,7 @@
         <p class="footer-col-title">Games</p>
         <a href="../small-fishes/">Small Fishes: Seas the Booty</a>
         <a href="../how-to-play.html">How to Play</a>
-        <a href="../tiderun/">Tide Run <small>Beta</small></a>
+        <a href="../tiderun/">Tide Run</a>
         <a href="../index.html#seas-the-booty">Seas the Booty <small>Soon</small></a>
       </div>
 
@@ -284,23 +279,11 @@
 
   <script src="../js/app.js?v=7"></script>
   <script>
-    /* Wire the App Store badges to APP_STORE_URL (set in <head>). */
+    /* Point the App Store badges at APP_STORE_URL (set in <head>). */
     (function () {
       var url = (window.APP_STORE_URL || '').trim();
-      document.querySelectorAll('.js-app-store-link').forEach(function (a) {
-        if (url) {
-          a.href = url;
-          a.target = '_blank';
-          a.rel = 'noopener';
-          a.hidden = false;
-        } else {
-          // no listing yet: the badge stays hidden so TestFlight is the one action
-          a.hidden = true;
-        }
-      });
-      // once the App Store is live, TestFlight steps back to a secondary button
-      if (url) document.querySelectorAll('.tr-beta-link').forEach(function (b) { b.classList.add('cta-button--ghost'); });
-      document.querySelectorAll('.js-app-store-note').forEach(function (n) { n.hidden = !!url; });
+      if (!url) return;
+      document.querySelectorAll('.js-app-store-link').forEach(function (a) { a.href = url; });
     })();
   </script>
 </body>
