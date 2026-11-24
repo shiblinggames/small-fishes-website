@@ -1,0 +1,303 @@
+/* ============================================================
+   BLACK FRIDAY SALE BANNER
+   js/sale.js builds the banner and holds the on/off switch and end
+   date. Without it (sale off or ended) none of these rules match.
+   ============================================================ */
+
+/* the header is fixed: make room for the banner at the top of the page */
+html.has-sale body { padding-top: var(--sale-h, 0px); }
+html.has-sale .hero-carousel { height: calc(100vh - var(--sale-h, 0px)); height: calc(100svh - var(--sale-h, 0px)); }
+html.has-sale .tr-hero { min-height: calc(100vh - 64px - var(--sale-h, 0px)); }
+
+.sale-bar {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr;
+  /* the site's warm card surface, lit from above by a little treasure glow */
+  background:
+    radial-gradient(ellipse 55% 160% at 50% 0%, rgba(240, 192, 64, 0.17), rgba(240, 192, 64, 0) 70%),
+    var(--surface);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.35), 0 8px 22px rgba(0, 0, 0, 0.35);
+  transition: grid-template-rows 0.35s cubic-bezier(0.2, 0, 0.2, 1), visibility 0s;
+}
+
+.sale-clip { min-height: 0; overflow: hidden; }
+
+.sale-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem 1.25rem;
+  padding: 0.55rem 3.5rem;
+}
+
+.sale-msg {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem 0.7rem;
+  margin: 0;
+  min-width: 0;
+}
+
+.sale-coin {
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
+}
+
+.sale-title {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+.sale-text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.sale-text strong { color: var(--text); font-weight: 700; }
+
+.sale-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* ---- the code: a gold ticket stub you tap to copy ---- */
+.sale-code {
+  display: inline-flex;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  border-radius: 6px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sale-ticket {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  height: 2.2rem;
+  overflow: hidden;
+  color: #1c1405;
+  background: linear-gradient(180deg, #F7D873 0%, var(--gold) 52%, #E2AA2A 100%);
+  border-radius: 5px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  /* notched ends, like a torn ticket */
+  -webkit-mask:
+    radial-gradient(circle at 0 50%, transparent 5px, #000 5.5px) 0 0 / 51% 100% no-repeat,
+    radial-gradient(circle at 100% 50%, transparent 5px, #000 5.5px) 100% 0 / 51% 100% no-repeat;
+          mask:
+    radial-gradient(circle at 0 50%, transparent 5px, #000 5.5px) 0 0 / 51% 100% no-repeat,
+    radial-gradient(circle at 100% 50%, transparent 5px, #000 5.5px) 100% 0 / 51% 100% no-repeat;
+  transition: filter 0.2s, transform 0.15s;
+}
+
+/* a single glint across the ticket shortly after the page opens */
+.sale-ticket::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.65) 50%, transparent 70%);
+  transform: translateX(-110%);
+  animation: saleGlint 1.1s cubic-bezier(0.2, 0, 0.2, 1) 1.1s both;
+  pointer-events: none;
+}
+
+@keyframes saleGlint { to { transform: translateX(110%); } }
+
+.sale-code:hover .sale-ticket { filter: brightness(1.07); }
+.sale-code:active .sale-ticket { transform: translateY(1px); }
+
+.sale-ticket-code {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.8rem 0 1.05rem;
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  -webkit-user-select: all;
+          user-select: all;
+}
+
+.sale-ticket-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 5.2rem;
+  padding: 0 1rem 0 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  /* perforation between the code and the stub */
+  background: radial-gradient(circle, rgba(28, 20, 5, 0.5) 1px, transparent 1.5px) 0 50% / 3px 6px repeat-y;
+}
+
+.sale-icon { flex-shrink: 0; }
+.sale-icon--done { display: none; }
+.sale-code.is-copied .sale-icon--copy { display: none; }
+.sale-code.is-copied .sale-icon--done { display: block; }
+.sale-code.is-copied .sale-ticket { animation: saleStamp 0.35s cubic-bezier(0.2, 0, 0.2, 1); }
+.sale-code.is-failed .sale-icon--copy { display: none; }
+
+@keyframes saleStamp {
+  40% { transform: scale(1.06) rotate(-1.5deg); }
+  100% { transform: none; }
+}
+
+/* ---- go buy: the site's secondary button, in small ---- */
+.sale-shop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.2rem;
+  padding: 0 1rem;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--parchment-light);
+  background: rgba(239, 227, 198, 0.12);
+  border-radius: var(--r-sm);
+  transition: background 0.2s, color 0.2s;
+}
+
+.sale-shop:hover { background: rgba(239, 227, 198, 0.22); color: #fff; }
+.sale-arrow { transition: transform 0.2s; }
+.sale-shop:hover .sale-arrow { transform: translateX(3px); }
+
+.sale-close {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+.sale-close:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+
+.sale-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---- reminder under the price on the board game page ---- */
+.sale-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  margin: 1.25rem 0 0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-dim);
+}
+
+.sale-note-text { white-space: nowrap; }
+
+.sale-note strong {
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.sale-note-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1c1405;
+  background: var(--gold);
+  border-radius: 3px;
+  padding: 0.25em 0.6em;
+}
+
+@media (max-width: 900px) {
+  .sf-buy-card .sale-note { justify-content: center; }
+}
+
+/* ---- tablet: line up with the logo, drop the words "with code" ---- */
+@media (max-width: 1060px) {
+  .site-header .sale-inner { justify-content: flex-start; padding-left: 2rem; }
+}
+
+@media (max-width: 900px) {
+  .sale-text-tail { display: none; }
+}
+
+/* ---- phone: two short rows, folded away once the page scrolls ---- */
+@media (max-width: 680px) {
+  .site-header .sale-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem 0.7rem;
+  }
+
+  .sale-msg { flex-wrap: wrap; padding-right: 2.25rem; }
+  .sale-title { font-size: 0.98rem; }
+  .sale-text { font-size: 0.9rem; }
+  .sale-close { top: 0.3rem; right: 0.4rem; transform: none; width: 2.75rem; height: 2.75rem; }
+  .sale-actions { gap: 0.5rem; flex-wrap: wrap; }
+  .sale-ticket, .sale-shop { height: 2.5rem; min-height: 2.5rem; }
+  .sale-ticket-code { padding: 0 0.55rem 0 0.8rem; letter-spacing: 0.1em; }
+  /* wide enough for "Copied" too, so the row never jumps */
+  .sale-ticket-action { min-width: 5.3rem; padding: 0 0.65rem 0 0.55rem; }
+  .sale-shop { padding: 0 0.75rem; letter-spacing: 0.08em; }
+
+  .site-header.is-scrolled .sale-bar {
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    box-shadow: none;
+    transition: grid-template-rows 0.35s cubic-bezier(0.2, 0, 0.2, 1), visibility 0s 0.35s, box-shadow 0.35s;
+  }
+}
+
+/* the full-screen menu (phones and tablets) gets the whole screen */
+.site-header:has(.nav-hamburger.open) .sale-bar {
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  box-shadow: none;
+  transition: grid-template-rows 0.35s cubic-bezier(0.2, 0, 0.2, 1), visibility 0s 0.35s, box-shadow 0.35s;
+}
+
+@media (max-width: 400px) {
+  .sale-arrow { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sale-ticket::after { display: none; }
+  .sale-code.is-copied .sale-ticket { animation: none; }
+  .sale-bar,
+  .site-header.is-scrolled .sale-bar,
+  .site-header:has(.nav-hamburger.open) .sale-bar { transition: none; }
+}
