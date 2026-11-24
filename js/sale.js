@@ -17,7 +17,9 @@ var SALE = {
   on: true,
   code: 'SMALLF15HES',
   endsAt: '',
-  shopUrl: 'https://shiblingshop.com/'
+  // where "Shop the sale" goes: the shop section on our home page, which
+  // lists everything (its buy links carry the code to Shopify checkout)
+  shopLink: '/#shop'
 };
 
 (function () {
@@ -61,6 +63,10 @@ var SALE = {
   var DISMISS_KEY = 'sale-hidden-' + code;
   try { if (sessionStorage.getItem(DISMISS_KEY)) return; } catch (e) {}
 
+  // already on the page with the shop: jump to it without reloading
+  var shopHash = SALE.shopLink.indexOf('#') !== -1 ? SALE.shopLink.slice(SALE.shopLink.indexOf('#')) : '';
+  var shopHref = shopHash && document.querySelector(shopHash) ? shopHash : SALE.shopLink;
+
   var bar = document.createElement('div');
   bar.className = 'sale-bar';
   bar.setAttribute('role', 'region');
@@ -88,9 +94,8 @@ var SALE = {
             '</span>' +
           '</span>' +
         '</button>' +
-        '<a class="sale-shop" href="' + discountLink(SALE.shopUrl) + '" target="_blank" rel="noopener">' +
+        '<a class="sale-shop" href="' + shopHref + '">' +
           'Shop the sale<span class="sale-arrow" aria-hidden="true">&rarr;</span>' +
-          '<span class="sale-sr"> (opens the shop in a new tab, code applied at checkout)</span>' +
         '</a>' +
       '</div>' +
       '<span class="sale-sr" role="status" aria-live="polite"></span>' +
